@@ -1,3 +1,9 @@
+/*
+|----\             
+|    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
+|    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
+|----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
+*/
 ///////////////////////////  CHECK JOYSTICK FOR MACRO REQUESTS ////////////////////////////////
 // Check to see if the user has requested a new state.  If not, return UNDEFINED
 // Used by DoMacros

@@ -1,3 +1,9 @@
+/*
+|----\             
+|    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
+|    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
+|----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
+*/
 #pragma config(Hubs,  S1, HTServo,  HTMotor,  HTMotor,  none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Motor,  mtr_S1_C2_1,     Shoulder,      tmotorTetrix, PIDControl)
