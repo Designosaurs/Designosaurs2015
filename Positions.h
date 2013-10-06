@@ -1,5 +1,5 @@
 /*
-|----\             
+|----\
 |    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
 |    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
@@ -24,11 +24,11 @@
 // Now move the LClaw to the floor to grab the ring
 #define FRONT_GRAB_WRIST 50
 
-#define RCLAW_OPEN 76
-#define RCLAW_CLOSED 13
+#define RCLAW_OPEN 80
+#define RCLAW_CLOSED 40
 
-#define LCLAW_OPEN 65
-#define LCLAW_CLOSED(-25)
+#define LCLAW_OPEN 180
+#define LCLAW_CLOSED 140
 
 #define RINGDISP_SHOULDER -91
 #define	RINGDISP_ELBOW -31

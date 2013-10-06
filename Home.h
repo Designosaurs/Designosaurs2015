@@ -1,5 +1,5 @@
 /*
-|----\             
+|----\
 |    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
 |    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
@@ -14,8 +14,6 @@ void HomeArm( void )
 	StopArm();
 	ResetStall();
 	if (Beeps) PlaySound(soundBlip);
-	MoveSwivel( SWIVEL_HOME );
-	MoveWrist( WRIST_HOME  );
 
 	while(1)
 	{

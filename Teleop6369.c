@@ -65,8 +65,8 @@ void initializeRobot()
 	servoChangeRate[LClaw] = 4;  // Not too fast-- do not want drop the ring.
 	servoChangeRate[RClaw] = 4;
 	servo[AutoRing] = 0;
-	servo[ LClaw ] = 128;
-	servo[RClaw] = 128;
+	servo[ LClaw ] = LCLAW_OPEN;
+	servo[RClaw] = RCLAW_OPEN;
 	servo[Claw] = CLAW_CLOSED;
   ArmState = HOME;
 	return;
@@ -92,13 +92,10 @@ task main()
   // Adjust hardware so LClaw is straight ahead.
 	//while(1)  { 		Executor(); MoveWrist( 0 ); }
 
-	MoveWrist( WRIST_HOME  );
-	MoveSwivel( SWIVEL_HOME );
-
 	while(true)
 	{
 		Executor();
 		MoveArmFromJoysticks( );
-		DoMacros();
+		//DoMacros();
 	}
 }
