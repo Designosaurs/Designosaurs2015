@@ -166,7 +166,7 @@ void RingFromFloor( void )
 
 
 
-	// Move the elbow out, wrist down, while closing the claw.
+	// Move the elbow out, LClaw down, while closing the claw.
 	motor[Shoulder] =  0;
 	motor[Elbow] = 10;
 	servoChangeRate[Claw] = 4;

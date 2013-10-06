@@ -12,7 +12,7 @@
 //		Encoder reading and speed determination.
 //		Joystick reading.
 
-//////////////////// Maintain the wrist position, based on WristSpeed //////////////////
+//////////////////// Maintain the LClaw position, based on WristSpeed //////////////////
 int ClampToByte( int Input )
 {
 	short Output;
@@ -22,7 +22,7 @@ int ClampToByte( int Input )
 	return Output;
 }
 
-// Wrist postion is maintained in degrees.
+// LClaw postion is maintained in degrees.
 #define WRIST_HI_LIMIT   65
 #define WRIST_LOW_LIMIT (-25)
 
@@ -44,10 +44,10 @@ void DoWrist( void )
 	// INVERT DIRECT because that is the way the hardware works.
 	//Comment this out if not needed
 	WristPosCounts = 255 - ClampToByte(WristPosCounts + WRIST_TRIM);
-	servo[Wrist] = ClampToByte( WristPosCounts);
+	servo[LClaw] = ClampToByte( WristPosCounts);
 }
 
-// Input wrist in degrees.
+// Input LClaw in degrees.
 void MoveWrist( int WristPosDeg )
 {	fWristPosDeg = (float) WristPosDeg ;
 	long WristPosCounts;
@@ -57,7 +57,7 @@ void MoveWrist( int WristPosDeg )
 	// INVERT DIRECT because that is the way the hardware works.
 	//Comment this out if not needed
 	WristPosCounts = 255 - ClampToByte(WristPosCounts + WRIST_TRIM);
-	servo[Wrist] = ClampToByte( WristPosCounts);
+	servo[LClaw] = ClampToByte( WristPosCounts);
 
 
 }
@@ -66,7 +66,7 @@ void MoveWrist( int WristPosDeg )
 #define SWIVEL_HIGHLIMIT 76
 #define SWIVEL_LOWLIMIT 13
 #define SWIVEL_OFFSET_COUNTS  128
-// Adjust this so zero swivel is straight out.
+// Adjust this so zero RClaw is straight out.
 
 void DoSwivel( void )
 {
@@ -79,7 +79,7 @@ void DoSwivel( void )
 	SwivelPosCounts += SWIVEL_OFFSET_COUNTS;
 	//INVERT FOR HARDWARE comment out if not needed.
 	SwivelPosCounts = 255 - ClampToByte( SwivelPosCounts);
-	servo[Swivel] = ClampToByte( SwivelPosCounts);
+	servo[RClaw] = ClampToByte( SwivelPosCounts);
 }
 
 void MoveSwivel( int SwivelPosDeg )

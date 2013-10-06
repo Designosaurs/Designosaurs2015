@@ -21,7 +21,7 @@
 #define FRONT_FLOOR_SHOULDER -89
 #define	FRONT_FLOOR_ELBOW -72
 #define FRONT_FLOOR_WRIST 55
-// Now move the wrist to the floor to grab the ring
+// Now move the LClaw to the floor to grab the ring
 #define FRONT_GRAB_WRIST 50
 
 

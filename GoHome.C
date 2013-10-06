@@ -7,8 +7,8 @@
 #pragma config(Motor,  mtr_S1_C2_2,     Elbow,         tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C3_1,     RightDrive,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     LeftDrive,     tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C1_1,    Wrist,                tServoStandard)
-#pragma config(Servo,  srvo_S1_C1_2,    Swivel,               tServoStandard)
+#pragma config(Servo,  srvo_S1_C1_1,    LClaw,                tServoStandard)
+#pragma config(Servo,  srvo_S1_C1_2,    RClaw,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C1_3,    Claw,                 tServoStandard)
 #pragma config(Servo,  srvo_S1_C1_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C1_5,    servo5,               tServoNone)
@@ -45,13 +45,13 @@ task main()
 	nMotorEncoder[Elbow] = 0;
 
 	// SLOWLY move the servos home.
-	servoChangeRate[Wrist] = 2;
-	servoChangeRate[Swivel] = 2;
-	servo[ Wrist ] = WRIST_INIT_COUNTS;
-	servo[Swivel] = SWIVEL_INIT_COUNTS;
+	servoChangeRate[LClaw] = 2;
+	servoChangeRate[RClaw] = 2;
+	servo[ LClaw ] = WRIST_INIT_COUNTS;
+	servo[RClaw] = SWIVEL_INIT_COUNTS;
 	servo[Claw] = CLAW_CLOSED;
 
-	// The excutor will also move the swivel and wrist.
+	// The excutor will also move the RClaw and LClaw.
 	MoveWrist( WRIST_HOME  );
 	MoveSwivel( SWIVEL_HOME );
 

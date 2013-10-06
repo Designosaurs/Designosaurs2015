@@ -4,8 +4,8 @@
 #pragma config(Motor,  mtr_S1_C2_2,     Elbow,         tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C3_1,     RightDrive,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     LeftDrive,     tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C1_1,    Wrist,                tServoStandard)
-#pragma config(Servo,  srvo_S1_C1_2,    Swivel,               tServoStandard)
+#pragma config(Servo,  srvo_S1_C1_1,    LClaw,                tServoStandard)
+#pragma config(Servo,  srvo_S1_C1_2,    RClaw,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C1_3,    Claw,                 tServoStandard)
 #pragma config(Servo,  srvo_S1_C1_4,    AutoRing,             tServoStandard)
 #pragma config(Servo,  srvo_S1_C1_5,    servo5,               tServoNone)
@@ -62,11 +62,11 @@ void initializeRobot()
 	ClearTimer(T1);
 	nMotorEncoder[Shoulder] = 0;
 	nMotorEncoder[Elbow] = 0;
-	servoChangeRate[Wrist] = 4;  // Not too fast-- do not want drop the ring.
-	servoChangeRate[Swivel] = 4;
+	servoChangeRate[LClaw] = 4;  // Not too fast-- do not want drop the ring.
+	servoChangeRate[RClaw] = 4;
 	servo[AutoRing] = 0;
-	servo[ Wrist ] = 128;
-	servo[Swivel] = 128;
+	servo[ LClaw ] = 128;
+	servo[RClaw] = 128;
 	servo[Claw] = CLAW_CLOSED;
   ArmState = HOME;
 	return;
@@ -87,9 +87,9 @@ task main()
   //waitForStart();   // wait for start of tele-op phase
 
   // TEST CODE
-  // Adjust hardware so swivel neutral is straight.
-  //while(1){servo[Swivel] = 128;}
-  // Adjust hardware so wrist is straight ahead.
+  // Adjust hardware so RClaw neutral is straight.
+  //while(1){servo[RClaw] = 128;}
+  // Adjust hardware so LClaw is straight ahead.
 	//while(1)  { 		Executor(); MoveWrist( 0 ); }
 
 	MoveWrist( WRIST_HOME  );

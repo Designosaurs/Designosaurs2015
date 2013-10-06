@@ -7,8 +7,8 @@
 #pragma config(Motor,  mtr_S1_C2_2,     Elbow,         tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C3_1,     RightDrive,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     LeftDrive,     tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C1_1,    Wrist,                tServoStandard)
-#pragma config(Servo,  srvo_S1_C1_2,    Swivel,               tServoStandard)
+#pragma config(Servo,  srvo_S1_C1_1,    LClaw,                tServoStandard)
+#pragma config(Servo,  srvo_S1_C1_2,    RClaw,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C1_3,    Claw,                 tServoStandard)
 #pragma config(Servo,  srvo_S1_C1_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C1_5,    servo5,               tServoNone)
@@ -93,12 +93,12 @@ void TestServos( void )
 {
 	if (joystick.joy1_Buttons == button4)
 	{
-		servo[Swivel] = 100;
+		servo[RClaw] = 100;
 	}
 
 	if (joystick.joy1_Buttons == button2)
 	{
-		servo[Swivel] = 128;
+		servo[RClaw] = 128;
 	}
 
 	if (joystick.joy1_Buttons == button5)
@@ -114,12 +114,12 @@ void TestServos( void )
 
 	if (joystick.joy1_Buttons == button1)
 	{
-		servo[Wrist] = 0;
+		servo[LClaw] = 0;
 	}
 
 	if (joystick.joy1_Buttons == button3)
 	{
-		servo[Wrist] = 64;
+		servo[LClaw] = 64;
 	}
 
 
@@ -144,11 +144,11 @@ task main()
 {
 	bDisplayDiagnostics = false;  // Disables the diagnostic display in JoyStickDriver.c
 
-	//servoChangeRate[Swivel] = 3;
-	//servoChangeRate[Wrist] = 3;
+	//servoChangeRate[RClaw] = 3;
+	//servoChangeRate[LClaw] = 3;
 	//servoChangeRate[Claw] = 3;
 
-	servo[Swivel] = 128;
+	servo[RClaw] = 128;
 	while(1)
 	{
 		getJoystickSettings(joystick);     // update buttons and joysticks

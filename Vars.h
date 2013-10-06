@@ -9,7 +9,7 @@
 // unless they are used ONLY in a single file.
 
 
-// Define Shoulder, Elbow, wrist
+// Define Shoulder, Elbow, LClaw
 typedef enum
 {
 	SHOULDER,
