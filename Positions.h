@@ -25,7 +25,7 @@
 #define FRONT_GRAB_WRIST 50
 
 #define RCLAW_OPEN 80
-#define RCLAW_CLOSED 40
+#define RCLAW_CLOSED 20
 
 #define LCLAW_OPEN 180
 #define LCLAW_CLOSED 140
