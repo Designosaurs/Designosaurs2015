@@ -64,16 +64,30 @@ void ContolClaw( void )
 
 	if (joy1Btn(7) == 1)
 	{
-		servoChangeRate[Claw] = 10;
+		servoChangeRate[RClaw] = 10;
 		//PlaySound(soundBlip);
-		servo[Claw]= CLAW_CLOSED;
+		servo[RClaw]= RCLAW_CLOSED;
 	}
-
+	
+	if (joy1Btn(6) == 1)
+	{
+		servoChangeRate[LClaw] = 10;
+		//PlaySound(soundBlip);
+		servo[LClaw]= LCLAW_CLOSED;
+	}
+	
 	if (joy1Btn(5) == 1)
 	{
-		servoChangeRate[Claw] = 10;
+		servoChangeRate[RClaw] = 10;
 		//PlaySound(soundBlip);
-		servo[Claw]= CLAW_OPEN;
+		servo[RClaw]= RCLAW_OPEN;
+	}
+	
+	if (joy1Btn(8) == 1)
+	{
+		servoChangeRate[LClaw] = 10;
+		//PlaySound(soundBlip);
+		servo[LClaw]= LCLAW_OPEN;
 	}
 }
 

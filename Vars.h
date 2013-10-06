@@ -70,7 +70,6 @@ float fWristPosDeg = 0;
 #define CLAW_OPEN 255
 #define CLAW_CLOSED 40
 
-
 float fSwivelSpeed = 0;
 float fSwivelPosDeg;
 
