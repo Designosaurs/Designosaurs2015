@@ -1,9 +1,10 @@
 /*
-|----\             
+|----\
 |    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
 |    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
 */
+
 // EXECUTOR
 // Called frequently during every loop.
 // Handles all the background level tasks:
@@ -22,8 +23,8 @@ int ClampToByte( int Input )
 }
 
 // Wrist postion is maintained in degrees.
-#define WRIST_HI_LIMIT  135
-#define WRIST_LOW_LIMIT (-45)
+#define WRIST_HI_LIMIT   65
+#define WRIST_LOW_LIMIT (-25)
 
 // Adjust this to compensate for the mechanical not being perfect.
 // With StaightUp.c, this should point straight up.
@@ -62,15 +63,15 @@ void MoveWrist( int WristPosDeg )
 }
 
 
-#define SWIVEL_HIGHLIMIT 90
-#define SWIVEL_LOWLIMIT -90
+#define SWIVEL_HIGHLIMIT 76
+#define SWIVEL_LOWLIMIT 13
 #define SWIVEL_OFFSET_COUNTS  128
 // Adjust this so zero swivel is straight out.
 
 void DoSwivel( void )
 {
 	long SwivelPosCounts;
-	fSwivelPosDeg += fSwivelSpeed;
+	fSwivelPosDeg += -fSwivelSpeed;
 	if (fSwivelPosDeg > SWIVEL_HIGHLIMIT) fSwivelPosDeg = SWIVEL_HIGHLIMIT;
 	if (fSwivelPosDeg < SWIVEL_LOWLIMIT) fSwivelPosDeg = SWIVEL_LOWLIMIT;
 
@@ -114,9 +115,9 @@ void Drive( void )
 	if (abs(y2) > JOY_DEADBAND)
 	{
 		if (UsingHiGear)
-			motor[LeftDrive] = y2 / HI_GEAR;
+			motor[LeftDrive] = -y2 / HI_GEAR;
 		else
-			motor[LeftDrive] = y2 / LO_GEAR;
+			motor[LeftDrive] = -y2 / LO_GEAR;
 	}
 	else
 	{
@@ -126,8 +127,8 @@ void Drive( void )
 	if (abs(y1) > JOY_DEADBAND)
 	{
 		if (UsingHiGear)
-			motor[RightDrive] = -y1 /HI_GEAR ;
-		else	motor[RightDrive] = -y1 / LO_GEAR;
+			motor[RightDrive] = y1 /HI_GEAR ;
+		else	motor[RightDrive] = y1 / LO_GEAR;
 	}
 	else
 	{
