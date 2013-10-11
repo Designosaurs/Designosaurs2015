@@ -21,7 +21,6 @@ TypeArmState CheckMacroRequest( void ) {
 
 	// if all else fails, or if nothing's pressed
 	return UNDEFINED;
-
 }
 
 void DoMacros( void ) {
