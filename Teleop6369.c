@@ -92,10 +92,9 @@ task main()
   // Adjust hardware so LClaw is straight ahead.
 	//while(1)  { 		Executor(); MoveWrist( 0 ); }
 
-	while(true)
-	{
+	while(true) {
 		Executor();
-		MoveArmFromJoysticks( );
+		MoveArmFromJoysticks();
 		DoMacros();
 	}
 }

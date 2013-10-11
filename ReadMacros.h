@@ -8,11 +8,11 @@
 // Check to see if the user has requested a new state.  If not, return UNDEFINED
 // Used by DoMacros
 
-TypeArmState CheckMacroRequest( void ) {
-	if (joy1Btn(1) == 1) return PLACE_MID;
-	if (joy1Btn(2) == 1) return PLACE_LOW;
-	if (joy1Btn(3) == 1) return GET_BLOCKS;
-	if (joy1Btn(4) == 1) return PLACE_HIGH;
+TypeArmState CheckMacroRequest() {
+	if (joy1Btn(1) == 1) return PLACE_LOW;
+	if (joy1Btn(2) == 1) return PLACE_MID;
+	if (joy1Btn(3) == 1) return PLACE_HIGH;
+	if (joy1Btn(4) == 1) return GET_BLOCKS;
 
 	if(joystick.joy1_TopHat == 0) return TRAVEL_PLACE;
 	if(joystick.joy1_TopHat == 2) return STRAIGHT_UP;
@@ -23,7 +23,7 @@ TypeArmState CheckMacroRequest( void ) {
 	return UNDEFINED;
 }
 
-void DoMacros( void ) {
+void DoMacros() {
 	ReqArmState = CheckMacroRequest();
 	switch(ArmState) {
 		case PLACE_LOW:
