@@ -18,7 +18,18 @@ void WaitTenths( int TenthsToWait )
 	}
 }
 
-void actionGetBlocks() {
+void actionGetBlocks()
+{
+	// First get a little above the floor
+	MoveTwoAxes(  FRONT_FLOOR_SHOULDER + 5, FRONT_FLOOR_ELBOW);
+	MoveTwoAxes(  FRONT_FLOOR_SHOULDER + 5, FRONT_FLOOR_ELBOW);
+	if (Beeps) PlaySound(soundBlip);
+	// Now bring the shoulder down
+	MoveOneAxis( FRONT_FLOOR_SHOULDER, SHOULDER, MAX_POWER);
+	MoveOneAxis( FRONT_FLOOR_SHOULDER, SHOULDER, MAX_POWER);
+	PlaySound(soundBlip);
+	ArmState = GET_BLOCKS;
+	VectorJoy = true;
 }
 
 void actionHome() {
@@ -64,19 +75,4 @@ void LeaveHome( void )
 	StopArm();
 	if (Beeps) PlaySound(soundBlip);
 	// wait10Msec( 1000 );
-}
-
-////////////////////  RING RETRIEVAL ///////////////////////////////////////////////
-void ToFrontFloor( void )
-{
-	// First get a little above the floor
-	MoveTwoAxes(  FRONT_FLOOR_SHOULDER + 5, FRONT_FLOOR_ELBOW);
-	MoveTwoAxes(  FRONT_FLOOR_SHOULDER + 5, FRONT_FLOOR_ELBOW);
-	if (Beeps) PlaySound(soundBlip);
-	// Now bring the shoulder down
-	MoveOneAxis( FRONT_FLOOR_SHOULDER, SHOULDER, MAX_POWER);
-	MoveOneAxis( FRONT_FLOOR_SHOULDER, SHOULDER, MAX_POWER);
-	PlaySound(soundBlip);
-	ArmState = FRONT_FLOOR ;
-	VectorJoy = true;
 }
