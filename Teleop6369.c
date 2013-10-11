@@ -96,6 +96,6 @@ task main()
 	{
 		Executor();
 		MoveArmFromJoysticks( );
-		//DoMacros();
+		DoMacros();
 	}
 }

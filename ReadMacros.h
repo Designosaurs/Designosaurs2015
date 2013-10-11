@@ -1,5 +1,5 @@
 /*
-|----\             
+|----\
 |    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
 |    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
@@ -10,22 +10,15 @@
 
 	TypeArmState CheckMacroRequest( void )
 {
-	if (joy1Btn(2) == 1) return FRONT1;
-	if (joy1Btn(3) == 1) return FRONT2;
-	if (joy1Btn(4) == 1) return FRONT3;
+	if (joy1Btn(1) == 1) return PLACE_MID;
+	if (joy1Btn(2) == 1) return PLACE_LOW;
+	if (joy1Btn(3) == 1) return GET_BLOCKS;
+	if (joy1Btn(4) == 1) return PLACE_HIGH;
 
-	if(joystick.joy1_TopHat == 0)		return TRAVEL;
-	if(joystick.joy1_TopHat == 1)		return STRAIGHT_UP;
-	if(joystick.joy1_TopHat == 2) return RINGSPILL;
-	if(joystick.joy1_TopHat == 3) return RINGDISP;
-	if(joystick.joy1_TopHat == 4) return FRONT_FLOOR;
-	if(joystick.joy1_TopHat == 5) return QUICK_HOME;
-	if(joystick.joy1_TopHat == 6)			// manual mode
-	{
-		VectorJoy = false;
-		return UNDEFINED;
-	}
-	if(joystick.joy1_TopHat == 7) return HOME;
+	if(joystick.joy1_TopHat == 0) return TRAVEL_PLACE;
+	if(joystick.joy1_TopHat == 2) return STRAIGHT_UP;
+	if(joystick.joy1_TopHat == 4) return TRAVEL_GET;
+	if(joystick.joy1_TopHat == 6)	return QUICK_HOME;
 
 	// if all else fails, or if nothing's pressed
 	return UNDEFINED;
