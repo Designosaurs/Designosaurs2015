@@ -65,8 +65,8 @@ void initializeRobot()
 	servoChangeRate[LClaw] = 4;  // Not too fast-- do not want drop the ring.
 	servoChangeRate[RClaw] = 4;
 	servo[AutoRing] = 0;
-	servo[ LClaw ] = LCLAW_OPEN;
-	servo[RClaw] = RCLAW_OPEN;
+	servo[ LClaw ] = LCLAW_CLOSED;
+	servo[RClaw] = RCLAW_CLOSED;
 	servo[Claw] = CLAW_CLOSED;
   ArmState = HOME;
 	return;
