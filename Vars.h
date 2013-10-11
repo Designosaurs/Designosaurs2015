@@ -86,7 +86,9 @@ typedef enum TypeArmState
 	PLACE_MID = 5,
 	PLACE_HIGH = 6,
 	QUICK_HOME = 7,
-	UNDEFINED = 8
+	GET_BLOCKS = 8,
+	STRAIGHT_UP = 9,
+	UNDEFINED = 10
 } TypeArmState;
 
 TypeArmState ArmState;
