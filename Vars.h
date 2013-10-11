@@ -1,5 +1,5 @@
 /*
-|----\             
+|----\
 |    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
 |    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
@@ -58,7 +58,6 @@ bool MoveTimedout = false;
 
 ////////////////////   SERVOS ///////////////////////////////////////
 float fWristSpeed = 0;
-float fWristPosDeg = 0;
 
 #define WRIST_HOME 0  // In degress
 #define WRIST_INIT_COUNTS  180 // Direct value to send to servo.
@@ -71,7 +70,6 @@ float fWristPosDeg = 0;
 #define CLAW_CLOSED 40
 
 float fSwivelSpeed = 0;
-float fSwivelPosDeg;
 
 //the joystick must be above (or below) this value for anything to happen.
 //Prevents the joystick being a little off from causing havoc.
@@ -82,17 +80,13 @@ typedef enum TypeArmState
 {
 	MANUAL = 0,
 	HOME = 1,
-	TRAVEL = 2,
-	FRONT1 = 3,
-	FRONT2 = 4,
-	FRONT3 = 5,
-		FRONT_FLOOR = 6,
-	RINGDISP = 7,
-	BACK_FLOOR = 8,
-	STRAIGHT_UP = 9,
-	QUICK_HOME = 10,
-	RINGSPILL = 11,
-	UNDEFINED = 12
+	TRAVEL_GET = 2,
+	TRAVEL_PLACE = 3,
+	PLACE_LOW = 4,
+	PLACE_MID = 5,
+	PLACE_HIGH = 6,
+	QUICK_HOME = 7,
+	UNDEFINED = 8
 } TypeArmState;
 
 TypeArmState ArmState;
