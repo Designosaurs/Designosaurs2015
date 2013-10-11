@@ -32,6 +32,12 @@ void actionGetBlocks()
 	VectorJoy = true;
 }
 
+void actionStraightUp() {
+	MoveTwoAxes(0,0);
+	MoveTwoAxes(0,0);
+	if (Beeps) PlaySound(soundBlip);
+}
+
 void actionHome() {
 }
 
@@ -45,6 +51,9 @@ void actionPlaceHigh() {
 }
 //////////////  TRAVEL / HOME //////////////////////////////////////////
 void actionTravelGet() {
+	MoveTwoAxes(0,0);
+	MoveTwoAxes(0,0);
+	if (Beeps) PlaySound(soundBlip);
 }
 
 void actionTravelPlace() {
