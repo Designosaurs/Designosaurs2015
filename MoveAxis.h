@@ -36,9 +36,12 @@ void MoveOneAxis(int Dest, TAxisN AxisN, int Power) {
 				MoveTimedout = true;
 				return;
 			}
-			if(joystick.joy1_Buttons == 42){ // stop macros
+			if(joystick.joy1_Buttons == 8){ // stop macros
 				StopArm();
 				return;
+			}
+			if(joystick.joy1_Buttons == 9){ // go home
+				StopArm();
 			}
 		}
 	} else {
@@ -53,8 +56,12 @@ void MoveOneAxis(int Dest, TAxisN AxisN, int Power) {
 				MoveTimedout = true;
 				return;
 			}
-			if(joystick.joy1_TopHat == 6) {
+			if(joystick.joy1_TopHat == 8) {
 				StopArm();
+				return;
+			}
+			if(joystick.joy1_TopHat == 9) {
+				GoHomeQuick();
 				return;
 			}
 		}
