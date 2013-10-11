@@ -36,7 +36,7 @@ void MoveOneAxis(int Dest, TAxisN AxisN, int Power) {
 				MoveTimedout = true;
 				return;
 			}
-			if(joystick.joy1_Buttons == ){ // stop macros
+			if(joystick.joy1_Buttons == 42){ // stop macros
 				StopArm();
 				return;
 			}
