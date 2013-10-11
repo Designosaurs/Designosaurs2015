@@ -21,12 +21,12 @@ void WaitTenths( int TenthsToWait )
 void actionGetBlocks()
 {
 	// First get a little above the floor
-	MoveTwoAxes(  FRONT_FLOOR_SHOULDER + 5, FRONT_FLOOR_ELBOW);
-	MoveTwoAxes(  FRONT_FLOOR_SHOULDER + 5, FRONT_FLOOR_ELBOW);
+	MoveTwoAxes(GET_BLOCKS_SHOULDER+5, GET_BLOCKS_ELBOW);
+	MoveTwoAxes(GET_BLOCKS_SHOULDER+5, GET_BLOCKS_ELBOW);
 	if (Beeps) PlaySound(soundBlip);
 	// Now bring the shoulder down
-	MoveOneAxis( FRONT_FLOOR_SHOULDER, SHOULDER, MAX_POWER);
-	MoveOneAxis( FRONT_FLOOR_SHOULDER, SHOULDER, MAX_POWER);
+	MoveOneAxis(GET_BLOCKS_SHOULDER, SHOULDER, MAX_POWER);
+	MoveOneAxis(GET_BLOCKS_SHOULDER, SHOULDER, MAX_POWER);
 	PlaySound(soundBlip);
 	ArmState = GET_BLOCKS;
 	VectorJoy = true;

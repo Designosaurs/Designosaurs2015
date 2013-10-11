@@ -5,24 +5,17 @@
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
 */
 ////////////////  POSITIONS TABLE
-#define FRONT1_SHOULDER -65
-#define	FRONT1_ELBOW -101
-#define FRONT1_WRIST 135
+#define PLACE_BLCCKS_LOW_SHOUDLER -65
+#define	PLACE_BLOCKS_LOW_ELBOW -101
 
-#define FRONT2_SHOULDER -7
-#define	FRONT2_ELBOW  -124
-#define FRONT2_WRIST 94
+#define PLACE_BLCCKS_MID_SHOUDLER -65
+#define	PLACE_BLOCKS_MID_ELBOW -101
 
-#define FRONT3_SHOULDER -14
-#define	FRONT3_ELBOW -35
-#define FRONT3_WRIST 21
+#define PLACE_BLCCKS_HIGH_SHOUDLER -65
+#define	PLACE_BLOCKS_HIGH_ELBOW -101
 
-// Just above the floor:
-#define FRONT_FLOOR_SHOULDER -89
-#define	FRONT_FLOOR_ELBOW -72
-#define FRONT_FLOOR_WRIST 55
-// Now move the LClaw to the floor to grab the ring
-#define FRONT_GRAB_WRIST 50
+#define GET_BLOCKS_SHOULDER -89
+#define	GET_BLOCKS_ELBOW -72
 
 #define RCLAW_OPEN 80
 #define RCLAW_CLOSED 20
@@ -30,21 +23,9 @@
 #define LCLAW_OPEN 180
 #define LCLAW_CLOSED 140
 
-#define RINGDISP_SHOULDER -91
-#define	RINGDISP_ELBOW -31
-#define RINGDISP_WRIST 107
-#define RINGDISP_SWIVEL -26
+#define TRAVEL_GET_SHOULDER 18
+#define	TRAVEL_GET_ELBOW -105
 
-
-#define RINGSPILL_SHOULDER -50
-#define	RINGSPILL_ELBOW -47
-#define RINGSPILL_WRIST -45
-#define RINGSPILL_SWIVEL -90
-
-
-#define TRAVEL_SHOULDER 18
-#define	TRAVEL_ELBOW -105
-#define TRAVEL_WRIST 3
-
-
+#define TRAVEL_PLACE_SHOULDER 18
+#define	TRAVEL_PLACE_ELBOW -105
 ///////END POSITION CONFIG

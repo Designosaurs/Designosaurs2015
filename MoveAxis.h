@@ -61,7 +61,7 @@ void MoveOneAxis(int Dest, TAxisN AxisN, int Power) {
 				return;
 			}
 			if(joystick.joy1_TopHat == 9) {
-				GoHomeQuick();
+				GoHome();
 				return;
 			}
 		}
