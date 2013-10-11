@@ -12,7 +12,7 @@ TypeArmState CheckMacroRequest() {
 	if (joy1Btn(1) == 1) return PLACE_LOW;
 	if (joy1Btn(2) == 1) return PLACE_MID;
 	if (joy1Btn(3) == 1) return PLACE_HIGH;
-	if (joy1Btn(4) == 1) return GET_BLOCKS;
+	if (joy1Btn(0) == 1) return GET_BLOCKS;
 
 	if(joystick.joy1_TopHat == 0) return TRAVEL_PLACE;
 	if(joystick.joy1_TopHat == 2) return STRAIGHT_UP;
@@ -25,7 +25,7 @@ TypeArmState CheckMacroRequest() {
 
 void DoMacros() {
 	ReqArmState = CheckMacroRequest();
-	switch(ArmState) {
+	switch(ReqArmState) {
 		case PLACE_LOW:
 			actionPlaceLow();
 		break;
