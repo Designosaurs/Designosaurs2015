@@ -18,6 +18,30 @@ void WaitTenths( int TenthsToWait )
 	}
 }
 
+void actionGetBlocks() {
+}
+
+void actionHome() {
+}
+
+void actionPlaceLow() {
+}
+
+void actionPlaceMid() {
+}
+
+void actionPlaceHigh() {
+}
+
+void actionTravelGet() {
+}
+
+void actionTravelPlace() {
+	MoveTwoAxes(0,0);
+	MoveTwoAxes(0,0);
+	if (Beeps) PlaySound(soundBlip);
+}
+
 ////////// MOVEMENT GROUPS ///////////////////////////
 //////////////////////  GOALS ///////////////////////////////////
 void ToFront3( void )
@@ -224,8 +248,4 @@ void SpillRings( void )
 	}
 	StopArm();
 	if (Beeps) PlaySound(soundBlip);
-}
-
-void LeaveRingSpill( void )
-{
 }
