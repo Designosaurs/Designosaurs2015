@@ -29,7 +29,6 @@ void actionGetBlocks()
 	MoveOneAxis(GET_BLOCKS_SHOULDER, SHOULDER, MAX_POWER);
 	PlaySound(soundBlip);
 	ArmState = GET_BLOCKS;
-	VectorJoy = true;
 }
 
 void actionStraightUp() {
@@ -43,12 +42,24 @@ void actionHome() {
 }
 
 void actionPlaceLow() {
+	MoveTwoAxes(PLACE_BLOCKS_LOW_SHOUDLER,PLACE_BLOCKS_LOW_ELBOW);
+	MoveTwoAxes(PLACE_BLOCKS_LOW_SHOUDLER,PLACE_BLOCKS_LOW_ELBOW);
+	if (Beeps) PlaySound(soundBlip);
+	ArmState = PLACE_LOW;
 }
 
 void actionPlaceMid() {
+	MoveTwoAxes(PLACE_BLOCKS_MID_SHOUDLER,PLACE_BLOCKS_MID_ELBOW);
+	MoveTwoAxes(PLACE_BLOCKS_MID_SHOUDLER,PLACE_BLOCKS_MID_ELBOW);
+	if (Beeps) PlaySound(soundBlip);
+	ArmState = PLACE_MID;
 }
 
 void actionPlaceHigh() {
+	MoveTwoAxes(PLACE_BLOCKS_HIGH_SHOUDLER,PLACE_BLOCKS_HIGH_ELBOW);
+	MoveTwoAxes(PLACE_BLOCKS_HIGH_SHOUDLER,PLACE_BLOCKS_HIGH_ELBOW);
+	if (Beeps) PlaySound(soundBlip);
+	ArmState = PLACE_HIGH;
 }
 //////////////  TRAVEL / HOME //////////////////////////////////////////
 void actionTravelGet() {
