@@ -39,6 +39,7 @@ void actionStraightUp() {
 }
 
 void actionHome() {
+	HomeArm();
 }
 
 void actionPlaceLow() {

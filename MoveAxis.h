@@ -6,6 +6,7 @@
 */
 
 //  MOVE FUNCTIONS
+void HomeArm (); // function prototype
 
 void StopArm() {
 	motor[Elbow] = 0;
@@ -41,7 +42,8 @@ void MoveOneAxis(int Dest, TAxisN AxisN, int Power) {
 				return;
 			}
 			if(joystick.joy1_Buttons == 9){ // go home
-				StopArm();
+				HomeArm();
+				return;
 			}
 		}
 	} else {
@@ -54,14 +56,6 @@ void MoveOneAxis(int Dest, TAxisN AxisN, int Power) {
 				//logMsg("Movement timed out.");
 				PlaySound(soundLowBuzz);
 				MoveTimedout = true;
-				return;
-			}
-			if(joystick.joy1_TopHat == 8) {
-				StopArm();
-				return;
-			}
-			if(joystick.joy1_TopHat == 9) {
-				GoHome();
 				return;
 			}
 		}
