@@ -1,5 +1,6 @@
 #pragma config(Hubs,  S1, HTServo,  HTMotor,  HTMotor,  none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S2,     IRSensor,       sensorHiTechnicIRSeeker1200)
 #pragma config(Motor,  motorA,          Red,           tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,          Yellow,        tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,          Green,         tmotorNXT, openLoop)
@@ -13,8 +14,9 @@
 #pragma config(Servo,  srvo_S1_C1_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C1_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S1_C1_6,    servo6,               tServoNone)
+#include "hitechnic-irseeker-v2.h"
 /*
-|----\             
+|----\
 |    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
 |    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
@@ -36,8 +38,14 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "JoystickDriver.c"  //Include file to "handle" the Bluetooth messages.
+#include "Positions.h"
 
-
+/*
+#include "GetIR.h"
+#include "TickAuto.h"
+#include "MovesAuto.h"
+#include "AlignPeg1.h"
+*/
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                    initializeRobot
@@ -52,54 +60,88 @@
 // In many cases, you may not have to add any code to this function and it will remain "empty".
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+int attempt = 0;
+int state;
+bool gaveUp = false;
+bool inRange = false;
+
+#define INIT 0
+#define LOCATING 1
+#define PLACING 3
+
+bool bAtBeacon(void) {
+        /* Declare variables */
+        int zones[5];
+        int average = 0;
+        bool atBeacon = false;
+
+        /* Read the infrared seeker into an array */
+        HTIRS2readAllACStrength(IRSensor, zones[0], zones[1], zones[2], zones[3], zones[4]);
+
+        /* Find the average infrared noise level */
+        for(int i = 0; i < 5; i++) average += zones[i];
+        average /= 5;
+
+        /* If the critical zones are stronger than the noise, we are in range */
+        if(((zones[1] - average) > 10) && ((zones[2] - average) > 10)) inRange = true;
+
+        /* When we are in range and the critical zones are nearly equal (or we have overshot) we are at the beacon */
+        if(inRange && ((zones[1] - zones[2]) > -15)) atBeacon = true;
+
+        return atBeacon;
+}
+
+void updateDiagnosticsDisplay() {
+	nxtDisplayTextLine(1, "--- 6369 ---");
+	nxtDisplayTextLine(2, "Attempt %f/10.", attempt);
+	nxtDisplayTextLine(3, "--- STATUS ---");
+	switch(state) {
+		case INIT:
+			nxtDisplayTextLine(4, "Waiting");
+		break;
+		case LOCATING:
+			nxtDisplayTextLine(4, "Finding Beacon");
+		break;
+		case PLACING:
+			nxtDisplayTextLine(4, "Placing.");
+		break;
+	}
+	if(gaveUp) {
+		nxtDisplayTextLine(6, "Something went wrong.");
+	}
+}
+
+task asyncTask() {
+	while (true) {
+		updateDiagnosticsDisplay();
+	}
+}
 
 void initializeRobot()
 {
 	// Place code here to sinitialize servos to starting positions.
 	// Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
-
+	disableDiagnosticsDisplay();
+	state = INIT;
+	StartTask(asyncTask, 5);
+	servo[Claw] = 0;
 	return;
 }
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                         Main Task
-//
-// The following is the main code for the autonomous robot operation. Customize as appropriate for
-// your specific robot.
-//
-// The types of things you might do during the autonomous phase (for the 2008-9 FTC competition)
-// are:
-//
-//   1. Have the robot follow a line on the game field until it reaches one of the puck storage
-//      areas.
-//   2. Load pucks into the robot from the storage bin.
-//   3. Stop the robot and wait for autonomous phase to end.
-//
-// This simple template does nothing except play a periodic tone every few seconds.
-//
-// At the end of the autonomous period, the FMS will autonmatically abort (stop) execution of the program.
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 task main()
 {
 	initializeRobot();
 
-	waitForStart(); // Wait for the beginning of autonomous phase.
+	//waitForStart(); // Wait for the beginning of autonomous phase.
 
-	///////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////
-	////                                                   ////
-	////    Add your robot specific autonomous code here.  ////
-	////                                                   ////
-	///////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////
-
-	while (true)
-	{
+   while (bAtBeacon() == false) {
 		PlaySound(soundFastUpwardTones);
-		wait10Msec( 500 );
+		attempt++;
+		state = LOCATING;
+		motor[LeftDrive] = 20;
+		motor[RightDrive] = 20;
+		wait1Msec(500);
 	}
+	state = PLACING;
+	servo[Claw] = 100;
 }

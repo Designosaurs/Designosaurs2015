@@ -22,15 +22,11 @@ int ClampToByte( int Input )
 	return Output;
 }
 
-// LClaw postion is maintained in degrees.
-#define WRIST_HI_LIMIT   65
-#define WRIST_LOW_LIMIT (-25)
-
 
 /////////////////////// DRIVE ////////////////////////////////////////////
 
-#define HI_GEAR 1
-#define LO_GEAR 3
+#define HI_GEAR 10
+#define LO_GEAR 1
 void Drive( void )
 {
 	int y1;
@@ -135,18 +131,18 @@ void Executor( void )
 
 
 	// See if Joy1 is overriding
-	if (joy1Btn(8) == 1)
-	{
-		Joy1Drive = true;
-		Joy1HiGear = false;
-	}
-	else if (joy1Btn(6) == 1)
-	{
-		Joy1Drive = true;
-		Joy1HiGear = true;
-	}
-	else
-		Joy1Drive = false;
+	//if (joy1Btn(8) == 1)
+	//{
+	//	Joy1Drive = true;
+	//	Joy1HiGear = false;
+	//}
+	//else if (joy1Btn(6) == 1)
+	//{
+	//	Joy1Drive = true;
+	//	Joy1HiGear = true;
+	//}
+	//else
+	//	Joy1Drive = false;
 
 	// Look for Joy2 Gear Shift
 	if (joy2Btn(6)) Joy2HiGear = true;

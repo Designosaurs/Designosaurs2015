@@ -41,10 +41,6 @@ void MoveOneAxis(int Dest, TAxisN AxisN, int Power) {
 				StopArm();
 				return;
 			}
-			if(joystick.joy1_Buttons == 9){ // go home
-				HomeArm();
-				return;
-			}
 		}
 	} else {
 		while(AxisPos[AxisN] > Dest) {
