@@ -9,7 +9,6 @@
 
 void HomeArm( void )
 {
-	servo[Claw] = CLAW_CLOSED;
 	VectorJoy = false;
 	StopArm();
 	ResetStall();

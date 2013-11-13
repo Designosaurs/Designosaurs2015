@@ -21,11 +21,10 @@ void WaitTenths( int TenthsToWait )
 void actionGetBlocks()
 {
 	// First get a little above the floor
-	MoveTwoAxes(GET_BLOCKS_SHOULDER+5, GET_BLOCKS_ELBOW);
-	MoveTwoAxes(GET_BLOCKS_SHOULDER+5, GET_BLOCKS_ELBOW);
+	MoveTwoAxes(GET_BLOCKS_SHOULDER+10, GET_BLOCKS_ELBOW);
 	if (Beeps) PlaySound(soundBlip);
 	// Now bring the shoulder down
-	MoveOneAxis(GET_BLOCKS_SHOULDER, SHOULDER, MAX_POWER);
+	MoveOneAxis(GET_BLOCKS_SHOULDER+3, SHOULDER, MAX_POWER);
 	MoveOneAxis(GET_BLOCKS_SHOULDER, SHOULDER, MAX_POWER);
 	servo [LClaw] = LCLAW_OPEN;
 	servo [RClaw] = RCLAW_OPEN;
@@ -44,19 +43,15 @@ void actionHome() {
 }
 
 void actionPlaceLow() {
+	MoveTwoAxes(PLACE_BLOCKS_LOW_SHOUDLER-6,PLACE_BLOCKS_LOW_ELBOW-4);
 	MoveTwoAxes(PLACE_BLOCKS_LOW_SHOUDLER,PLACE_BLOCKS_LOW_ELBOW);
-	MoveTwoAxes(PLACE_BLOCKS_LOW_SHOUDLER,PLACE_BLOCKS_LOW_ELBOW);
-	//wait10Msec(90);
-	//servo [LClaw] = LCLAW_OPEN;
-	//servo [RClaw] = RCLAW_OPEN;
-	//wait10Msec(90);
-	//actionGetBlocks();
 	if (Beeps) PlaySound(soundBlip);
 	ArmState = PLACE_LOW;
 }
 
 void actionPlaceMid() {
-	MoveTwoAxes(PLACE_BLOCKS_MID_SHOUDLER,PLACE_BLOCKS_MID_ELBOW);
+	MoveTwoAxes(PLACE_BLOCKS_MID_SHOUDLER-6,PLACE_BLOCKS_MID_ELBOW-4);
+	if (Beeps) PlaySound(soundBlip);
 	MoveTwoAxes(PLACE_BLOCKS_MID_SHOUDLER,PLACE_BLOCKS_MID_ELBOW);
 	//wait10Msec(90);
 	//servo [LClaw] = LCLAW_OPEN;
@@ -68,7 +63,8 @@ void actionPlaceMid() {
 }
 
 void actionPlaceHigh() {
-	MoveTwoAxes(PLACE_BLOCKS_HIGH_SHOUDLER,PLACE_BLOCKS_HIGH_ELBOW);
+	MoveTwoAxes(PLACE_BLOCKS_HIGH_SHOUDLER-6,PLACE_BLOCKS_HIGH_ELBOW-4);
+	if (Beeps) PlaySound(soundBlip);
 	MoveTwoAxes(PLACE_BLOCKS_HIGH_SHOUDLER,PLACE_BLOCKS_HIGH_ELBOW);
 	//wait10Msec(90);
 	//servo [LClaw] = LCLAW_OPEN;

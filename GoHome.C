@@ -1,5 +1,6 @@
 #pragma config(Hubs,  S1, HTServo,  HTMotor,  HTMotor,  none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S2,     IRSensor,      sensorI2CCustom)
 #pragma config(Motor,  motorA,          Red,           tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,          Yellow,        tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,          Green,         tmotorNXT, openLoop)
@@ -14,7 +15,7 @@
 #pragma config(Servo,  srvo_S1_C1_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S1_C1_6,    servo6,               tServoNone)
 /*
-|----\             
+|----\
 |    | /--\ /--- - /--\ /--\ /--\ /--- /--\ |  | |-- /---
 |    | |--/ \--\ | \--| |  | |  | \--\ |  | |  | |   \--\
 |----/ \__  ---/ | __/  |  | \--/ ---/ \--\ \--\ |   ---/  Team 6369
@@ -25,6 +26,11 @@
 // and increasing degrees on the motor.  (Clockwise rotation when fron is on your right)
 
 #define MAX_POWER 30
+#define RCLAW_OPEN 40
+#define RCLAW_CLOSED 110
+
+#define LCLAW_OPEN 180
+#define LCLAW_CLOSED 120
 
 #include "JoystickDriver.c"  //Include file to "handle" the Bluetooth messages coming from the controller.
 //#include "Positions.h"
@@ -47,13 +53,10 @@ task main()
 	// SLOWLY move the servos home.
 	servoChangeRate[LClaw] = 2;
 	servoChangeRate[RClaw] = 2;
-	servo[ LClaw ] = WRIST_INIT_COUNTS;
-	servo[RClaw] = SWIVEL_INIT_COUNTS;
-	servo[Claw] = CLAW_CLOSED;
-
-	// The excutor will also move the RClaw and LClaw.
-	MoveWrist( WRIST_HOME  );
-	MoveSwivel( SWIVEL_HOME );
+	servoChangeRate[Claw] = 2;
+	servo[Claw] = 255;
+	servo[LClaw] = LCLAW_CLOSED;
+	servo[RClaw] = RCLAW_CLOSED;
 
 	HomeArm();
 	if (Beeps) PlaySound(soundUpwardTones);

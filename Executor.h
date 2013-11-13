@@ -25,7 +25,7 @@ int ClampToByte( int Input )
 
 /////////////////////// DRIVE ////////////////////////////////////////////
 
-#define HI_GEAR 10
+#define HI_GEAR 2
 #define LO_GEAR 1
 void Drive( void )
 {

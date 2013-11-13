@@ -38,7 +38,7 @@
 
 //Sets the maximum power at which the tetrix arm motors can move.
 // Zero to 100.
-#define MAX_POWER 50
+#define MAX_POWER 75
 
 
 #include "Positions.h"
@@ -50,7 +50,8 @@
 #include "Macros.h"
 #include "ReadMacros.h"
 
-
+#define PLACER_IN 255
+#define PLACER_OUT 60
 
 void initializeRobot()
 {
@@ -58,6 +59,7 @@ void initializeRobot()
   // Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
 
 	// Initialize
+	servo[Claw] = PLACER_IN;
 	disableDiagnosticsDisplay();
 	ClearTimer(T1);
 	nMotorEncoder[Shoulder] = 0;
@@ -67,7 +69,6 @@ void initializeRobot()
 	servo[AutoRing] = 0;
 	servo[ LClaw ] = LCLAW_CLOSED;
 	servo[RClaw] = RCLAW_CLOSED;
-	servo[Claw] = CLAW_CLOSED;
   ArmState = HOME;
 	return;
 }
