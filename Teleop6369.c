@@ -80,10 +80,6 @@ void initializeRobot()
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-task latencyCheck() {
-
-}
-
 task main()
 {
   initializeRobot();
@@ -96,7 +92,7 @@ task main()
   //while(1){servo[RClaw] = 128;}
   // Adjust hardware so LClaw is straight ahead.
 	//while(1)  { 		Executor(); MoveWrist( 0 ); }
-	StartTask(latencyCheck);
+
 	while(true) {
 		Executor();
 		MoveArmFromJoysticks();
