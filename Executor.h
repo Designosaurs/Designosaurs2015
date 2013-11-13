@@ -129,7 +129,17 @@ void Executor( void )
 	// int JoyButtons;
 	getJoystickSettings(joystick);     // update buttons and joysticks
 
+	rc =readJoyStickMessage();
+	if (rc > 0)
+    {
 
+       // Reset msgDelay every 5 seconds... but dont update while waiting
+       // for a joystick message.
+       if (time100[T2] >= 50)
+       {
+          msgDelay = 0;
+          ClearTimer(T2);
+       }
 	// See if Joy1 is overriding
 	//if (joy1Btn(8) == 1)
 	//{
