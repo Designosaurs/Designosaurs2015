@@ -1,4 +1,4 @@
-Designosaurs Code Repository
+Designosaurs Code Repository - OldCode
 ========
 
-Here you'll find the code for our robot for the 2014-2015 season, as well as an archive of our old code (branch: OldCode).
+Here you'll find the code for our robot for the 2013-2014 season (Block Party!).
