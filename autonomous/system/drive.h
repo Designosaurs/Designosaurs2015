@@ -36,10 +36,16 @@ void accel(float to_speed) {
 }
 
 void decel(float to_speed) {
-    float scaled_speed = to_speed * (MAX_SPEED * 0.01);
+    if(to_speed == 0) {
+        float scaled_speed = 1;
+    } else {
+        float scaled_speed = to_speed * (MAX_SPEED * 0.01);
+    }
     for (int i = last_power; i > scaled_speed; i = i - (0.2 * scaled_speed)) {
         goForwardTime(0.1, i);
     }
-
+    if(to_speed == 0) {
+        stop();
+    }
     last_power = scaled_speed;
 }
