@@ -7,7 +7,6 @@ void goForwardTime(float seconds, int power) {
 
 void goForwardDistance(float feet, int power) {
     power = power * (MAX_SPEED * 0.01);
-    writeDebugStreamLine("power: %d", power);
     while(distance_feet < feet) {
         motor[left_drive] = power;
         motor[right_drive] = power;
