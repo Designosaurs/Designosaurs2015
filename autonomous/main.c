@@ -25,7 +25,7 @@
  Autonomous Code: 2014-2015 (Cascade Effect)
  */
 
-#include "JoystickDriver.c"
+//#include "JoystickDriver.c"
 #include "system/vars.h"
 #include "config/drive.h"
 #include "system/drive.h"
