@@ -1,5 +1,5 @@
 task main() {
-    waitForStart();
+    //waitForStart();
 
     bMotorReflected[right_drive] = true;
 
