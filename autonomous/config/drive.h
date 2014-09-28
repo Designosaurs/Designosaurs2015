@@ -1,0 +1,1 @@
+const int MAX_SPEED = 80;

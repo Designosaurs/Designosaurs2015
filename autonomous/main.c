@@ -16,6 +16,8 @@
  */
 
 #include "JoystickDriver.c"
+#include "config/drive.h"
+#include "system/drive.h"
 
 task main() {
     waitForStart();
