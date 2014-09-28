@@ -26,20 +26,20 @@ void goBackwardDistance(float feet, int power) {
 
 }
 
-void accel(int to_speed) {
-    to_speed = (to_speed * 100) / MAX_SPEED;
-    for (int i = 0; i < to_speed; i = i + 0.2 * to_speed) {
+void accel(float to_speed) {
+    float scaled_speed = to_speed * (MAX_SPEED * 0.01);
+    for (int i = 0; i < to_speed; i = i + (0.2 * to_speed)) {
         goForwardTime(0.1, i);
     }
 
     last_power = to_speed;
 }
 
-void decel(int to_speed) {
-    to_speed = (to_speed * 100) / MAX_SPEED;
-    for (int i = last_power; i < to_speed; i = i - 0.2 * to_speed) {
+void decel(float to_speed) {
+    float scaled_speed = to_speed * (MAX_SPEED * 0.01);
+    for (int i = last_power; i > scaled_speed; i = i - (0.2 * scaled_speed)) {
         goForwardTime(0.1, i);
     }
 
-    last_power = to_speed;
+    last_power = scaled_speed;
 }
