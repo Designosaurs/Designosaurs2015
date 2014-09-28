@@ -30,4 +30,5 @@
 #include "config/drive.h"
 #include "system/drive.h"
 #include "task/UpdateEncoderTask.h"
+#include "task/DebugTask.h"
 #include "task/main.h"

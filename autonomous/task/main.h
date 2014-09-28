@@ -3,6 +3,7 @@ task main() {
 
     nMotorEncoder[left_drive] = 0;
 
+    StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
     while (true) {
