@@ -1,16 +1,16 @@
-void goForwardTime(float seconds) {
+void goForwardTime(float seconds, int power) {
 
 }
 
-void goForwardDistance(float feet) {
+void goForwardDistance(float feet, int power) {
 
 }
 
-void goBackwardTime(float seconds) {
+void goBackwardTime(float seconds, int power) {
 
 }
 
-void goBackwardDistance(float feet) {
+void goBackwardDistance(float feet, int power) {
 
 }
 
