@@ -5,7 +5,7 @@ void goForwardTime(float seconds, int power) {
     wait1Msec(seconds * 1000);
 }
 
-void goForwardDistance(float feet, int power) {
+void goForwardDistance(float feet, float power) {
     power = power * (MAX_SPEED * 0.01);
     while(distance_feet < feet) {
         motor[left_drive] = power;
