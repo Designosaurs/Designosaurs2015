@@ -9,6 +9,11 @@ void goForwardDistance(float feet, int power) {
 
 }
 
+void stop() {
+    motor[left_drive] = 0;
+    motor[right_drive] = 0;
+}
+
 void goBackwardTime(float seconds, int power) {
     motor[left_drive] = -power;
     motor[right_drive] = -power;
