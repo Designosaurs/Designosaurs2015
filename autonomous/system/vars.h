@@ -1,1 +1,1 @@
-int avg_speed = 0;
+int last_power = 0;
