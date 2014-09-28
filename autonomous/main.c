@@ -19,11 +19,4 @@
 #include "system/vars.h"
 #include "config/drive.h"
 #include "system/drive.h"
-
-task main() {
-    waitForStart();
-
-    while (true) {
-
-    }
-}
+#include "task/main.h"
