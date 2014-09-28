@@ -29,4 +29,5 @@
 #include "system/vars.h"
 #include "config/drive.h"
 #include "system/drive.h"
+#include "task/UpdateEncoderTask.h"
 #include "task/main.h"
