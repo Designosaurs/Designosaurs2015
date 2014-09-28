@@ -1,6 +1,8 @@
 task main() {
     waitForStart();
 
+    nMotorEncoder[left_drive] = 0;
+
     StartTask(UpdateEncoderTask);
 
     while (true) {
