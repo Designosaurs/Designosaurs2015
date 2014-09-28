@@ -1,0 +1,1 @@
+int avg_speed = 0;
