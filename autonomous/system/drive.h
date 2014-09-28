@@ -1,5 +1,5 @@
 void goForwardTime(float seconds, int power) {
-    motor[left_drive] = power;
+    motor[left_drive] = -power;
     motor[right_drive] = power;
     last_power = power;
     wait1Msec(seconds * 1000);
@@ -8,7 +8,7 @@ void goForwardTime(float seconds, int power) {
 void goForwardDistance(float feet, float power) {
     power = power * (MAX_SPEED * 0.01);
     while(distance_feet < feet) {
-        motor[left_drive] = power;
+        motor[left_drive] = -power;
         motor[right_drive] = power;
     }
 }
@@ -20,7 +20,7 @@ void stop() {
 }
 
 void goBackwardTime(float seconds, int power) {
-    motor[left_drive] = -power;
+    motor[left_drive] = power;
     motor[right_drive] = -power;
     last_power = -power;
     wait1Msec(seconds * 1000);
@@ -29,7 +29,7 @@ void goBackwardTime(float seconds, int power) {
 void goBackwardDistance(float feet, int power) {
     power = power * (MAX_SPEED * 0.01);
     while(distance_feet < feet) {
-        motor[left_drive] = -power;
+        motor[left_drive] = power;
         motor[right_drive] = -power;
     }
 }

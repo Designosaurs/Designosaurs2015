@@ -1,16 +1,16 @@
 task main() {
     waitForStart();
 
-    bMotorReflected[left_drive] = true;
+    bMotorReflected[right_drive] = 1;
 
     nMotorEncoder[left_drive] = 0;
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    accel(0,100);
-    goForwardDistance(3,100);
-    accel(100,5);
+    accel(0,20);
+    goForwardDistance(90,20);
+    accel(20,5);
     goForwardDistance(5,5);
     stop();
 }
