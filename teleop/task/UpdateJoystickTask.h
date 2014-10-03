@@ -6,7 +6,7 @@ task UpdateJoystickTask() {
     int x2 = joystick.joy1_x2;
 
     int PWR_LEFT = (0.78 * y1) * (DRIVE_POWER / 100);
-    int PWR_RIGHT = (0.78 * y1) * (DRIVE_POWER / 100);
+    int PWR_RIGHT = (0.78 * y2) * (DRIVE_POWER / 100);
 
     motor[left_drive] = PWR_LEFT;
     motor[right_drive] = PWR_LEFT;
