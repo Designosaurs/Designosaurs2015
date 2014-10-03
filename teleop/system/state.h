@@ -23,7 +23,11 @@ void onStop() {
 }
 
 void onRun() {
+    eraseDisplay();
+    nxtDisplayBigStringAt(4,60,"6369");
+    nxtDisplayStringAt(20,42,"Designosaurs");
 
+    nxtDisplayCenteredTextLine(5,"Running.");
 }
 
 void switchState(int newState) {
