@@ -1,0 +1,1 @@
+const int DRIVE_POWER = 80;
