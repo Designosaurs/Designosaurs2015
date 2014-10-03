@@ -1,7 +1,9 @@
 task main() {
     switchState(STATE_WAIT);
 
-    waitForStart();
+    //waitForStart();
 
-    StartTask(UpdateJoystickTask);
+   StartTask(UpdateJoystickTask);
+
+   waitForStart();
 }
