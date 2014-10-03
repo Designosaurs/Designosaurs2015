@@ -26,3 +26,8 @@
  */
 
 #include "JoystickDriver.c"
+#include "config/drive.h"
+#include "system/const.h"
+#include "system/vars.h"
+#include "task/MainTask.h"
+#include "task/UpdateJoystickTask.h"
