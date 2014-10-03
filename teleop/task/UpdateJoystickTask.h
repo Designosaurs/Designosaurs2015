@@ -1,3 +1,5 @@
+#include "../system/globals.h"
+
 task UpdateJoystickTask() {
     while(true) {
         getJoystickSettings(joystick);
@@ -11,6 +13,44 @@ task UpdateJoystickTask() {
 
         motor[left_drive] = PWR_LEFT;
         motor[right_drive] = PWR_LEFT;
+
+        if(!joy1_TopHat == -1) {
+            switch(joy1_TopHat) {
+                case 0:
+                    dpad.TOP = true;
+                break;
+                case 1:
+                    dpad.TOP_RIGHT = true;
+                break;
+                case 2:
+                    dpad.RIGHT = true;
+                break;
+                case 3:
+                    dpad.BOTTOM_RIGHT = true;
+                break;
+                case 4:
+                    dpad.BOTTOM = true;
+                break;
+                case 5:
+                    dpad.BOTTOM_LEFT = true;
+                break;
+                case 6:
+                    dpad.LEFT = true;
+                break;
+                case 7:
+                    dpad.TOP_LEFT = true;
+                break;
+            }
+        } else {
+            dpad.TOP = false;
+            dpad.LEFT = false;
+            dpad.RIGHT = false;
+            dpad.BOTTOM = false;
+            dpad.BOTTOM_LEFT = false;
+            dpad.BOTTOM_RIGHT = false;
+            dpad.TOP_LEFT = false;
+            dpad.TOP_RIGHT = false;
+        }
 
         wait1Msec(50);
     }

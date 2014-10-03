@@ -4,4 +4,10 @@ task main() {
     StartTask(UpdateJoystickTask);
 
     waitForStart();
+
+    switchState(STATE_RUN);
+
+    while(systemState.running) {
+        wait1Msec(100);
+    }
 }

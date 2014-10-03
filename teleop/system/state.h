@@ -30,10 +30,6 @@ void onRun() {
     nxtDisplayStringAt(20,42,"Designosaurs");
 
     nxtDisplayCenteredTextLine(5,"Running.");
-
-    while(systemState.running) {
-        wait1Msec(100);
-    }
 }
 
 void switchState(int newState) {
