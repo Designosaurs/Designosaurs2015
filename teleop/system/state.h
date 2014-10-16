@@ -16,7 +16,6 @@ void onWait() {
 
     nxtDisplayCenteredTextLine(5,"Waiting for");
     nxtDisplayCenteredTextLine(6,"connection.");
-
     StartTask(UpdateDisplayTask);
 }
 

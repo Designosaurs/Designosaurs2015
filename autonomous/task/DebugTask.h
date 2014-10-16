@@ -1,6 +1,10 @@
 task DebugTask {
     while(true) {
-        writeDebugStreamLine("Left encoder is currently at (feet): %1.2f", total_distance_feet);
+        nxtDisplayBigStringAt(4,60,"6369");
+        nxtDisplayStringAt(20,42,"Designosaurs");
+
+        nxtDisplayCenteredTextLine(5,"L enc: %d",left_encoder);
+        nxtDisplayCenteredTextLine(6,"R enc: %d",right_encoder);
         wait1Msec(1000);
     }
 }
