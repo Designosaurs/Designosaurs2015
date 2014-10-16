@@ -13,6 +13,31 @@ void goForwardDistance(float feet, float power) {
     }
 }
 
+void pivotToTotalAngle(float desired_angle) {
+    float how_far;
+    float current_speed = MAX_SPEED * 0.5;
+
+    if(desired_angle > total_angle) {
+        while(total_angle < (desired_angle - INTERTIAL_DEGREES)) {
+            how_far = abs(desired_angle - total_angle);
+            if(how_far < 20.0) {
+                current_speed = MAX_SPEED * 0.1;
+            }
+            motor[left_drive] = current_speed;
+            motor[right_drive] = -current_speed;
+        }
+    } else {
+        while(total_angle > (desired_angle + INTERTIAL_DEGREES)) {
+            how_far = abs(desired_angle - total_angle);
+            if (how_far < 20.0) {
+                current_speed = MAX_SPEED * 0.1;
+            }
+            motor[left_drive] = -current_speed;
+            motor[right_drive] = current_speed;
+        }
+    }
+}
+
 void stop() {
     motor[left_drive] = 0;
     motor[right_drive] = 0;
