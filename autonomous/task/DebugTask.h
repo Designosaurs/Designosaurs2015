@@ -3,8 +3,11 @@ task DebugTask {
         nxtDisplayBigStringAt(4,60,"6369");
         nxtDisplayStringAt(20,42,"Designosaurs");
 
-        nxtDisplayCenteredTextLine(5,"L enc: %d",left_encoder);
-        nxtDisplayCenteredTextLine(6,"R enc: %d",right_encoder);
-        wait1Msec(1000);
+        writeDebugStreamLine("---");
+        writeDebugStreamLine("L enc: %d",left_encoder);
+        writeDebugStreamLine("R enc: %d",right_encoder);
+        writeDebugStreamLine("Delta: %d", delta);
+        writeDebugStreamLine("Angle: %1.2f",(float) total_angle);
+        wait1Msec(500);
     }
 }
