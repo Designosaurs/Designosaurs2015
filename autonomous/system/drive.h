@@ -1,6 +1,6 @@
 void goForwardTime(float seconds, int power) {
-    motor[left_drive] = power;
-    motor[right_drive] = power;
+    motor[left_drive] = power * LEFT_TRIM;
+    motor[right_drive] = power * RIGHT_TRIM;
     last_power = power;
     wait1Msec(seconds * 1000);
 }
@@ -22,8 +22,8 @@ void goForwardDistance(float feet, float power) {
         } else {
             right_power += feedback;  // feedback is negative value.
         }
-        motor[left_drive] = left_power;
-        motor[right_drive] = right_power;
+        motor[left_drive] = left_power * LEFT_TRIM;
+        motor[right_drive] = right_power * RIGHT_TRIM;
     }
 }
 
