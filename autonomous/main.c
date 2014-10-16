@@ -30,6 +30,7 @@
 #include "system/vars.h"
 #include "config/drive.h"
 #include "system/drive.h"
+#include "system/servo.h"
 #include "task/UpdateEncoderTask.h"
 #include "task/DebugTask.h"
 #include "task/MainTask.h"

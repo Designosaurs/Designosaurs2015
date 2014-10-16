@@ -1,10 +1,11 @@
 task main() {
-    servo[placer] = 180;
+    placerInit();
     //waitForStart();
 
     bMotorReflected[right_drive] = true;
 
     nMotorEncoder[right_drive] = 0;
+    nMotorEncoder[left_drive] = 0;
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
@@ -14,4 +15,6 @@ task main() {
     accel(100,5);
     goForwardDistance(5,5);
     stop();
+
+    placeBall();
 }
