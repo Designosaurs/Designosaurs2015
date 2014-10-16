@@ -13,7 +13,7 @@ task main() {
     accel(0,100);
     goForwardDistance(3,100);
     accel(100,5);
-    goForwardDistance(5,5);
+    goForwardDistance(6,5);
     stop();
 
     placeBall();
