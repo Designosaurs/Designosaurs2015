@@ -7,9 +7,23 @@ void goForwardTime(float seconds, int power) {
 
 void goForwardDistance(float feet, float power) {
     power = power * (MAX_SPEED * 0.01);
+    float start_angle = total_angle;
+    float angle_error = 0;
+    float left_power, right_power;
+    float feedback;
+
     while(total_distance_feet < feet) {
-        motor[left_drive] = power;
-        motor[right_drive] = power;
+        angle_error = total_angle - start_angle;
+        left_power = power;
+        right_power = power;
+        feedback = 10 * angle_error;
+        if(feedback > 0) {
+            left_power -= feedback;
+        } else {
+            right_power += feedback;  // feedback is negative value.
+        }
+        motor[left_drive] = left_power;
+        motor[right_drive] = right_power;
     }
 }
 

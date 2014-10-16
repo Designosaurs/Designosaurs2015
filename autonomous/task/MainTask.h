@@ -10,5 +10,11 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    pivotToTotalAngle(-90);
+    accel(0,100);
+    goForwardDistance(3,50);
+    accel(100,5);
+    goForwardDistance(6,50);
+    stop();
+
+    placeBall();
 }
