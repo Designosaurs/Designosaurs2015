@@ -1,4 +1,5 @@
 task main() {
+    servo[placer] = 180;
     //waitForStart();
 
     bMotorReflected[right_drive] = true;
@@ -13,6 +14,4 @@ task main() {
     accel(100,5);
     goForwardDistance(5,5);
     stop();
-
-
 }

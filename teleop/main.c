@@ -5,7 +5,7 @@
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  mtr_S1_C1_1,     left_drive,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     right_drive,   tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C2_1,    servo1,               tServoStandard)
+#pragma config(Servo,  srvo_S1_C2_1,    placer,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_4,    servo4,               tServoNone)
@@ -22,7 +22,7 @@ _____             _
 |_____/ \___||___/_|\__, |_| |_|\___/|___/\__,_|\__,_|_|  |___/
                      __/ |
                     |___/                            Team #6369
-Autonomous Code: 2014-2015 (Cascade Effect)
+TeleOp Code: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
