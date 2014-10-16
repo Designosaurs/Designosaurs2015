@@ -1,3 +1,4 @@
+#pragma systemFile
 task main() {
     switchState(STATE_WAIT);
 
