@@ -5,19 +5,26 @@ void goForwardTime(float seconds, int power) {
     wait1Msec(seconds * 1000);
 }
 
-float feedback;  // A ratio, so 0.9 means apply 90% power.
-float start_angle;
-float angle_error;
-float error_integration;
-int DebugCnt = 0;
-float error_value;
+void ResetTrip( void ) {
+	left_trip_counts = 0;
+	right_trip_counts = 0;
+	trip_distance_feet = 0;
+	}
 
+
+int DebugCnt = 0;
 void goForwardDistance(float feet, float power) {
+	float feedback;  // A ratio, so 0.9 means apply 90% power.
+	float start_angle;
+	float angle_error;
+	float error_integration;
+	float error_value;
+
     float left_power, right_power;
 		power = power * (MAX_SPEED * 0.01);
     start_angle = total_angle;
 
-    while(total_distance_feet < feet) {
+    while(trip_distance_feet < feet) {
     		// Error calculation:
         angle_error = total_angle - start_angle;
         error_integration += 0.01 * angle_error;
@@ -29,7 +36,7 @@ void goForwardDistance(float feet, float power) {
         // But not less than this much power:
         if (feedback < 0.6) feedback = 0.6;
 
-         //writeDebugStreamLine("Delta: %d", delta);
+         //Write debugging information if needed:
         if ( ++DebugCnt > 30)  {
     				writeDebugStreamLine("---");
          		writeDebugStream("Angle: %3.2f",(float) total_angle);
