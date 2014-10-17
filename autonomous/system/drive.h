@@ -5,43 +5,55 @@ void goForwardTime(float seconds, int power) {
     wait1Msec(seconds * 1000);
 }
 
-float feedback;  // A ratio, so 0.9 means apply 90% power.
-float start_angle;
-float angle_error;
-float error_integration;
-int DebugCnt = 0;
-float error_value;
+void ResetTrip( void ) {
+	left_trip_counts = 0;
+	right_trip_counts = 0;
+	trip_distance_feet = 0;
+	}
 
-void goForwardDistance(float feet, float power) {
+int DebugCnt = 30;
+void goDistance(float feet, float power, bool forward) {
+		float feedback;  // A ratio, so 0.9 means apply 90% power.
+		float start_angle;
+		float angle_error;
+		float error_integration = 0;
+		float error_value;
     float left_power, right_power;
-		power = power * (MAX_SPEED * 0.01);
+    float direction = 1.00;
+		power = power * (MAX_SPEED * 0.01);  // Scale to whatever we make our max speed.
     start_angle = total_angle;
+    if (!forward) direction = -1.00;
 
-    while(total_distance_feet < feet) {
+    while(abs(trip_distance_feet) < feet) {
+        left_power = power * direction;
+        right_power = power * direction;
+
     		// Error calculation:
         angle_error = total_angle - start_angle;
         error_integration += 0.01 * angle_error;
-        error_value = angle_error + error_integration;
-        left_power = power;
-        right_power = power;
+        // The integration term makes the steady state error to near zero, but it
+        // is a destabilizing influence.
+        error_value = angle_error + 1.0 * error_integration;
         // Cut the power 10% for every degree it is off.
         feedback = 1 - (0.1 * abs(error_value));
         // But not less than this much power:
-        if (feedback < 0.6) feedback = 0.6;
+        if (feedback < 0.5) feedback = 0.5;
 
-         //writeDebugStreamLine("Delta: %d", delta);
-        if ( ++DebugCnt > 30)  {
-    				writeDebugStreamLine("---");
-         		writeDebugStream("Angle: %3.2f",(float) total_angle);
-        		writeDebugStreamLine("  Angle err: %3.2f",(float) angle_error);
-        		writeDebugStreamLine("L enc: %d",left_encoder);
-         		writeDebugStreamLine("Feedback: %1.2f", feedback);
-        		writeDebugStream(" R Drive: %1.2f", motor[right_drive]);
-        		writeDebugStreamLine(" L Drive: %1.2f", motor[left_drive]);
-        		DebugCnt = 0;
-      	}
+         //Write debugging information if needed:
+       // if ( ++DebugCnt > 30)  {
+    			//	writeDebugStreamLine("---");
+       //  		writeDebugStream("Angle: %3.1f",(float) total_angle);
+       // 		writeDebugStream("  Angle err: %3.1f",(float) angle_error);
+       // 		writeDebugStreamLine("  Angle int: %3.1f", error_integration );
+       // 		writeDebugStream("R enc: %d", right_encoder);
+       // 		writeDebugStreamLine(" L enc: %d",left_encoder);
+       //  		writeDebugStreamLine("Feedback: %1.2f", feedback);
+       // 		writeDebugStream(" R Drive: %1.0f", motor[right_drive]);
+       // 		writeDebugStreamLine(" L Drive: %1.0f", motor[left_drive]);
+       // 		DebugCnt = 0;
+      	//}
         // If it is veering right, decrease the left motor power.
-        if(error_value > 0) {
+        if(error_value * direction > 0) {
             left_power = feedback * left_power;
         } else {
             right_power = feedback * right_power;  // feedback is negative value.
@@ -53,27 +65,46 @@ void goForwardDistance(float feet, float power) {
     }
 }
 
+void goForwardDistance(float feet, float power ) {
+	goDistance(feet, power, true );
+	}
+
+// Give this positive 2 feet to go backward two feet:
+void goBackwardDistance(float feet, int power) {
+  goDistance(feet, power, false );
+	}
+
+
+// Stop this many degrees early, because you will over-rotate by that much.
+
 void pivotToTotalAngle(float desired_angle) {
     float how_far;
     float current_speed = MAX_SPEED * 0.5;
+    float inertia_allowance = 10;
+    how_far = abs(desired_angle - total_angle);
+    if (how_far < 60 ) inertia_allowance = 5;
+    if (how_far < 30 ) inertia_allowance = 3;
+    if (how_far < 10 ) inertia_allowance = 0.5;
 
-    if(desired_angle > total_angle) {
-        while(total_angle < (desired_angle - INTERTIAL_DEGREES)) {
+     if(desired_angle > total_angle) {
+    		// Pivot clockwise, so total angle is increasing:
+   			while(total_angle < (desired_angle - inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if(how_far < 20.0) {
-                current_speed = MAX_SPEED * 0.1;
-            }
+            if(how_far < 30.0) current_speed = MAX_SPEED * 0.03;
+            if(how_far < 60.0) current_speed = MAX_SPEED * 0.1;
             motor[left_drive] = current_speed;
             motor[right_drive] = -current_speed;
+            wait1Msec(10);
         }
     } else {
-        while(total_angle > (desired_angle + INTERTIAL_DEGREES)) {
+
+        while(total_angle > (desired_angle + inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if (how_far < 20.0) {
-                current_speed = MAX_SPEED * 0.1;
-            }
+            if(how_far < 30.0) current_speed = MAX_SPEED * 0.03;
+            if(how_far < 60.0) current_speed = MAX_SPEED * 0.1;
             motor[left_drive] = -current_speed;
             motor[right_drive] = current_speed;
+           	wait1Msec(10);
         }
     }
 }
@@ -99,14 +130,6 @@ void goBackwardTime(float seconds, int power) {
     motor[right_drive] = power;
     last_power = -power;
     wait1Msec(seconds * 1000);
-}
-
-void goBackwardDistance(float feet, int power) {
-    power = power * (MAX_SPEED * 0.01);
-    while(total_distance_feet < feet) {
-        motor[left_drive] = power;
-        motor[right_drive] = power;
-    }
 }
 
 void accel(float from_speed, float to_speed) {
