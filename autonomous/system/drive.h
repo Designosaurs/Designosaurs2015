@@ -5,14 +5,16 @@ void goForwardTime(float seconds, int power) {
     wait1Msec(seconds * 1000);
 }
 
-float feedback;  // A ratio, so 0.9 means apply 90% power.
-float start_angle;
-float angle_error;
-float error_integration;
+
 int DebugCnt = 0;
-float error_value;
+
 
 void goForwardDistance(float feet, float power) {
+		float feedback;  // A ratio, so 0.9 means apply 90% power.
+		float start_angle;
+		float angle_error;
+		float error_integration;
+		float error_value;
     float left_power, right_power;
 		power = power * (MAX_SPEED * 0.01);
     start_angle = total_angle;
@@ -34,7 +36,8 @@ void goForwardDistance(float feet, float power) {
     				writeDebugStreamLine("---");
          		writeDebugStream("Angle: %3.2f",(float) total_angle);
         		writeDebugStreamLine("  Angle err: %3.2f",(float) angle_error);
-        		writeDebugStreamLine("L enc: %d",left_encoder);
+        		writeDebugStream("R enc: %d ", right_encoder);
+        		writeDebugStreamLine(" L enc: %d ", left_encoder);
          		writeDebugStreamLine("Feedback: %1.2f", feedback);
         		writeDebugStream(" R Drive: %1.2f", motor[right_drive]);
         		writeDebugStreamLine(" L Drive: %1.2f", motor[left_drive]);
