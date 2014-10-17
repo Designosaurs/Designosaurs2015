@@ -1,5 +1,16 @@
+
+
+// Angle compensation
+// The encoders compute angle based on the difference between left and right values.
+// The geometery is not perfectly identical, so we include a compensation factor that
+// we will result in the propoer angle displayed.
+// If it veers left on a straight command, this value should be slighlty less than 1.00.
+#define LEFT_ENC_COMP 0.970
+
 task UpdateEncoderTask() {
     while(true) {
+    		float delta = 0;
+
         left_encoder = nMotorEncoder[left_drive];
         right_encoder = nMotorEncoder[right_drive];
 
@@ -8,7 +19,7 @@ task UpdateEncoderTask() {
 
         total_distance_feet = (float) ((left_distance_counts + right_distance_counts) / COUNTS_PER_FOOT) / 2;
 
-        delta = (left_distance_counts - right_distance_counts);
+        delta = (LEFT_ENC_COMP * (float) left_distance_counts - (float) right_distance_counts);
 
         total_angle = (float) delta / COUNTS_PER_DEGREE;
 
