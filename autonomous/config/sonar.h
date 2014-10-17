@@ -1,0 +1,1 @@
+const int TARGET_DISTANCE = 16;

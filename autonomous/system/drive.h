@@ -139,13 +139,7 @@ void BackwardsArcToAngle( float power, float inside_ratio, float desired_angle )
 				wait1Msec(10);
 			}
 		}
-
-	}
-
-
-
-
-
+}
 
 	void pivotToTotalAngle(float desired_angle) {
 		float how_far;
@@ -178,6 +172,14 @@ void BackwardsArcToAngle( float power, float inside_ratio, float desired_angle )
 			}
 		}
 	}
+
+
+void pivotDegrees(int input) {
+    int desired = 0;
+    desired = total_angle + input;
+    pivotToTotalAngle(desired);
+}
+
 
 	void stop() {
 		motor[left_drive] = 0;

@@ -9,8 +9,6 @@ task main() {
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
-
-
     // goForwardTime( 4, -80);
 
     //accel(0,80);
@@ -23,7 +21,6 @@ task main() {
     //accel(-80,0);
 
     // pivotToTotalAngle( 90 );
-
 
     goForwardDistance(7,80);
     stop();
@@ -40,9 +37,6 @@ task main() {
     ResetTrip();
     goBackwardDistance( 4, 80);
     stop();
-    pivotToTotalAngle( -90 );
-    stop();
+		while( 1 );
 
-while( 1 );
-    placeBall();
 }
