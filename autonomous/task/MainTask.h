@@ -23,10 +23,26 @@ task main() {
     //accel(-80,0);
 
     // pivotToTotalAngle( 90 );
-	BackwardsArcToAngle( 80, 0.1, -45);
 
 
+    goForwardDistance(7,80);
     stop();
+    PlaySound(soundDownwardTones);
+    wait1Msec( 1000 );
+    BackwardsArcToAngle( 80, 0.1, 50);
+    ResetTrip();
+    //PlaySound(soundDownwardTones);
+    goBackwardDistance( 2, 80);
+    //PlaySound(soundDownwardTones);
+    // 5 degrees seems to be about right to get it
+    // pointed at the back wall.
+		BackwardsArcToAngle( 80, 0.1, 5);
+    ResetTrip();
+    goBackwardDistance( 4, 80);
+    stop();
+    pivotToTotalAngle( -90 );
+    stop();
+
 while( 1 );
     placeBall();
 }
