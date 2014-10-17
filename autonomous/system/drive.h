@@ -5,25 +5,51 @@ void goForwardTime(float seconds, int power) {
     wait1Msec(seconds * 1000);
 }
 
+float feedback;  // A ratio, so 0.9 means apply 90% power.
+float start_angle;
+float angle_error;
+float error_integration;
+int DebugCnt = 0;
+float error_value;
+
 void goForwardDistance(float feet, float power) {
-    power = power * (MAX_SPEED * 0.01);
-    float start_angle = total_angle;
-    float angle_error = 0;
     float left_power, right_power;
-    float feedback;
+		power = power * (MAX_SPEED * 0.01);
+    start_angle = total_angle;
 
     while(total_distance_feet < feet) {
+    		// Error calculation:
         angle_error = total_angle - start_angle;
+        error_integration += 0.01 * angle_error;
+        error_value = angle_error + error_integration;
         left_power = power;
         right_power = power;
-        feedback = 10 * angle_error;
-        if(feedback > 0) {
-            left_power -= feedback;
+        // Cut the power 10% for every degree it is off.
+        feedback = 1 - (0.1 * abs(error_value));
+        // But not less than this much power:
+        if (feedback < 0.6) feedback = 0.6;
+
+         //writeDebugStreamLine("Delta: %d", delta);
+        if ( ++DebugCnt > 30)  {
+    				writeDebugStreamLine("---");
+         		writeDebugStream("Angle: %3.2f",(float) total_angle);
+        		writeDebugStreamLine("  Angle err: %3.2f",(float) angle_error);
+        		writeDebugStreamLine("L enc: %d",left_encoder);
+         		writeDebugStreamLine("Feedback: %1.2f", feedback);
+        		writeDebugStream(" R Drive: %1.2f", motor[right_drive]);
+        		writeDebugStreamLine(" L Drive: %1.2f", motor[left_drive]);
+        		DebugCnt = 0;
+      	}
+        // If it is veering right, decrease the left motor power.
+        if(error_value > 0) {
+            left_power = feedback * left_power;
         } else {
-            right_power += feedback;  // feedback is negative value.
+            right_power = feedback * right_power;  // feedback is negative value.
         }
         motor[left_drive] = left_power * LEFT_TRIM;
         motor[right_drive] = right_power * RIGHT_TRIM;
+        wait1Msec(20);
+
     }
 }
 

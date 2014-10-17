@@ -2,7 +2,7 @@ task main() {
     placerInit();
     //waitForStart();
 
-    bMotorReflected[right_drive] = true;
+    bMotorReflected[left_drive] = true;
 
     nMotorEncoder[right_drive] = 0;
     nMotorEncoder[left_drive] = 0;
@@ -10,11 +10,13 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    accel(0,100);
-    goForwardDistance(3,50);
-    accel(100,5);
-    goForwardDistance(6,50);
-    stop();
+    //goForwardTime( 4, 40);
+    //accel(0,100);
+    goForwardDistance(6,80);
+    //accel(100,0);
+    //goForwardDistance(6,50);
 
+    stop();
+while( 1 );
     placeBall();
 }
