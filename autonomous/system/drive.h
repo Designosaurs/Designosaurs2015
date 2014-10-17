@@ -5,42 +5,51 @@ void goForwardTime(float seconds, int power) {
     wait1Msec(seconds * 1000);
 }
 
+void ResetTrip( void ) {
+	left_trip_counts = 0;
+	right_trip_counts = 0;
+	trip_distance_feet = 0;
+	}
+
 
 int DebugCnt = 0;
-
-
 void goForwardDistance(float feet, float power) {
-		float feedback;  // A ratio, so 0.9 means apply 90% power.
-		float start_angle;
-		float angle_error;
-		float error_integration;
-		float error_value;
+	float feedback;  // A ratio, so 0.9 means apply 90% power.
+	float start_angle;
+	float angle_error;
+	float error_integration = 0;
+	float error_value;
+
     float left_power, right_power;
 		power = power * (MAX_SPEED * 0.01);
     start_angle = total_angle;
 
-    while(total_distance_feet < feet) {
+    while(trip_distance_feet < feet) {
+        left_power = power;
+        right_power = power;
+
     		// Error calculation:
         angle_error = total_angle - start_angle;
         error_integration += 0.01 * angle_error;
-        error_value = angle_error + error_integration;
-        left_power = power;
-        right_power = power;
+        // The integration term makes the steady state error to near zero, but it
+        // is a destabilizing influence.
+        error_value = angle_error + 1.0 * error_integration;
         // Cut the power 10% for every degree it is off.
         feedback = 1 - (0.1 * abs(error_value));
         // But not less than this much power:
         if (feedback < 0.6) feedback = 0.6;
 
-         //writeDebugStreamLine("Delta: %d", delta);
+         //Write debugging information if needed:
         if ( ++DebugCnt > 30)  {
     				writeDebugStreamLine("---");
-         		writeDebugStream("Angle: %3.2f",(float) total_angle);
-        		writeDebugStreamLine("  Angle err: %3.2f",(float) angle_error);
-        		writeDebugStream("R enc: %d ", right_encoder);
-        		writeDebugStreamLine(" L enc: %d ", left_encoder);
+         		writeDebugStream("Angle: %3.1f",(float) total_angle);
+        		writeDebugStream("  Angle err: %3.1f",(float) angle_error);
+        		writeDebugStreamLine("  Angle int: %3.1f", error_integration );
+        		writeDebugStream("R enc: %d", right_encoder);
+        		writeDebugStreamLine(" L enc: %d",left_encoder);
          		writeDebugStreamLine("Feedback: %1.2f", feedback);
-        		writeDebugStream(" R Drive: %1.2f", motor[right_drive]);
-        		writeDebugStreamLine(" L Drive: %1.2f", motor[left_drive]);
+        		writeDebugStream(" R Drive: %1.0f", motor[right_drive]);
+        		writeDebugStreamLine(" L Drive: %1.0f", motor[left_drive]);
         		DebugCnt = 0;
       	}
         // If it is veering right, decrease the left motor power.

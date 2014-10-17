@@ -14,7 +14,6 @@ task main() {
     //accel(0,100);
     goForwardDistance(6,80);
     accel(80,0);
-    //accel(100,0);
     //goForwardDistance(6,50);
 
     stop();
