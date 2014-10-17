@@ -11,22 +11,22 @@ void ResetTrip( void ) {
 	trip_distance_feet = 0;
 	}
 
-
-int DebugCnt = 0;
-void goForwardDistance(float feet, float power) {
-	float feedback;  // A ratio, so 0.9 means apply 90% power.
-	float start_angle;
-	float angle_error;
-	float error_integration = 0;
-	float error_value;
-
+int DebugCnt = 30;
+void goDistance(float feet, float power, bool forward) {
+		float feedback;  // A ratio, so 0.9 means apply 90% power.
+		float start_angle;
+		float angle_error;
+		float error_integration = 0;
+		float error_value;
     float left_power, right_power;
-		power = power * (MAX_SPEED * 0.01);
+    float direction = 1.00;
+		power = power * (MAX_SPEED * 0.01);  // Scale to whatever we make our max speed.
     start_angle = total_angle;
+    if (!forward) direction = -1.00;
 
-    while(trip_distance_feet < feet) {
-        left_power = power;
-        right_power = power;
+    while(abs(trip_distance_feet) < feet) {
+        left_power = power * direction;
+        right_power = power * direction;
 
     		// Error calculation:
         angle_error = total_angle - start_angle;
@@ -37,7 +37,7 @@ void goForwardDistance(float feet, float power) {
         // Cut the power 10% for every degree it is off.
         feedback = 1 - (0.1 * abs(error_value));
         // But not less than this much power:
-        if (feedback < 0.6) feedback = 0.6;
+        if (feedback < 0.5) feedback = 0.5;
 
          //Write debugging information if needed:
         if ( ++DebugCnt > 30)  {
@@ -53,7 +53,7 @@ void goForwardDistance(float feet, float power) {
         		DebugCnt = 0;
       	}
         // If it is veering right, decrease the left motor power.
-        if(error_value > 0) {
+        if(error_value * direction > 0) {
             left_power = feedback * left_power;
         } else {
             right_power = feedback * right_power;  // feedback is negative value.
@@ -64,6 +64,17 @@ void goForwardDistance(float feet, float power) {
 
     }
 }
+
+void goForwardDistance(float feet, float power ) {
+	goDistance(feet, power, true );
+	}
+
+// Give this positive 2 feet to go backward two feet:
+void goBackwardDistance(float feet, int power) {
+  goDistance(feet, power, false );
+	}
+
+
 
 void pivotToTotalAngle(float desired_angle) {
     float how_far;
@@ -103,14 +114,6 @@ void goBackwardTime(float seconds, int power) {
     motor[right_drive] = power;
     last_power = -power;
     wait1Msec(seconds * 1000);
-}
-
-void goBackwardDistance(float feet, int power) {
-    power = power * (MAX_SPEED * 0.01);
-    while(total_distance_feet < feet) {
-        motor[left_drive] = power;
-        motor[right_drive] = power;
-    }
 }
 
 void accel(float from_speed, float to_speed) {

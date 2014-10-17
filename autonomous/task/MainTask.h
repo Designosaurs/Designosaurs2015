@@ -10,11 +10,17 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    //goForwardTime( 4, 40);
-    //accel(0,100);
-    goForwardDistance(6,80);
-    accel(80,0);
-    //goForwardDistance(6,50);
+
+    // goForwardTime( 4, -80);
+
+    //accel(0,80);
+    //goForwardDistance(6,80);
+    //accel(80,0);
+
+
+    //accel(0,-80);
+    goBackwardDistance(6,80);
+    accel(-80,0);
 
     stop();
 while( 1 );
