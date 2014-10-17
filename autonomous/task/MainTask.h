@@ -29,13 +29,17 @@ task main() {
     BackwardsArcToAngle( 80, 0.1, 50);
     ResetTrip();
     //PlaySound(soundDownwardTones);
-    goBackwardDistance( 2, 80);
+    // goBackwardDistance( 2, 80);
     //PlaySound(soundDownwardTones);
     // 5 degrees seems to be about right to get it
     // pointed at the back wall.
 		BackwardsArcToAngle( 80, 0.1, 5);
     ResetTrip();
     goBackwardDistance( 4, 80);
+    pivotToTotalAngle( -80 );   // Place in goal.
+    stop();
+    ResetTrip();
+    goForwardDistance( 0.5, 80);
     stop();
 		while( 1 );
 

@@ -22,7 +22,7 @@ task UpdateEncoderTask() {
         // Trip odometer
 				left_trip_counts += (int) (left_encoder - prev_left_encoder);
     		right_trip_counts += (int) (right_encoder - prev_right_encoder);
-				trip_distance_feet = (float) ((left_distance_counts + right_distance_counts) / COUNTS_PER_FOOT) / 2;
+				trip_distance_feet = (float) ((left_trip_counts + right_trip_counts) / COUNTS_PER_FOOT) / 2;
 
         // Angle calculation
         delta = (LEFT_ENC_COMP * (float) left_distance_counts - (float) right_distance_counts);

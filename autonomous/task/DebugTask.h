@@ -4,7 +4,7 @@ task DebugTask {
         nxtDisplayStringAt(20,42,"Designosaurs");
         nxtDisplayTextLine(4, "Angle: %3.2f deg", total_angle);
         nxtDisplayTextLine(5, "Trip: %3.1f ft", trip_distance_feet);
-
+				writeDebugStream("Trip: %3.1f ft ", trip_distance_feet);
         //writeDebugStreamLine("---");
         //writeDebugStreamLine("L enc: %d",left_encoder);
         //writeDebugStreamLine("R enc: %d",right_encoder);
