@@ -22,7 +22,9 @@ task main() {
     //goBackwardDistance(6,80);
     //accel(-80,0);
 
-    pivotToTotalAngle( 90 );
+    // pivotToTotalAngle( 90 );
+	BackwardsArcToAngle( 80, 0.1, -45);
+
 
     stop();
 while( 1 );
