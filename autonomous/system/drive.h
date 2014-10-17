@@ -77,6 +77,7 @@ void pivotToTotalAngle(float desired_angle) {
             }
             motor[left_drive] = current_speed;
             motor[right_drive] = -current_speed;
+            wait1Msec(20);
         }
     } else {
         while(total_angle > (desired_angle + INTERTIAL_DEGREES)) {
@@ -86,6 +87,7 @@ void pivotToTotalAngle(float desired_angle) {
             }
             motor[left_drive] = -current_speed;
             motor[right_drive] = current_speed;
+           	wait1Msec(20);
         }
     }
 }
