@@ -10,13 +10,6 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    //goForwardTime( 4, 40);
-    //accel(0,100);
     goForwardDistance(6,80);
-    //accel(100,0);
-    //goForwardDistance(6,50);
-
-    stop();
-while( 1 );
-    placeBall();
+    goToTube();
 }
