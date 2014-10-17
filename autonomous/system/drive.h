@@ -78,6 +78,16 @@ void pivotToTotalAngle(float desired_angle) {
     }
 }
 
+void pivotDegrees(int input) {
+    int desired = 0;
+    if(input > 0) {
+        desired = total_angle + input;
+    } else {
+        desired = total_angle - input;
+    }
+    pivotToTotalAngle(desired);
+}
+
 void stop() {
     motor[left_drive] = 0;
     motor[right_drive] = 0;
