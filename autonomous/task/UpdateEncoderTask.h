@@ -30,6 +30,6 @@ task UpdateEncoderTask() {
 
         prev_left_encoder = left_encoder;
         prev_right_encoder = right_encoder;
-        wait1Msec(20);
+        wait1Msec(10);
     }
 }

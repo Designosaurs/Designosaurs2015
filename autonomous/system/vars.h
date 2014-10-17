@@ -13,7 +13,3 @@ long right_trip_counts = 0;
 float trip_distance_feet = 0;
 
 float total_angle = 0;
-
-
-// Stop this many degrees early, because you will over-rotate by that much.
-const int INTERTIAL_DEGREES = 1;

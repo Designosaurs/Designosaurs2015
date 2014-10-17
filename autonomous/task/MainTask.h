@@ -19,8 +19,10 @@ task main() {
 
 
     //accel(0,-80);
-    goBackwardDistance(6,80);
-    accel(-80,0);
+    //goBackwardDistance(6,80);
+    //accel(-80,0);
+
+    pivotToTotalAngle( 90 );
 
     stop();
 while( 1 );

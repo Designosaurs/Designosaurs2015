@@ -40,18 +40,18 @@ void goDistance(float feet, float power, bool forward) {
         if (feedback < 0.5) feedback = 0.5;
 
          //Write debugging information if needed:
-        if ( ++DebugCnt > 30)  {
-    				writeDebugStreamLine("---");
-         		writeDebugStream("Angle: %3.1f",(float) total_angle);
-        		writeDebugStream("  Angle err: %3.1f",(float) angle_error);
-        		writeDebugStreamLine("  Angle int: %3.1f", error_integration );
-        		writeDebugStream("R enc: %d", right_encoder);
-        		writeDebugStreamLine(" L enc: %d",left_encoder);
-         		writeDebugStreamLine("Feedback: %1.2f", feedback);
-        		writeDebugStream(" R Drive: %1.0f", motor[right_drive]);
-        		writeDebugStreamLine(" L Drive: %1.0f", motor[left_drive]);
-        		DebugCnt = 0;
-      	}
+       // if ( ++DebugCnt > 30)  {
+    			//	writeDebugStreamLine("---");
+       //  		writeDebugStream("Angle: %3.1f",(float) total_angle);
+       // 		writeDebugStream("  Angle err: %3.1f",(float) angle_error);
+       // 		writeDebugStreamLine("  Angle int: %3.1f", error_integration );
+       // 		writeDebugStream("R enc: %d", right_encoder);
+       // 		writeDebugStreamLine(" L enc: %d",left_encoder);
+       //  		writeDebugStreamLine("Feedback: %1.2f", feedback);
+       // 		writeDebugStream(" R Drive: %1.0f", motor[right_drive]);
+       // 		writeDebugStreamLine(" L Drive: %1.0f", motor[left_drive]);
+       // 		DebugCnt = 0;
+      	//}
         // If it is veering right, decrease the left motor power.
         if(error_value * direction > 0) {
             left_power = feedback * left_power;
@@ -75,30 +75,36 @@ void goBackwardDistance(float feet, int power) {
 	}
 
 
+// Stop this many degrees early, because you will over-rotate by that much.
 
 void pivotToTotalAngle(float desired_angle) {
     float how_far;
     float current_speed = MAX_SPEED * 0.5;
+    float inertia_allowance = 10;
+    how_far = abs(desired_angle - total_angle);
+    if (how_far < 60 ) inertia_allowance = 5;
+    if (how_far < 30 ) inertia_allowance = 3;
+    if (how_far < 10 ) inertia_allowance = 0.5;
 
-    if(desired_angle > total_angle) {
-        while(total_angle < (desired_angle - INTERTIAL_DEGREES)) {
+     if(desired_angle > total_angle) {
+    		// Pivot clockwise, so total angle is increasing:
+   			while(total_angle < (desired_angle - inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if(how_far < 20.0) {
-                current_speed = MAX_SPEED * 0.1;
-            }
+            if(how_far < 30.0) current_speed = MAX_SPEED * 0.03;
+            if(how_far < 60.0) current_speed = MAX_SPEED * 0.1;
             motor[left_drive] = current_speed;
             motor[right_drive] = -current_speed;
-            wait1Msec(20);
+            wait1Msec(10);
         }
     } else {
-        while(total_angle > (desired_angle + INTERTIAL_DEGREES)) {
+
+        while(total_angle > (desired_angle + inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if (how_far < 20.0) {
-                current_speed = MAX_SPEED * 0.1;
-            }
+            if(how_far < 30.0) current_speed = MAX_SPEED * 0.03;
+            if(how_far < 60.0) current_speed = MAX_SPEED * 0.1;
             motor[left_drive] = -current_speed;
             motor[right_drive] = current_speed;
-           	wait1Msec(20);
+           	wait1Msec(10);
         }
     }
 }
