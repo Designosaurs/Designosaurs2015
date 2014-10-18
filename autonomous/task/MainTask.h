@@ -1,6 +1,6 @@
 task main() {
     placerInit();
-    //waitForStart();
+    // waitForStart();
 
     bMotorReflected[left_drive] = true;
 
@@ -9,18 +9,18 @@ task main() {
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
-    // goForwardTime( 4, -80);
+    // goForwardTime(4, -80);
 
-    //accel(0,80);
-    //goForwardDistance(6,80);
-    //accel(80,0);
+    // accel(0, 80);
+    // goForwardDistance(6, 80);
+    // accel(80, 0);
 
 
-    //accel(0,-80);
-    //goBackwardDistance(6,80);
-    //accel(-80,0);
+    // accel(0, -80);
+    // goBackwardDistance(6, 80);
+    // accel(-80, 0);
 
-    // pivotToTotalAngle( 90 );
+    // pivotToTotalAngle(90);
 
     goForwardDistance(7,80);
     stop();
@@ -31,16 +31,19 @@ task main() {
     //PlaySound(soundDownwardTones);
     // goBackwardDistance( 2, 80);
     //PlaySound(soundDownwardTones);
+
     // 5 degrees seems to be about right to get it
     // pointed at the back wall.
-		BackwardsArcToAngle( 80, 0.1, 5);
+	BackwardsArcToAngle(80, 0.1, 5);
     ResetTrip();
-    goBackwardDistance( 4, 80);
-    pivotToTotalAngle( -80 );   // Place in goal.
+    goBackwardDistance(4, 80);
+    pivotToTotalAngle(-80); // Place in goal.
     stop();
     ResetTrip();
-    goForwardDistance( 0.5, 80);
+    goForwardDistance(0.5, 80);
     stop();
-		while( 1 );
 
+	while(true) {
+        wait1Msec(50);
+    }
 }

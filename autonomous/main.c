@@ -30,6 +30,7 @@
 #include "system/vars.h"
 #include "config/drive.h"
 #include "config/sonar.h"
+#include "system/debug.h"
 #include "system/drive.h"
 #include "system/servo.h"
 #include "system/sonar.h"

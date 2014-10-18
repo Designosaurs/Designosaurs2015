@@ -13,3 +13,4 @@ long right_trip_counts = 0;
 float trip_distance_feet = 0;
 
 float total_angle = 0;
+int debugCnt = 0;
