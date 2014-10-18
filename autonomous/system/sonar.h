@@ -1,3 +1,4 @@
+// Drive foward slowly to a range passed in cm.
 void goToRange(int range) {
     while(SensorValue[ultrasonic] > range) {
         motor[left_drive] = 5;
