@@ -9,24 +9,12 @@ task main() {
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
-    // goForwardTime(4, -80);
 
-    // accel(0, 80);
-    // goForwardDistance(6, 80);
-    // accel(80, 0);
-
-
-    // accel(0, -80);
-    // goBackwardDistance(6, 80);
-    // accel(-80, 0);
-
-    // pivotToTotalAngle(90);
-
-    goForwardDistance(7,80);
+    goForwardDistance(6.5,100);
     stop();
-    PlaySound(soundDownwardTones);
-    wait1Msec( 1000 );
-    BackwardsArcToAngle( 80, 0.1, 50);
+    goToTube();
+
+    BackwardsArcToAngle(80, 0.1, 50);
     ResetTrip();
     //PlaySound(soundDownwardTones);
     // goBackwardDistance( 2, 80);
@@ -34,15 +22,15 @@ task main() {
 
     // 5 degrees seems to be about right to get it
     // pointed at the back wall.
-	BackwardsArcToAngle(80, 0.1, 5);
+    BackwardsArcToAngle(80, 0.1, 5);
     ResetTrip();
     goBackwardDistance(4, 80);
     pivotToTotalAngle(-80); // Place in goal.
     stop();
     ResetTrip();
     goForwardDistance(0.5, 80);
+    goForwardDistance(6.5,100);
     stop();
-
 	while(true) {
         wait1Msec(50);
     }
