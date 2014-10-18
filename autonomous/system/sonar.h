@@ -1,3 +1,12 @@
+void goToRange(int range) {
+    while(SensorValue[ultrasonic] > range) {
+        motor[left_drive] = 5;
+        motor[right_drive] = 5;
+        wait1Msec(10);
+    }
+    stop();
+}
+
 int pointToNearest(int scan_range) {
     int lowest_value_cm = 255;
     int at_degree = 0;
