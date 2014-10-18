@@ -4,7 +4,7 @@ void goToTube() {
         int at_degree = 0;
         int x;
         for(x = 1; x < 20; x++ ) {
-            pivotDegrees(x);
+            pivotDegrees(1);
             if(SensorValue[ultrasonic] > highest_value_cm) {
                 highest_value_cm = SensorValue[ultrasonic];
                 at_degree = x;
@@ -12,7 +12,7 @@ void goToTube() {
         }
         pivotDegrees(-20);
         for(x = -1; x > -20; x++ ) {
-            pivotDegrees(x);
+            pivotDegrees(-1);
             if(SensorValue[ultrasonic] > highest_value_cm) {
                 highest_value_cm = SensorValue[ultrasonic];
                 at_degree = x;
