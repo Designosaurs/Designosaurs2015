@@ -7,9 +7,9 @@ task DebugTask() {
         nxtDisplayTextLine(6, "Range: %d", SensorValue[ultrasonic]);
 
 
-        writeDebugStream("Trip: %3.1f ft ", trip_distance_feet);
-        writeDebugStreamLine("Angle: %3.2f",(float) total_angle);
-        writeDebugStreamLine("Range: %d", SensorValue[ultrasonic]);
+        //writeDebugStream("Trip: %3.1f ft ", trip_distance_feet);
+        //writeDebugStreamLine("Angle: %3.2f",(float) total_angle);
+        //writeDebugStreamLine("Range: %d", SensorValue[ultrasonic]);
 
         // writeDebugStreamLine("---");
         // writeDebugStreamLine("L enc: %d",left_encoder);

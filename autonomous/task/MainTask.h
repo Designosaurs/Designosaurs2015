@@ -1,5 +1,6 @@
 task main() {
     placerInit();
+    wait10Msec( 100 );
     // waitForStart();
 
     bMotorReflected[left_drive] = true;
@@ -9,7 +10,27 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    goToRange( 10 );
+    CreepToGoal();
+     while(true) {
+        wait1Msec(50);
+    	}
+
+
+
+    // PLACE IN GOAL
+    // Start ideally between 1 and 1.5 feet away.
+    raiseBall();
+    pointToNearest( true );
+    PlaySound(soundDownwardTones);
+    wait10Msec( 100 );
+    pivotDegrees( 3 );
+    stop();
+    PlaySound(soundDownwardTones);
+   	wait10Msec( 100 );
+    goToRange( 20 );
+    stop();
+    placeBall();
+
     while(true) {
         wait1Msec(50);
     	}
@@ -17,17 +38,28 @@ task main() {
     // Starting from top of ramp, go place the ball in the goal.
     goForwardDistance(6.5,100);
     stop();
-    goToTube();
 
-    // Go from placing the goal to parking the tube.
+    // PLACE IN GOAL
+    // Start ideally between 1 and 1.5 feet away.
+    raiseBall();
+    pointToNearest( true );
+    PlaySound(soundDownwardTones);
+    //wait10Msec( 100 );
+    goToRange( 20 );
+    stop();
+    placeBall();
+
+    while(true) {
+        wait1Msec(50);
+    	}
+
+
+
+    // GO PARK THE TUBE
     BackwardsArcToAngle(80, 0.1, 50);
     ResetTrip();
-    //PlaySound(soundDownwardTones);
     // goBackwardDistance( 2, 80);
-    //PlaySound(soundDownwardTones);
-    // 5 degrees seems to be about right to get it
-    // pointed at the back wall.
-    BackwardsArcToAngle(80, 0.1, 5);
+    BackwardsArcToAngle(80, 0.1, 5); // 5 degrees aims us at all.
     ResetTrip();
     goBackwardDistance(4, 80);
     pivotToTotalAngle(-80); // Place in goal.

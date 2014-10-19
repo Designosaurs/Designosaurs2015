@@ -11,6 +11,20 @@ void ResetTrip() {
 	trip_distance_feet = 0;
 }
 
+void jogForwardCm( float dist_cm) {
+	float dist_feet = dist_cm * 0.0328;
+	ResetTrip();
+	wait10Msec( 10 );
+	while(abs(trip_distance_feet) < dist_feet) {
+		motor[left_drive] = 5;
+		motor[right_drive] = 5;
+		wait10Msec( 2 );
+	}
+	motor[left_drive] = 0;
+  motor[right_drive] = 0;
+
+}
+
 void goDistance(float feet, float power, bool forward) {
 	float feedback; // A ratio, so 0.9 means apply 90% power.
 	float start_angle;
@@ -107,7 +121,7 @@ void BackwardsArcToAngle(float power, float inside_ratio, float desired_angle) {
 	// Calculate inertial allowance.
 	if(how_far < 60) inertia_allowance = 5;
 	if(how_far < 30) inertia_allowance = 3;
-	if(how_far < 10) inertia_allowance = 0.5;
+	if(how_far < 10) inertia_allowance = 0;
 
 	// clockwise arc, so right turns slower:
 	if(total_angle < desired_angle) {
@@ -127,6 +141,8 @@ void BackwardsArcToAngle(float power, float inside_ratio, float desired_angle) {
     }
 }
 
+// This does not stop-- it wlll return with the motorts running
+// so as to pivot.  So, stop after if that is what you want to do.
 void pivotToTotalAngle(float desired_angle) {
     float how_far;
     float current_speed = MAX_SPEED * 0.5;
@@ -136,7 +152,7 @@ void pivotToTotalAngle(float desired_angle) {
     // Calculate inertial allowance.
     if(how_far < 60) inertia_allowance = 5;
     if(how_far < 30) inertia_allowance = 3;
-    if(how_far < 10) inertia_allowance = 0.5;
+    if(how_far < 10) inertia_allowance = 0;
 
     if(desired_angle > total_angle) {
         // Pivot clockwise, so total angle is increasing:
@@ -160,8 +176,8 @@ void pivotToTotalAngle(float desired_angle) {
     }
 }
 
-void pivotDegrees(int input) {
-    int desired = 0;
+void pivotDegrees(float input) {
+    float desired = 0;
     desired = total_angle + input;
     pivotToTotalAngle(desired);
 }

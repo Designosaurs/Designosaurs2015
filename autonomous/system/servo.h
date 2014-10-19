@@ -3,10 +3,15 @@ void placerInit() {
     servo[placer] = 255;
 }
 
+void raiseBall() {
+	 servoChangeRate[placer] = 1;
+   servo[placer] = GOAL_PLACE_RAISE_POS;
+}
+
 void placeBall() {
-    servoChangeRate[placer] = 10;
-    servo[placer] = 80;
-    wait1Msec(2000);
+    servoChangeRate[placer] = 1;
+    servo[placer] = GOAL_PLACE_SERVO_POS;
+    wait10Msec(200);
     placerInit();
-    wait1Msec(500);
+    //wait1Msec(500);
 }
