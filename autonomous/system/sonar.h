@@ -1,9 +1,9 @@
 // Drive foward slowly to a range passed in cm.
 // Note that this has a stop, because you usually will want to.
-void goToRange(int range) {
+void goToRange(int range, int power) {
 	while(SensorValue[ultrasonic] > range) {
-		motor[left_drive] = 5;
-		motor[right_drive] = 5;
+		motor[left_drive] = power;
+		motor[right_drive] = power;
 		wait1Msec(10);
 	}
 	stop();
@@ -11,7 +11,6 @@ void goToRange(int range) {
 
 // How far in degrees to scan, left and right, when searching (double for total range)
 const float SCAN_RANGE = 30.0;
-const float SCAN_INCREMENT = 0.1;
 const int SCAN_DELAY = 5;
 const int SCAN_SPEED = 10;
 
@@ -94,16 +93,19 @@ bool GoalPlacer() {
 	// First get to within defined distance, but not too close, because aim errors
 	// become more significant then.
 	raiseBall();
-	goToRange(30);
+	goToRange(30, 30);
 
+	// Start the ball movement
+	placeBall();
 	// Now get in the last bie.  Caclulate based on ultrasonic reading.
 	returned_range = (int) SensorValue[ultrasonic];
 	jog_dist = ( float )returned_range - GOAL_PLACE_DIST;
 	writeDebugStreamLine("Final Jog dist %3.2f", jog_dist);
-	jogForwardCm( jog_dist );
+	jogForwardCm( jog_dist, 20 );
+	stop();
 	returned_range = (int) SensorValue[ultrasonic];
 	writeDebugStreamLine("Range before place: %d", SensorValue[ultrasonic]);
 
-	placeBall();
+
 	return true;
 }
