@@ -10,7 +10,8 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    CreepToGoal();
+    WormIn();
+    //CreepToGoal();
      while(true) {
         wait1Msec(50);
     	}
