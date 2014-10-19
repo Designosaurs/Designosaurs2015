@@ -1,5 +1,5 @@
-void movementTrace(int angle_error, int error_integration, int feedback) {
-    if(++debugCnt > 30) {
+void movementTrace(float angle_error, float error_integration, float feedback) {
+    if(++debugCnt > 10) {
     	writeDebugStreamLine("---");
       	writeDebugStream("Angle: %3.1f",(float) total_angle);
      	writeDebugStream("  Angle err: %3.1f",(float) angle_error);

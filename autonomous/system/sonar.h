@@ -105,7 +105,7 @@ bool GoalPlacer() {
 	stop();
 	returned_range = (int) SensorValue[ultrasonic];
 	writeDebugStreamLine("Range before place: %d", SensorValue[ultrasonic]);
-	wait10Msec( 50 );  // Give some for the ball placer to work.
+	wait10Msec( 100 );  // Give some for the ball placer to work.
 	placerInit();
 
 	return true;

@@ -23,14 +23,16 @@ void jogForwardCm( float dist_cm, int power) {
 	}
 }
 
+
+
 void goDistance(float feet, float power, bool forward) {
-	float feedback; // A ratio, so 0.9 means apply 90% power.
 	float start_angle;
 	float angle_error;
 	float error_integration = 0;
 	float error_value;
 	float left_power, right_power;
 	float direction = 1.00;
+	float feedback; // A ratio, so 0.9 means apply 90% power.
 	power = power * (MAX_SPEED * 0.01); // Scale to whatever we make our max speed.
 	start_angle = total_angle;
 
@@ -42,7 +44,7 @@ void goDistance(float feet, float power, bool forward) {
 
 		// Error calculation:
 		angle_error = total_angle - start_angle;
-		error_integration += 0.01 * angle_error;
+		error_integration += 0.05 * angle_error;
 		// The integration term makes the steady state error to near zero, but it
 		// is a destabilizing influence.
 		error_value = angle_error + 1.0 * error_integration;
@@ -52,7 +54,7 @@ void goDistance(float feet, float power, bool forward) {
 		if(feedback < 0.7) feedback = 0.7;
 
 		// Write debugging information if needed:
-        // movementTrace(angle_error, error_integration, feedback);
+    movementTrace(angle_error, error_integration, feedback);
 
 		// If it is veering right, decrease the left motor power.
 		if(error_value * direction > 0) {
