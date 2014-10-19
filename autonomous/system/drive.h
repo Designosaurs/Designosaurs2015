@@ -46,10 +46,10 @@ void goDistance(float feet, float power, bool forward) {
 		// The integration term makes the steady state error to near zero, but it
 		// is a destabilizing influence.
 		error_value = angle_error + 1.0 * error_integration;
-		// Cut the power 10% for every degree it is off..+wait1Msec(300);
-		feedback = 1 - (0.1 * abs(error_value));
+		// Cut the power 3% for every degree it is off..+wait1Msec(300);
+		feedback = 1 - (0.03 * abs(error_value));
 		// But not less than this much power:
-		if(feedback < 0.5) feedback = 0.5;
+		if(feedback < 0.7) feedback = 0.7;
 
 		// Write debugging information if needed:
         // movementTrace(angle_error, error_integration, feedback);
@@ -156,8 +156,8 @@ void pivotToTotalAngle(float desired_angle) {
         // Pivot clockwise, so total angle is increasing:
         while(total_angle < (desired_angle - inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if(how_far < 30.0) current_speed = MAX_SPEED * 0.03;
-            if(how_far < 60.0) current_speed = MAX_SPEED * 0.1;
+            if(how_far < 5.0) current_speed = MAX_SPEED * 0.1;
+            if(how_far < 30.0) current_speed = MAX_SPEED * 0.25;
             motor[left_drive] = current_speed;
             motor[right_drive] = -current_speed;
             wait1Msec(10);

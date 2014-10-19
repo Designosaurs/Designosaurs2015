@@ -12,7 +12,7 @@ void goToRange(int range, int power) {
 // How far in degrees to scan, left and right, when searching (double for total range)
 const float SCAN_RANGE = 30.0;
 const int SCAN_DELAY = 5;
-const int SCAN_SPEED = 10;
+const int SCAN_SPEED = 10;  // Any faster and it misses because lag for sensor is too high.
 
 bool pointToGoal() {
 	int low_so_far = 255;
@@ -105,7 +105,8 @@ bool GoalPlacer() {
 	stop();
 	returned_range = (int) SensorValue[ultrasonic];
 	writeDebugStreamLine("Range before place: %d", SensorValue[ultrasonic]);
-
+	wait10Msec( 50 );  // Give some for the ball placer to work.
+	placerInit();
 
 	return true;
 }
