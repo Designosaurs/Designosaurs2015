@@ -3,8 +3,8 @@
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     right_drive,    tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C1_2,     left_drive,   	tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_1,     right_drive,    tmotorTetrix, PIDControl)
+#pragma config(Motor,  mtr_S1_C1_2,     left_drive,   	tmotorTetrix, PIDControl)
 #pragma config(Servo,  srvo_S1_C2_1,    placer,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
@@ -28,8 +28,7 @@
 
 //#include "JoystickDriver.c"
 #include "system/vars.h"
-#include "config/drive.h"
-#include "config/sonar.h"
+#include "config/bot_specific.h"
 #include "system/debug.h"
 #include "system/drive.h"
 #include "system/servo.h"

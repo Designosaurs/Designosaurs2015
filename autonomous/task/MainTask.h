@@ -10,31 +10,28 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    WormIn();
-    //CreepToGoal();
-     while(true) {
-        wait1Msec(50);
-    	}
-
-
-
-    // PLACE IN GOAL
-    // Start ideally between 1 and 1.5 feet away.
-    raiseBall();
-    pointToNearest( true );
-    PlaySound(soundDownwardTones);
-    wait10Msec( 100 );
-    pivotDegrees( 3 );
-    stop();
-    PlaySound(soundDownwardTones);
-   	wait10Msec( 100 );
-    goToRange( 20 );
-    stop();
-    placeBall();
-
+    GoalPlacer();
+    //preciseAimer();
     while(true) {
         wait1Msec(50);
     	}
+    // PLACE IN GOAL
+    // Start ideally between 1 and 1.5 feet away.
+    // raiseBall();
+    //pointToNearest( true );
+    //PlaySound(soundDownwardTones);
+    //wait10Msec( 100 );
+    //pivotDegrees( 3 );
+    //stop();
+    //PlaySound(soundDownwardTones);
+   	//wait10Msec( 100 );
+    //goToRange( 20 );
+    //stop();
+    //placeBall();
+
+    //while(true) {
+    //    wait1Msec(50);
+    //	}
 
     // Starting from top of ramp, go place the ball in the goal.
     goForwardDistance(6.5,100);
@@ -42,17 +39,17 @@ task main() {
 
     // PLACE IN GOAL
     // Start ideally between 1 and 1.5 feet away.
-    raiseBall();
-    pointToNearest( true );
-    PlaySound(soundDownwardTones);
-    //wait10Msec( 100 );
-    goToRange( 20 );
-    stop();
-    placeBall();
+    //raiseBall();
+    //pointToNearest( true );
+    //PlaySound(soundDownwardTones);
+    ////wait10Msec( 100 );
+    //goToRange( 20 );
+    //stop();
+    //placeBall();
 
-    while(true) {
-        wait1Msec(50);
-    	}
+    //while(true) {
+    //    wait1Msec(50);
+    //	}
 
 
 
