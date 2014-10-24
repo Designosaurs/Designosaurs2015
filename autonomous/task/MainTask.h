@@ -1,8 +1,9 @@
 task main() {
-		float angle_before_goal;
+	float angle_before_goal;
+
     placerInit();
     goalPlacerUp();
-    wait10Msec( 100 );
+    wait10Msec(100);
     // waitForStart();
 
     bMotorReflected[left_drive] = true;
@@ -14,7 +15,7 @@ task main() {
 
 
     // Starting from top of ramp, go place the ball in the goal.
-    goForwardDistance(6.1,100);
+    goForwardDistance(6.1, 100);
     stop();
 
     // Record the angle before we find the goal
@@ -23,12 +24,12 @@ task main() {
     stop();
     goPlacerDown();
     // Now go back to that angle
-    pivotToTotalAngle( angle_before_goal );
+    pivotToTotalAngle(angle_before_goal);
 
     // GO PARK THE TUBE
     BackwardsArcToAngle(80, 0.3, 50);
     ResetTrip();
-    goBackwardDistance( 1.5, 80);
+    goBackwardDistance(1.5, 80);
     BackwardsArcToAngle(80, 0.3, 5); // 5 degrees aims us at wall.
     ResetTrip();
     goBackwardDistance(4, 80);
@@ -36,6 +37,4 @@ task main() {
     ResetTrip();
     goForwardDistance(0.5, 80);
     stop();
-
-
 }
