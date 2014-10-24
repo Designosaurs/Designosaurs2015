@@ -11,7 +11,4 @@ void raiseBall() {
 void placeBall() {
     servoChangeRate[placer] = 1;
     servo[placer] = GOAL_PLACE_SERVO_POS;
-    //wait10Msec(200);
-    //placerInit();
-    //wait1Msec(500);
 }

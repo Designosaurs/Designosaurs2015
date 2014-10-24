@@ -1,4 +1,4 @@
-// Drive foward slowly to a range passed in cm.
+// Drive forward slowly to a range passed in cm.
 // Note that this has a stop, because you usually will want to.
 void goToRange(int range, int power) {
 	while(SensorValue[ultrasonic] > range) {
@@ -12,7 +12,7 @@ void goToRange(int range, int power) {
 // How far in degrees to scan, left and right, when searching (double for total range)
 const float SCAN_RANGE = 30.0;
 const int SCAN_DELAY = 5;
-const int SCAN_SPEED = 10;  // Any faster and it misses because lag for sensor is too high.
+const int SCAN_SPEED = 10; // Any faster and it misses because lag for sensor is too high.
 
 bool pointToGoal() {
 	int low_so_far = 255;
@@ -34,7 +34,7 @@ bool pointToGoal() {
 
 	// Make the scan
 	returned_range = (int) SensorValue[ultrasonic];
-	while( !stop_scan ) {
+	while(![stop_sca]) {
 		motor[right_drive] = -SCAN_SPEED;
 		motor[left_drive] = SCAN_SPEED;
 		wait10Msec( SCAN_DELAY );
@@ -78,7 +78,7 @@ bool pointToGoal() {
 
 	// Add a slight negative compensation to account for the scan lag.
 	// If it is aiming too far to the right, make this a more negative number.
-	pivotToTotalAngle( best_aim_angle - 1.5 );
+	pivotToTotalAngle(best_aim_angle - 1.5);
 	stop();
 
 	return have_low;
@@ -97,15 +97,15 @@ bool GoalPlacer() {
 
 	// Start the ball movement
 	placeBall();
-	// Now get in the last bie.  Caclulate based on ultrasonic reading.
+	// Now get in the last bit. Calculate based on ultrasonic reading.
 	returned_range = (int) SensorValue[ultrasonic];
-	jog_dist = ( float )returned_range - GOAL_PLACE_DIST;
+	jog_dist = (float) returned_range - GOAL_PLACE_DIST;
 	writeDebugStreamLine("Final Jog dist %3.2f", jog_dist);
-	jogForwardCm( jog_dist, 20 );
+	jogForwardCm(jog_dist, 20);
 	stop();
 	returned_range = (int) SensorValue[ultrasonic];
 	writeDebugStreamLine("Range before place: %d", SensorValue[ultrasonic]);
-	wait10Msec( 100 );  // Give some for the ball placer to work.
+	wait10Msec(100); // Give some for the ball placer to work.
 	placerInit();
 
 	return true;
