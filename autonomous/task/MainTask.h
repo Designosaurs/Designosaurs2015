@@ -1,6 +1,7 @@
 task main() {
 		float angle_before_goal;
     placerInit();
+    goalPlacerUp();
     wait10Msec( 100 );
     // waitForStart();
 
@@ -20,6 +21,7 @@ task main() {
     angle_before_goal = total_angle;
     GoalPlacer();
     stop();
+    goPlacerDown();
     // Now go back to that angle
     pivotToTotalAngle( angle_before_goal );
 
