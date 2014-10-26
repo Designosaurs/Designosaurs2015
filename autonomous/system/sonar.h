@@ -34,7 +34,7 @@ bool pointToGoal() {
 
 	// Make the scan
 	returned_range = (int) SensorValue[ultrasonic];
-	while(![stop_sca]) {
+	while(!stop_scan) {
 		motor[right_drive] = -SCAN_SPEED;
 		motor[left_drive] = SCAN_SPEED;
 		wait10Msec( SCAN_DELAY );

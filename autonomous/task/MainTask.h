@@ -2,8 +2,17 @@ task main() {
 	float angle_before_goal;
 
     placerInit();
-    goalPlacerUp();
-    wait10Msec(100);
+    goalGrabberUp();
+
+
+   // while(1){
+   // 	goalGrabberUp();
+   // 	wait10Msec(100);
+ 		//	goalGrabberDown();
+ 		//	wait10Msec(100);
+ 		//}
+
+
     // waitForStart();
 
     bMotorReflected[left_drive] = true;
@@ -21,8 +30,9 @@ task main() {
     // Record the angle before we find the goal
     angle_before_goal = total_angle;
     GoalPlacer();
+    jogForwardCm( 10, 10 );
     stop();
-    goPlacerDown();
+    goalGrabberDown();
     // Now go back to that angle
     pivotToTotalAngle(angle_before_goal);
 
@@ -32,9 +42,9 @@ task main() {
     goBackwardDistance(1.5, 80);
     BackwardsArcToAngle(80, 0.3, 5); // 5 degrees aims us at wall.
     ResetTrip();
-    goBackwardDistance(4, 80);
+    goBackwardDistance(4.2, 80);
     pivotToTotalAngle(-80); // Place in goal.
     ResetTrip();
-    goForwardDistance(0.5, 80);
+    goForwardDistance(0.7, 40);
     stop();
 }

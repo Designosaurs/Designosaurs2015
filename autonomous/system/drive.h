@@ -23,13 +23,6 @@ void jogForwardCm( float dist_cm, int power) {
 	}
 }
 
-void goalPlacerUp() {
-    servo[goal_place] = 170;
-}
-
-void goalPlacerDown() {
-    servo[goal_place] = 180;
-}
 
 void goDistance(float feet, float power, bool forward) {
 	float start_angle;

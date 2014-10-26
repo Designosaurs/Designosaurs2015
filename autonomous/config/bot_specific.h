@@ -10,3 +10,5 @@ const float LEFT_ENC_COMP = 0.930;
 const float GOAL_PLACE_DIST = 12;
 const int GOAL_PLACE_SERVO_POS = 85;
 const int GOAL_PLACE_RAISE_POS = 180;
+const int GRABBER_UP = 45;
+const int GRABBER_DOWN = 15;

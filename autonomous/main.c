@@ -6,7 +6,7 @@
 #pragma config(Motor,  mtr_S1_C1_1,     right_drive,    tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C1_2,     left_drive,   	tmotorTetrix, PIDControl)
 #pragma config(Servo,  srvo_S1_C2_1,    placer,               tServoStandard)
-#pragma config(Servo,  srvo_S1_C2_2,    goal_place,               tServoStandard)
+#pragma config(Servo,  srvo_S1_C2_2,    goal_grab,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_5,    servo5,               tServoNone)
