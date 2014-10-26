@@ -166,8 +166,8 @@ void pivotToTotalAngle(float desired_angle) {
     } else {
         while(total_angle > (desired_angle + inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if(how_far < 30.0) current_speed = MAX_SPEED * 0.03;
-            if(how_far < 60.0) current_speed = MAX_SPEED * 0.1;
+            if(how_far < 10.0) current_speed = MAX_SPEED * 0.05;
+            if(how_far < 30.0) current_speed = MAX_SPEED * 0.3;
             motor[left_drive] = -current_speed;
             motor[right_drive] = current_speed;
             wait1Msec(10);

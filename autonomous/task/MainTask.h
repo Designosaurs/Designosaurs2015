@@ -4,15 +4,6 @@ task main() {
     placerInit();
     goalGrabberUp();
 
-
-   // while(1){
-   // 	goalGrabberUp();
-   // 	wait10Msec(100);
- 		//	goalGrabberDown();
- 		//	wait10Msec(100);
- 		//}
-
-
     // waitForStart();
 
     bMotorReflected[left_drive] = true;
