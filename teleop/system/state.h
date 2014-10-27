@@ -1,7 +1,3 @@
-#include "globals.h"
-
-task UpdateDisplayTask();
-
 void onWait() {
     bMotorReflected[right_drive] = true;
 
@@ -17,6 +13,7 @@ void onWait() {
     nxtDisplayCenteredTextLine(5,"Waiting for");
     nxtDisplayCenteredTextLine(6,"connection.");
     StartTask(UpdateDisplayTask);
+    goalGrabberUp();
 }
 
 void onStop() {
@@ -29,6 +26,10 @@ void onRun() {
     nxtDisplayStringAt(20,42,"Designosaurs");
 
     nxtDisplayCenteredTextLine(5,"Running.");
+
+    writeDebugStreamLine("running!");
+
+    StartTask(UpdateJoystickTask);
 }
 
 void switchState(int newState) {

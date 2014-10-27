@@ -1,8 +1,5 @@
-#pragma systemFile
 task main() {
     switchState(STATE_WAIT);
-
-    StartTask(UpdateJoystickTask);
 
     waitForStart();
 

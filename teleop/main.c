@@ -3,10 +3,10 @@
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     left_drive,    tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C1_2,     right_drive,   tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_1,     right_drive,    tmotorTetrix, PIDControl)
+#pragma config(Motor,  mtr_S1_C1_2,     left_drive,   	tmotorTetrix, PIDControl)
 #pragma config(Servo,  srvo_S1_C2_1,    placer,               tServoStandard)
-#pragma config(Servo,  srvo_S1_C2_2,    servo2,               tServoNone)
+#pragma config(Servo,  srvo_S1_C2_2,    goal_grab,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_5,    servo5,               tServoNone)
@@ -26,9 +26,12 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
-#include "system\globals.h"
 #include "config\drive.h"
-#include "system\state.h"
+#include "config\bot_specific.h"
+#include "system\globals.h"
+#include "system\servo.h"
+#include "system\dpad.h"
 #include "task\UpdateJoystickTask.h"
 #include "task\UpdateDisplayTask.h"
+#include "system\state.h"
 #include "task\MainTask.h"
