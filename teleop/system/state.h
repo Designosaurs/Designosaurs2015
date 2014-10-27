@@ -1,5 +1,5 @@
 void onWait() {
-    bMotorReflected[right_drive] = true;
+    bMotorReflected[left_drive] = true;
 
     nMotorEncoder[right_drive] = 0;
 
