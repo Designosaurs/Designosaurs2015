@@ -4,8 +4,8 @@ void placerInit() {
 }
 
 void raiseBall() {
-	 servoChangeRate[placer] = 1;
-   servo[placer] = GOAL_PLACE_RAISE_POS;
+    servoChangeRate[placer] = 1;
+    servo[placer] = GOAL_PLACE_RAISE_POS;
 }
 
 void placeBall() {
