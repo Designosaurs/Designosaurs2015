@@ -1,1 +1,1 @@
-const int DRIVE_POWER = 80;
+const int DRIVE_POWER = 40;
