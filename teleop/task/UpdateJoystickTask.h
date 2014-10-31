@@ -21,6 +21,22 @@ task UpdateJoystickTask() {
             motor[right_drive] = 0;
         }
 
+        if(joy1Btn(5)) {
+            DRIVE_POWER = 80;
+        }
+
+        if(joy1Btn(7)) {
+            DRIVE_POWER = 40;
+        }
+
+        if(joy1Btn(4)) {
+            goalGrabberUp();
+        }
+
+        if(joy1Btn(6)) {
+            goalGrabberDown();
+        }
+
         switch(joystick.joy1_TopHat) {
             case 0:
                 dpad.TOP = true;
@@ -30,7 +46,6 @@ task UpdateJoystickTask() {
                 break;
             case 2:
                 dpad.RIGHT = true;
-                goalGrabberUp();
                 break;
             case 3:
                 dpad.BOTTOM_RIGHT = true;
@@ -43,7 +58,6 @@ task UpdateJoystickTask() {
                 break;
             case 6:
                 dpad.LEFT = true;
-                goalGrabberDown();
                 break;
             case 7:
                 dpad.TOP_LEFT = true;
