@@ -21,19 +21,19 @@ task UpdateJoystickTask() {
             motor[right_drive] = 0;
         }
 
-        if(joy1Btn(5)) {
+        if(joy1Btn(06)) {
             DRIVE_POWER = 80;
         }
 
-        if(joy1Btn(7)) {
+        if(joy1Btn(08)) {
             DRIVE_POWER = 40;
         }
 
-        if(joy1Btn(4)) {
+        if(joy1Btn(05)) {
             goalGrabberUp();
         }
 
-        if(joy1Btn(6)) {
+        if(joy1Btn(07)) {
             goalGrabberDown();
         }
 
