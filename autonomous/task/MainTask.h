@@ -25,7 +25,7 @@ task main() {
     stop();
     goalGrabberDown();
     // Now go back to that angle
-    pivotToTotalAngle(angle_before_goal);
+    pivotToTotalAngle(angle_before_goal, MAX_SPEED);
 
     // GO PARK THE TUBE
     BackwardsArcToAngle(80, 0.3, 50);
@@ -34,7 +34,7 @@ task main() {
     BackwardsArcToAngle(80, 0.3, 5); // 5 degrees aims us at wall.
     ResetTrip();
     goBackwardDistance(4.2, 80);
-    pivotToTotalAngle(-80); // Place in goal.
+    pivotToTotalAngle(-80, 50); // Place in goal.
     ResetTrip();
     goForwardDistance(0.7, 40);
     stop();
