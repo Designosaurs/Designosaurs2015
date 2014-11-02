@@ -22,7 +22,7 @@ task main() {
     // Record the angle before we find the goal
     angle_before_goal = total_angle;
     GoalPlacer();
-    pivotDegrees(-3, 80);
+    pivotDegrees(-3, 80); // Compensate for hardware being slightly off center
     jogForwardCm(10, 10);
     stop();
     goalGrabberDown();
