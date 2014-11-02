@@ -28,7 +28,7 @@ task UpdateJoystickTask() {
         }
 
         if(joy1Btn(08)) {
-            DRIVE_POWER = 20;
+            DRIVE_POWER = 40;
         }
 
         if(joy1Btn(05)) {
