@@ -26,4 +26,4 @@ const int STATE_STOP = 3;
 int PWR_LEFT = 0;
 int PWR_RIGHT = 0;
 
-const int DEADBAND = 25;
+const int DEADBAND = 12;

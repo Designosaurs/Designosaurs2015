@@ -9,14 +9,14 @@ task UpdateJoystickTask() {
         PWR_LEFT = y1 * 0.78;
         PWR_RIGHT = y2 * 0.78;
 
-        if(PWR_LEFT > DEADBAND || PWR_LEFT < DEADBAND) {
+        if(abs(PWR_LEFT) > DEADBAND) {
             motor[left_drive] = PWR_LEFT * DRIVE_POWER * 0.01;
         } else {
             motor[left_drive] = 0;
             PWR_LEFT = 0;
         }
 
-        if(PWR_RIGHT > DEADBAND || PWR_RIGHT < DEADBAND) {
+        if(abs(PWR_RIGHT) > DEADBAND) {
             motor[right_drive] = PWR_RIGHT * DRIVE_POWER * 0.01;
         } else {
             motor[right_drive] = 0;
@@ -24,11 +24,11 @@ task UpdateJoystickTask() {
         }
 
         if(joy1Btn(06)) {
-            DRIVE_POWER = 80;
+            DRIVE_POWER = 90;
         }
 
         if(joy1Btn(08)) {
-            DRIVE_POWER = 40;
+            DRIVE_POWER = 20;
         }
 
         if(joy1Btn(05)) {
