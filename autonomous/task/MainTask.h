@@ -23,7 +23,7 @@ task main() {
     angle_before_goal = total_angle;
     GoalPlacer();
     pivotDegrees(-3, 80);
-    jogForwardCm( 10, 10 );
+    jogForwardCm(10, 10);
     stop();
     goalGrabberDown();
     // Now go back to that angle
