@@ -29,7 +29,7 @@ bool pointToGoal() {
 	bool stop_scan = false;
 
 	// Start pointing to the start ange of the scan.
-	pivotToTotalAngle( start_angle);
+	pivotToTotalAngle(start_angle, 80);
 	stop();
 
 	// Make the scan
@@ -78,7 +78,7 @@ bool pointToGoal() {
 
 	// Add a slight negative compensation to account for the scan lag.
 	// If it is aiming too far to the right, make this a more negative number.
-	pivotToTotalAngle(best_aim_angle - 1.5);
+	pivotToTotalAngle(best_aim_angle - 1.5, 80);
 	stop();
 
 	return have_low;
