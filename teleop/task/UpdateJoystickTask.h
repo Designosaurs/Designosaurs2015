@@ -6,19 +6,21 @@ task UpdateJoystickTask() {
         int x1 = joystick.joy1_x1;
         int x2 = joystick.joy1_x2;
 
-        PWR_LEFT = y1;
-        PWR_RIGHT = y2;
+        PWR_LEFT = y1 * 0.78;
+        PWR_RIGHT = y2 * 0.78;
 
         if(PWR_LEFT > DEADBAND || PWR_LEFT < DEADBAND) {
-            motor[left_drive] = PWR_LEFT * 0.78 * (DRIVE_POWER / 100);
+            motor[left_drive] = PWR_LEFT * DRIVE_POWER * 0.01;
         } else {
             motor[left_drive] = 0;
+            PWR_LEFT = 0;
         }
 
         if(PWR_RIGHT > DEADBAND || PWR_RIGHT < DEADBAND) {
-            motor[right_drive] = PWR_RIGHT * 0.78 * (DRIVE_POWER / 100);
+            motor[right_drive] = PWR_RIGHT * DRIVE_POWER * 0.01;
         } else {
             motor[right_drive] = 0;
+            PWR_RIGHT = 0;
         }
 
         if(joy1Btn(06)) {
