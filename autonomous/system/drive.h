@@ -142,9 +142,9 @@ void BackwardsArcToAngle(float power, float inside_ratio, float desired_angle) {
 
 // This does not stop-- it wlll return with the motorts running
 // so as to pivot.  So, stop after if that is what you want to do.
-void pivotToTotalAngle(float desired_angle) {
+void pivotToTotalAngle(float desired_angle, int power) {
     float how_far;
-    float current_speed = MAX_SPEED * 0.5;
+    float current_speed = power * 0.5;
     float inertia_allowance = 10;
     how_far = abs(desired_angle - total_angle);
 
@@ -157,8 +157,8 @@ void pivotToTotalAngle(float desired_angle) {
         // Pivot clockwise, so total angle is increasing:
         while(total_angle < (desired_angle - inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if(how_far < 5.0) current_speed = MAX_SPEED * 0.1;
-            if(how_far < 30.0) current_speed = MAX_SPEED * 0.25;
+            if(how_far < 5.0) current_speed = power * 0.1;
+            if(how_far < 30.0) current_speed = power * 0.25;
             motor[left_drive] = current_speed;
             motor[right_drive] = -current_speed;
             wait1Msec(10);
@@ -166,8 +166,8 @@ void pivotToTotalAngle(float desired_angle) {
     } else {
         while(total_angle > (desired_angle + inertia_allowance)) {
             how_far = abs(desired_angle - total_angle);
-            if(how_far < 10.0) current_speed = MAX_SPEED * 0.05;
-            if(how_far < 30.0) current_speed = MAX_SPEED * 0.3;
+            if(how_far < 10.0) current_speed = power * 0.05;
+            if(how_far < 30.0) current_speed = power * 0.3;
             motor[left_drive] = -current_speed;
             motor[right_drive] = current_speed;
             wait1Msec(10);
@@ -175,10 +175,10 @@ void pivotToTotalAngle(float desired_angle) {
     }
 }
 
-void pivotDegrees(float input) {
+void pivotDegrees(float input, int power) {
     float desired = 0;
     desired = total_angle + input;
-    pivotToTotalAngle(desired);
+    pivotToTotalAngle(desired, power);
 }
 
 void stop() {
