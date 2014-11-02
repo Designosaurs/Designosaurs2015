@@ -10,13 +10,13 @@ task UpdateJoystickTask() {
         PWR_RIGHT = y2;
 
         if(PWR_LEFT > DEADBAND || PWR_LEFT < DEADBAND) {
-            motor[left_drive] = PWR_LEFT * 0.78;
+            motor[left_drive] = PWR_LEFT * 0.78 * (DRIVE_POWER / 100);
         } else {
             motor[left_drive] = 0;
         }
 
         if(PWR_RIGHT > DEADBAND || PWR_RIGHT < DEADBAND) {
-            motor[right_drive] = PWR_RIGHT * 0.78;
+            motor[right_drive] = PWR_RIGHT * 0.78 * (DRIVE_POWER / 100);
         } else {
             motor[right_drive] = 0;
         }
