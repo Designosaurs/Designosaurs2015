@@ -15,7 +15,8 @@ task main() {
 
 
     // Starting from top of ramp, go place the ball in the goal.
-    goForwardDistance(6.1, 100);
+    goForwardDistance(4.1, 80);
+    goForwardDistance(6.1, 60);
     stop();
 
     // Record the angle before we find the goal
@@ -28,12 +29,12 @@ task main() {
     pivotToTotalAngle(angle_before_goal, MAX_SPEED);
 
     // GO PARK THE TUBE
-    BackwardsArcToAngle(80, 0.3, 50);
+    BackwardsArcToAngle(50, 0.3, 50);
     ResetTrip();
-    goBackwardDistance(1.5, 80);
-    BackwardsArcToAngle(80, 0.3, 5); // 5 degrees aims us at wall.
+    goBackwardDistance(1.5, 50);
+    BackwardsArcToAngle(50, 0.3, 5); // 5 degrees aims us at wall.
     ResetTrip();
-    goBackwardDistance(4.2, 80);
+    goBackwardDistance(4.2, 50);
     pivotToTotalAngle(-80, 50); // Place in goal.
     ResetTrip();
     goForwardDistance(0.7, 40);
