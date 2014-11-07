@@ -4,7 +4,7 @@ task main() {
     placerInit();
     goalGrabberUp();
 
-    // waitForStart();
+    waitForStart();
 
     bMotorReflected[left_drive] = true;
     nMotorEncoder[right_drive] = 0;
