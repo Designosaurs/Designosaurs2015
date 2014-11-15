@@ -36,6 +36,7 @@ void goDistance(float feet, float power, bool forward) {
 	start_angle = total_angle;
 
 	if(!forward) direction = -1.00;
+	ResetTrip();
 
 	while(abs(trip_distance_feet) < feet) {
 		left_power = power * direction;
@@ -51,10 +52,10 @@ void goDistance(float feet, float power, bool forward) {
 		feedback = 1 - (0.03 * abs(error_value));
 		// But not less than this much power:
 		if(feedback < 0.7) feedback = 0.7;
-		
+
 		// Write debugging information if needed:
     		movementTrace(angle_error, error_integration, feedback);
-		
+
 		// If it is veering right, decrease the left motor power.
 		if(error_value * direction > 0) {
 			left_power = feedback * left_power;
