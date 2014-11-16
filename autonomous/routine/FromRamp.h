@@ -4,7 +4,7 @@ void GoalFromRamp(){
     // Starting from top of ramp, go place the ball in the goal.
     goForwardDistance(4.1, 80);
     DetectObstacles = 20;
-    if (goForwardDistance(6.1, 60))
+    if (goForwardDistance(2, 60))
     	IfBlocked();
     DetectObstacles = 0;
     stop();
