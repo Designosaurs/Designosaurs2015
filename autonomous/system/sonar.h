@@ -80,7 +80,7 @@ bool pointToGoal() {
 	// If it is aiming too far to the right, make this a more negative number.
 	pivotToTotalAngle(best_aim_angle - 1.5, 80);
 	stop();
-
+	//StopAndDone();
 	return have_low;
 }
 
@@ -106,7 +106,7 @@ bool GoalPlacer() {
 	returned_range = (int) SensorValue[ultrasonic];
 	writeDebugStreamLine("Range before place: %d", SensorValue[ultrasonic]);
 	wait10Msec(100); // Give some for the ball placer to work.
+	//StopAndDone();
 	placerInit();
-
 	return true;
 }
