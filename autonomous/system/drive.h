@@ -14,8 +14,8 @@ void StopAndDone() {
 }
 
 void goForwardTime(float seconds, int power) {
-	motor[left_drive] = power * LEFT_TRIM;
-	motor[right_drive] = power * RIGHT_TRIM;
+	motor[left_drive] = power;
+	motor[right_drive] = power;
 	wait1Msec(seconds * 1000);
 }
 
@@ -98,8 +98,8 @@ bool goDistance(float feet, float power, bool forward) {
 		} else {
 			right_power = feedback * right_power; // feedback is negative value.
 		}
-		motor[left_drive] = left_power * LEFT_TRIM;
-		motor[right_drive] = right_power * RIGHT_TRIM;
+		motor[left_drive] = left_power;
+		motor[right_drive] = right_power;
 		wait1Msec(20);
 
 		if (DetectObstacles != 0) {

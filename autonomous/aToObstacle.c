@@ -50,10 +50,6 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    // Test code:
-   pivotDegrees( 360, 40 );
-       StopAndDone();
-
     DetectObstacles = 20;
     goForwardDistance(15, 80);
     StopAndDone();
