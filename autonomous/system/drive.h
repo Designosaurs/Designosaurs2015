@@ -23,6 +23,15 @@ void jogForwardCm( float dist_cm, int power) {
 	}
 }
 
+// Drive in a right circle to the right.  (Not a pivot, but really tight.)
+void KickstandGetter() {
+	int i;
+	for( i = 0; i< 10; i++) {
+	motor[left_drive] = 100;
+		motor[right_drive] = -20;
+		wait10Msec( 100 );
+	}
+}
 
 void goDistance(float feet, float power, bool forward) {
 	float start_angle;
