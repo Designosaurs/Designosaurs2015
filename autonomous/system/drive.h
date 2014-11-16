@@ -47,6 +47,17 @@ void KickstandGetter() {
 	}
 }
 
+void LeftKickstandGetter() {
+	int i;
+	for( i = 0; i< 10; i++) {
+	motor[left_drive] = -20;
+		motor[right_drive] = 100;
+		wait10Msec( 100 );
+	}
+}
+
+
+
 //  If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,
 // will return true.
 bool goDistance(float feet, float power, bool forward) {
@@ -94,6 +105,7 @@ bool goDistance(float feet, float power, bool forward) {
 		if (DetectObstacles != 0) {
 			if  (SensorValue[ultrasonic] < DetectObstacles) {
 				stop();
+				wait10Msec(10);
 				return true;
 			}
 
@@ -223,13 +235,26 @@ void goBackwardTime(float seconds, int power) {
     wait1Msec(seconds * 1000);
 }
 
-void accel(float from_speed, float to_speed) {
-    to_speed = to_speed * (MAX_SPEED * 0.01);
-    from_speed = from_speed * (MAX_SPEED * 0.01);
+//void accel(float from_speed, float to_speed) {
+//    to_speed = to_speed * (MAX_SPEED * 0.01);
+//    from_speed = from_speed * (MAX_SPEED * 0.01);
 
-    int delta = from_speed - to_speed;
-    goForwardTime(0.1, to_speed + (0.66 * delta));
-    goForwardTime(0.1, to_speed + (0.33 * delta));
-    goForwardTime(0.1, to_speed + (0.1 * delta));
-    goForwardTime(0.1, to_speed);
+//    int delta = from_speed - to_speed;
+//    goForwardTime(0.1, to_speed + (0.66 * delta));
+//    goForwardTime(0.1, to_speed + (0.33 * delta));
+//    goForwardTime(0.1, to_speed + (0.1 * delta));
+//    goForwardTime(0.1, to_speed);
+//}
+
+
+//  If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,
+// will return true.
+bool GoToTotalDistance(float feet, float power) {
+	float how_far;
+
+	how_far = abs( total_distance_feet - feet);
+	if (total_distance_feet < feet)
+		return goForwardDistance( how_far, power );
+	else
+		return goBackwardDistance( how_far, power );
 }

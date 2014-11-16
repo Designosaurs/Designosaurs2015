@@ -24,7 +24,7 @@ task main() {
         ArcToAngle(80, 0.3, 0); // Straighten out again.
         goForwardDistance(2.8, 80); // Drive through kickstand.
         KickstandGetter();
-        stop();
+        StopAndDone();
     } else if(SensorValue[ultrasonic] < 130) {
         // it's 1. Flat part of goal is toward us.
         ArcToAngle(80, 0.3, 55); // Arc to right.
@@ -34,7 +34,7 @@ task main() {
         pivotDegrees(-110, 80);
         goForwardDistance(4, 100); // Drive through kickstand.
         KickstandGetter();
-        stop();
+        StopAndDone();
     } else {
         // it's 2, angled at 45 degrees to us.
         pivotDegrees(-45, 80); // No space to arc, so pivot 45 degrees.
@@ -42,7 +42,7 @@ task main() {
         pivotDegrees(90, 80); // Pivot right to point to kickstand.
         goForwardDistance(3, 80); // Drive through kickstsnd
         KickstandGetter();
-        stop();
+        StopAndDone();
     }
 
     stop();
