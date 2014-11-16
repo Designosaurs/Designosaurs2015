@@ -30,8 +30,6 @@
 #include "system/vars.h"
 #include "config/bot_specific.h"
 bool StopIfBlocked  = true;
-
-
 #include "system/debug.h"
 #include "system/drive.h"
 #include "system/servo.h"

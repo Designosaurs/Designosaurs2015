@@ -28,11 +28,11 @@ task main() {
     } else if(SensorValue[ultrasonic] < 130) {
         // it's 1. Flat part of goal is toward us.
         ArcToAngle(80, 0.3, 55); // Arc to right.
-        goForwardDistance(2.5, 80); // Drive to angle.
+        goForwardDistance(2.5, 80); // Drive at angle.
         ArcToAngle(80, 0.3, 0); // Straighten out again.
         goForwardDistance(0.3, 80); // Straight just a little bit.
         pivotDegrees(-110, 80);
-        goForwardDistance(4, 100); // Drive through kickstand.
+        goForwardDistance(3, 100); // Drive through kickstand.
         KickstandGetter();
         StopAndDone();
     } else {
@@ -40,7 +40,7 @@ task main() {
         pivotDegrees(-45, 80); // No space to arc, so pivot 45 degrees.
         goForwardDistance(1.2, 80); // Driving at an angle.
         pivotDegrees(90, 80); // Pivot right to point to kickstand.
-        goForwardDistance(3, 80); // Drive through kickstsnd
+        goForwardDistance(2, 80); // Drive through kickstsnd
         KickstandGetter();
         StopAndDone();
     }
