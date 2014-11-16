@@ -26,13 +26,39 @@
 
  */
 
-//#include "JoystickDriver.c"
+#include "JoystickDriver.c"
 #include "system/vars.h"
 #include "config/bot_specific.h"
+
+// If this is true, will stop if blocked:
+bool StopIfBlocked  = false;
+
 #include "system/debug.h"
 #include "system/drive.h"
 #include "system/servo.h"
 #include "system/sonar.h"
 #include "task/UpdateEncoderTask.h"
 #include "task/DebugTask.h"
-#include "routine/FromParking.h"
+#include "routine/IfBlocked.h"
+#include "routine/FromRamp.h"
+
+task main() {
+		placerInit();
+    goalGrabberUp();
+    bMotorReflected[left_drive] = true;
+    nMotorEncoder[right_drive] = 0;
+    nMotorEncoder[left_drive] = 0;
+
+    // waitForStart();
+
+    StartTask(DebugTask);
+    StartTask(UpdateEncoderTask);
+
+    GoalFromRamp();
+
+    // Starting from top of ramp, go until back wheels on center seam.
+    goForwardDistance(4.1, 80);
+    goForwardDistance(6.1, 60);
+    stop();
+    RampKickstand();
+  }

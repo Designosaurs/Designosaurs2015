@@ -1,17 +1,13 @@
-void IfBlocked() {
-	if (StopIfBlocked ) StopAndDone();
-	DetectObstacles = 0;
-	// Go to a predictable spot on the field.
-	GoToTotalDistance( 7, 80 );
-	pivotToTotalAngle( -90, 80 );
-	stop();
-
+void RampKickstand(){
 	// Go for the kickstand.
+	// Assumes at the bottom of the ramp, back wheels at center of field  (on the seam)
 	// Start at the center.
     // Go forard a distance, and at that point you should be able to know the posiiont
     // of the center goal by the ultrasonic reading.
     // Ideal nominal distance to skinny end of goal is abut 74 cm, or 29 inches.
-    goForwardDistance(1, 90);
+  pivotToTotalAngle( -90, 80 );
+
+	goForwardDistance(1, 90);
 
     if(SensorValue[ultrasonic] < 64) {
         // it's 3. Skinny end of center goal is toward us. Kickstand on right.
@@ -40,9 +36,16 @@ void IfBlocked() {
         LeftKickstandGetter();
         stop();
     }
+		StopAndDone();
+}
 
-    stop();
-    while(true) wait1Msec(50);
-    stop();
+
+void IfBlocked() {
+	if (StopIfBlocked ) StopAndDone();
+	DetectObstacles = 0;
+	// Go to a predictable spot on the field.
+	GoToTotalDistance( 7, 80 );
+
+
 
 }

@@ -1,16 +1,4 @@
-task main() {
-    placerInit();
-    goalGrabberUp();
-
-    // waitForStart();
-
-    bMotorReflected[left_drive] = true;
-    nMotorEncoder[right_drive] = 0;
-    nMotorEncoder[left_drive] = 0;
-
-    StartTask(DebugTask);
-    StartTask(UpdateEncoderTask);
-
+void KickstandFromPark() {
     // Start at the center.
     // Go forard a distance, and at that point you should be able to know the posiiont
     // of the center goal by the ultrasonic reading.

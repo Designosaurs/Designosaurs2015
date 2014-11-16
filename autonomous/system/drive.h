@@ -104,11 +104,13 @@ bool goDistance(float feet, float power, bool forward) {
 
 		if (DetectObstacles != 0) {
 			if  (SensorValue[ultrasonic] < DetectObstacles) {
-				stop();
-				wait10Msec(10);
-				return true;
+				wait10Msec( 5 );
+				if (SensorValue[ultrasonic] < DetectObstacles) {
+					stop();
+					wait10Msec(10);
+					return true;
+				}
 			}
-
 		}
 	}
 	return false;

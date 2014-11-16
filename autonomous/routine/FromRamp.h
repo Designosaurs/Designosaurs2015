@@ -1,18 +1,5 @@
-task main() {
-	float angle_before_goal;
-
-    placerInit();
-    goalGrabberUp();
-
-    waitForStart();
-
-    bMotorReflected[left_drive] = true;
-    nMotorEncoder[right_drive] = 0;
-    nMotorEncoder[left_drive] = 0;
-
-    StartTask(DebugTask);
-    StartTask(UpdateEncoderTask);
-
+void GoalFromRamp(){
+	float angle_before_goal = 0;
 
     // Starting from top of ramp, go place the ball in the goal.
     goForwardDistance(4.1, 80);

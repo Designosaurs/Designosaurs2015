@@ -29,7 +29,10 @@
 #include "JoystickDriver.c"
 #include "system/vars.h"
 #include "config/bot_specific.h"
-bool StopIfBlocked  = true;
+
+// If this is true, will stop if blocked:
+bool StopIfBlocked  = false;
+
 #include "system/debug.h"
 #include "system/drive.h"
 #include "system/servo.h"
@@ -38,3 +41,18 @@ bool StopIfBlocked  = true;
 #include "task/DebugTask.h"
 #include "routine/IfBlocked.h"
 #include "routine/FromRamp.h"
+
+task main() {
+		placerInit();
+    goalGrabberUp();
+    bMotorReflected[left_drive] = true;
+    nMotorEncoder[right_drive] = 0;
+    nMotorEncoder[left_drive] = 0;
+
+    // waitForStart();
+
+    StartTask(DebugTask);
+    StartTask(UpdateEncoderTask);
+
+    GoalFromRamp();
+  }
