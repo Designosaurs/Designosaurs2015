@@ -34,8 +34,10 @@ task main() {
     BackwardsArcToAngle(50, 0.3, 50);
     ResetTrip();
     goBackwardDistance(1.5, 50);
+    // If we don't still have the tube, we are done.
+    if (SensorValue[ultrasonic] > 20) StopAndDone();
     BackwardsArcToAngle(50, 0.3, 5); // 5 degrees aims us at wall.
-    ResetTrip();
+    if (SensorValue[ultrasonic] > 20) StopAndDone();
     goBackwardDistance(4.2, 50);
     pivotToTotalAngle(-80, 50); // Place in goal.
     ResetTrip();

@@ -4,6 +4,15 @@ void stop() {
     motor[right_drive] = 0;
 }
 
+void StopAndDone() {
+	motor[left_drive] = 0;
+  motor[right_drive] = 0;
+ PlaySound(soundDownwardTones);
+ while( true ) {
+   wait10Msec( 10 );
+}
+}
+
 void goForwardTime(float seconds, int power) {
 	motor[left_drive] = power * LEFT_TRIM;
 	motor[right_drive] = power * RIGHT_TRIM;

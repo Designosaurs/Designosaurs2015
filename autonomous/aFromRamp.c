@@ -29,9 +29,6 @@
 #include "JoystickDriver.c"
 #include "system/vars.h"
 #include "config/bot_specific.h"
-
-
-
 #include "system/debug.h"
 #include "system/drive.h"
 #include "system/servo.h"
