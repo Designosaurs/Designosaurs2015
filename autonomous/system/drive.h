@@ -102,12 +102,12 @@ bool goDistance(float feet, float power, bool forward) {
 	return false;
 }
 
-void goForwardDistance(float feet, float power ) {
-	goDistance(feet, power, true);
+bool goForwardDistance(float feet, float power ) {
+	return goDistance(feet, power, true);
 }
 
-void goBackwardDistance(float feet, int power) {
-	goDistance(abs(feet), power, false);
+bool goBackwardDistance(float feet, int power) {
+	return goDistance(abs(feet), power, false);
 }
 
 /*

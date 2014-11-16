@@ -16,7 +16,10 @@ task main() {
 
     // Starting from top of ramp, go place the ball in the goal.
     goForwardDistance(4.1, 80);
-    goForwardDistance(6.1, 60);
+    DetectObstacles = 20;
+    if (goForwardDistance(6.1, 60))
+    	IfBlocked();
+    DetectObstacles = 0;
     stop();
 
     // Record the angle before we find the goal
