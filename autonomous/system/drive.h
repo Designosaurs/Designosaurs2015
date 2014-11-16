@@ -1,7 +1,12 @@
+
+void stop() {
+    motor[left_drive] = 0;
+    motor[right_drive] = 0;
+}
+
 void goForwardTime(float seconds, int power) {
 	motor[left_drive] = power * LEFT_TRIM;
 	motor[right_drive] = power * RIGHT_TRIM;
-	last_power = power;
 	wait1Msec(seconds * 1000);
 }
 
@@ -33,7 +38,9 @@ void KickstandGetter() {
 	}
 }
 
-void goDistance(float feet, float power, bool forward) {
+//  If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,
+// will return true.
+bool goDistance(float feet, float power, bool forward) {
 	float start_angle;
 	float angle_error;
 	float error_integration = 0;
@@ -74,7 +81,16 @@ void goDistance(float feet, float power, bool forward) {
 		motor[left_drive] = left_power * LEFT_TRIM;
 		motor[right_drive] = right_power * RIGHT_TRIM;
 		wait1Msec(20);
+
+		if (DetectObstacles != 0) {
+			if  (SensorValue[ultrasonic] < DetectObstacles) {
+				stop();
+				return true;
+			}
+
+		}
 	}
+	return false;
 }
 
 void goForwardDistance(float feet, float power ) {
@@ -191,16 +207,10 @@ void pivotDegrees(float input, int power) {
     pivotToTotalAngle(desired, power);
 }
 
-void stop() {
-    motor[left_drive] = 0;
-    motor[right_drive] = 0;
-    last_power = 0;
-}
 
 void goBackwardTime(float seconds, int power) {
     motor[left_drive] = power;
     motor[right_drive] = power;
-    last_power = -power;
     wait1Msec(seconds * 1000);
 }
 
@@ -213,6 +223,4 @@ void accel(float from_speed, float to_speed) {
     goForwardTime(0.1, to_speed + (0.33 * delta));
     goForwardTime(0.1, to_speed + (0.1 * delta));
     goForwardTime(0.1, to_speed);
-
-    last_power = to_speed;
 }

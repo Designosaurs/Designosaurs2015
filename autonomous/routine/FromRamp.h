@@ -26,7 +26,7 @@ task main() {
     jogForwardCm(10, 10);
     stop();
     goalGrabberDown();
-    wait1MSec(1000);
+    wait1Msec(1000);
     // Now go back to that angle
     pivotToTotalAngle(angle_before_goal, MAX_SPEED);
 
