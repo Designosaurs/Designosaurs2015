@@ -50,7 +50,7 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    DetectObstacles = 20;
+    DetectObstacles = 30;
     goForwardDistance(15, 80);
     StopAndDone();
 }
