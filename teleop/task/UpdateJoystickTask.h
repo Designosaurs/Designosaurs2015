@@ -48,6 +48,7 @@ task UpdateJoystickTask() {
                 break;
             case 2:
                 dpad.RIGHT = true;
+                servo[placer] = 255;
                 break;
             case 3:
                 dpad.BOTTOM_RIGHT = true;
@@ -60,6 +61,7 @@ task UpdateJoystickTask() {
                 break;
             case 6:
                 dpad.LEFT = true;
+                servo[placer] = 85;
                 break;
             case 7:
                 dpad.TOP_LEFT = true;

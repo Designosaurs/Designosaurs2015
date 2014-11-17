@@ -14,6 +14,7 @@ void onWait() {
     nxtDisplayCenteredTextLine(6,"connection.");
     StartTask(UpdateDisplayTask);
     goalGrabberUp();
+    servo[placer] = 255;
 }
 
 void onStop() {

@@ -4,11 +4,12 @@ void KickstandFromPark() {
     // of the center goal by the ultrasonic reading.
     // Ideal nominal distance to skinny end of goal is abut 74 cm, or 29 inches.
     goForwardDistance(2, 90);
+    //StopAndDone();
 
-    if(SensorValue[ultrasonic] < 64) {
+    if(SensorValue[ultrasonic] < 58) {
         // it's 3. Skinny end of center goal is toward us. Kickstand on right.
         ArcToAngle(80, 0.3, 55); // Arc to right
-        goForwardDistance(2.5, 80); // Driving at an angle.
+        //goForwardDistance(2.5, 80); // Driving at an angle.
         ArcToAngle(80, 0.3, 0); // Straighten out again.
         goForwardDistance(2.8, 80); // Drive through kickstand.
         KickstandGetter();
