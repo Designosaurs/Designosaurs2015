@@ -37,15 +37,7 @@ void jogForwardCm( float dist_cm, int power) {
 	}
 }
 
-// Drive in a right circle to the right.  (Not a pivot, but really tight.)
-void KickstandGetter() {
-	int i;
-	for( i = 0; i< 10; i++) {
-	motor[left_drive] = 100;
-		motor[right_drive] = -20;
-		wait10Msec( 100 );
-	}
-}
+
 
 void LeftKickstandGetter() {
 	int i;
@@ -236,18 +228,6 @@ void goBackwardTime(float seconds, int power) {
     motor[right_drive] = power;
     wait1Msec(seconds * 1000);
 }
-
-//void accel(float from_speed, float to_speed) {
-//    to_speed = to_speed * (MAX_SPEED * 0.01);
-//    from_speed = from_speed * (MAX_SPEED * 0.01);
-
-//    int delta = from_speed - to_speed;
-//    goForwardTime(0.1, to_speed + (0.66 * delta));
-//    goForwardTime(0.1, to_speed + (0.33 * delta));
-//    goForwardTime(0.1, to_speed + (0.1 * delta));
-//    goForwardTime(0.1, to_speed);
-//}
-
 
 //  If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,
 // will return true.

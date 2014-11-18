@@ -9,6 +9,20 @@ void goToRange(int range, int power) {
 	stop();
 }
 
+// Read range a few times and return the lowest value.  This is because
+// the ultrasonic sensor has trouble.
+int getClosestRange(){
+	int i;
+	int range = 255;
+	for (i = 0; i<3; i++) {
+			if ((SensorValue[ultrasonic]) < range) {
+				range = SensorValue[ultrasonic];
+		  }
+		  wait10Msec( 5 );
+	}
+	return range;
+}
+
 // How far in degrees to scan, left and right, when searching (double for total range)
 const float SCAN_RANGE = 30.0;
 const int SCAN_DELAY = 5;
