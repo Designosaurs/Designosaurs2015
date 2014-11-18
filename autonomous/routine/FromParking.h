@@ -1,12 +1,33 @@
+// Read range a few times and return the lowest value.  This is because
+// the ultrasonic sensor has trouble.
+int getClosestRange(){
+	int i;
+	int range = 255;
+	for (i = 0; i<3; i++) {
+			if ((SensorValue[ultrasonic]) < range) {
+				range = SensorValue[ultrasonic];
+		  }
+		  wait10Msec( 5 );
+	}
+	return range;
+}
+
+
+
 void KickstandFromPark() {
+		int range = 255;
+
     // Start at the center.
     // Go forard a distance, and at that point you should be able to know the posiiont
     // of the center goal by the ultrasonic reading.
     // Ideal nominal distance to skinny end of goal is abut 74 cm, or 29 inches.
     goForwardDistance(2, 90);
+    stop();
+    wait10Msec(50);
+    range = getClosestRange();
     //StopAndDone();
 
-    if(SensorValue[ultrasonic] < 58) {
+    if(range < 58) {
         // it's 3. Skinny end of center goal is toward us. Kickstand on right.
         ArcToAngle(80, 0.3, 55); // Arc to right
         //goForwardDistance(2.5, 80); // Driving at an angle.
@@ -14,7 +35,7 @@ void KickstandFromPark() {
         goForwardDistance(2.8, 80); // Drive through kickstand.
         KickstandGetter();
         StopAndDone();
-    } else if(SensorValue[ultrasonic] < 130) {
+    } else if(range < 130) {
         // it's 1. Flat part of goal is toward us.
         ArcToAngle(80, 0.3, 55); // Arc to right.
         goForwardDistance(2.5, 80); // Drive at angle.
