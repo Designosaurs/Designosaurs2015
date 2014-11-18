@@ -53,12 +53,6 @@ task main() {
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
-
-    GoalFromRamp();
-
-    // Starting from top of ramp, go until back wheels on center seam.
-    goForwardDistance(4.1, 80);
-    goForwardDistance(6.1, 60);
-    stop();
-    RampKickstand();
-  }
+    goForwardDistance(5, 70);  // Go to bottom of ramp.
+     RampKickstand();						// Now flail at the kickstand
+}

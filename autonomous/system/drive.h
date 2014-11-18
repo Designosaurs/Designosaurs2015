@@ -37,19 +37,6 @@ void jogForwardCm( float dist_cm, int power) {
 	}
 }
 
-
-
-void LeftKickstandGetter() {
-	int i;
-	for( i = 0; i< 10; i++) {
-	motor[left_drive] = -20;
-		motor[right_drive] = 100;
-		wait10Msec( 100 );
-	}
-}
-
-
-
 //  If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,
 // will return true.
 bool goDistance(float feet, float power, bool forward) {

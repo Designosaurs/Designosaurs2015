@@ -53,6 +53,5 @@ task main() {
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
-
     GoalFromRamp();
   }
