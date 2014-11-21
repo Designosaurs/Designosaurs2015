@@ -37,9 +37,7 @@
 #include "task/DebugTask.h"
 
 task main() {
-
-
-placerInit();
+    placerInit();
     goalGrabberUp();
     bMotorReflected[left_drive] = true;
     nMotorEncoder[right_drive] = 0;

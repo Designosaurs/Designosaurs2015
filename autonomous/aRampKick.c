@@ -43,7 +43,7 @@ bool StopIfBlocked  = false;
 #include "routine/FromRamp.h"
 
 task main() {
-		placerInit();
+	placerInit();
     goalGrabberUp();
     bMotorReflected[left_drive] = true;
     nMotorEncoder[right_drive] = 0;
@@ -54,5 +54,5 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
     goForwardDistance(5, 70);  // Go to bottom of ramp.
-     RampKickstand();						// Now flail at the kickstand
+    RampKickstand();						// Now flail at the kickstand
 }

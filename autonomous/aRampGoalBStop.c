@@ -43,7 +43,7 @@ bool StopIfBlocked  = true;
 #include "routine/FromRamp.h"
 
 task main() {
-		placerInit();
+	placerInit();
     goalGrabberUp();
     bMotorReflected[left_drive] = true;
     nMotorEncoder[right_drive] = 0;
