@@ -43,7 +43,7 @@ task main() {
     nMotorEncoder[right_drive] = 0;
     nMotorEncoder[left_drive] = 0;
 
-    // waitForStart();
+    waitForStart();
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
