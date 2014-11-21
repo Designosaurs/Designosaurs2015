@@ -21,6 +21,9 @@ void RampKickstand(){
 	}		StopAndDone();
 }
 
+
+
+
 void IfBlocked() {
 	if (StopIfBlocked ) StopAndDone();
 	DetectObstacles = 0;

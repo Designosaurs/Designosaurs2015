@@ -23,27 +23,36 @@ void KickstandFromPark() {
 
     if(range < 58) {
         // it's 3. Skinny end of center goal is toward us. Kickstand on right.
-    		pivotDegrees( 90, 60);  // Turn to east.
+				PlaySound(soundFastUpwardTones);
+     		pivotDegrees( 90, 60);  // Turn to east.
+     		StopAndDone();
     		goForwardDistance(1, 60); // Driving east.
         pivotDegrees(-90, 60); // Turn North
+        StopAndDone();
         goForwardDistance(2.8, 100); // Drive through kickstand.
         KickstandGetter();
         StopAndDone();
     } else if(range < 130) {
         // it's 1. Flat part of goal is toward us.
+    		PlaySound(soundDownwardTones);
     		pivotDegrees( -90, 60);  // Turn to west.
+    		StopAndDone();
     		goForwardDistance(2, 60); // Driving west.
         pivotDegrees(90, 60); // Turn North
         goForwardDistance(2.8, 70); // Drive North
         pivotDegrees(70, 60);  // Turn East by NE
+        StopAndDone();
         goForwardDistance( 3, 100 ); // Drive through kickstand.
         KickstandGetter();
         StopAndDone();
     } else {
         // it's 2, angled at 45 degrees to us.
+    		PlaySound(soundBlip);
         pivotDegrees(-45, 80); // Turn NW
+        StopAndDone();
         goForwardDistance(1.2, 80); // Driving NW.
         pivotDegrees(80, 80); // Pivot right to point to kickstand.
+        StopAndDone();
         goForwardDistance(2, 80); // Drive through kickstsnd
         KickstandGetter();
         StopAndDone();
