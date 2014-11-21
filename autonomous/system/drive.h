@@ -5,12 +5,12 @@ void stop() {
 }
 
 void StopAndDone() {
-	motor[left_drive] = 0;
-  motor[right_drive] = 0;
- PlaySound(soundDownwardTones);
- while( true ) {
-   wait10Msec( 10 );
-}
+    motor[left_drive] = 0;
+    motor[right_drive] = 0;
+    PlaySound(soundDownwardTones);
+    while(true) {
+        wait10Msec(10);
+    }
 }
 
 void goForwardTime(float seconds, int power) {
@@ -33,11 +33,11 @@ void jogForwardCm( float dist_cm, int power) {
 	while(abs(trip_distance_feet) < dist_feet) {
 		motor[left_drive] = power;
 		motor[right_drive] = power;
-		wait10Msec( 2 );
+		wait10Msec(2);
 	}
 }
 
-//  If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,
+// If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,
 // will return true.
 bool goDistance(float feet, float power, bool forward) {
 	float start_angle;
