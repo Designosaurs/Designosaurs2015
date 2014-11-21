@@ -26,10 +26,10 @@ void ResetTrip() {
 }
 
 // Note that this does not stop at the end.
-void jogForwardCm( float dist_cm, int power) {
+void jogForwardCm(float dist_cm, int power) {
 	float dist_feet = dist_cm * 0.0328;
 	ResetTrip();
-	wait10Msec( 10 );
+	wait10Msec(10);
 	while(abs(trip_distance_feet) < dist_feet) {
 		motor[left_drive] = power;
 		motor[right_drive] = power;
