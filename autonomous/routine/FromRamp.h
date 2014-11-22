@@ -12,7 +12,7 @@ void GoalFromRamp(){
     angle_before_goal = total_angle;
     GoalPlacer();
     // pivotDegrees(-3, 80); // Compensate for hardware being slightly off center
-    jogForwardCm(15, 10);
+    jogForwardCm(17, 10);
     stop();
     goalGrabberDown();
     wait1Msec(1000);
@@ -24,9 +24,9 @@ void GoalFromRamp(){
     goBackwardDistance(2.0, 70);
     // If we don't still have the tube, we are done.
     BackwardsArcToAngle(50, 0.3, 0); // 5 degrees aims us at wall.
-    goBackwardDistance(3.9, 70);
+    goBackwardDistance(4, 70);
     pivotToTotalAngle(-90, 50); // Place in goal.
     ResetTrip();
-    goForwardDistance(0.7, 40);
+    goForwardDistance(0.5, 40);
     StopAndDone();
 }
