@@ -17,17 +17,18 @@ void KickstandGetter() {
  */
 void KickstandFromPark() {
 	int range = 255;
-    goForwardDistance(2, 90);
+    goForwardDistance(2, 100);
     stop();
     wait10Msec(50);
     range = getClosestRange();
 
+    servoChangeRate[placer] = 5;
     if(range < 65) {
         // it's 3. Skinny end of center goal is toward us. Kickstand on right.
         PlaySound(soundFastUpwardTones);
-     	pivotDegrees( 90, 60);  // Turn to east.
-    	goForwardDistance(1.2, 60); // Driving east.
-        pivotDegrees(-100, 60); // Turn North
+     	pivotDegrees( 90, 70);  // Turn to east.
+    	goForwardDistance(1.2, 80); // Driving east.
+        pivotDegrees(-100, 70); // Turn North
         goForwardDistance(2.8, 100); // Drive through kickstand.
         KickstandGetter();
         StopAndDone();
@@ -35,8 +36,8 @@ void KickstandFromPark() {
         // it's 1. Flat part of goal is toward us.
     	PlaySound(soundDownwardTones);
     	pivotDegrees(-90, 60);  // Turn to west.
-    	goForwardDistance(2.5, 60); // Driving west.
-        pivotDegrees(90, 60); // Turn North
+    	goForwardDistance(2.5, 70); // Driving west.
+        pivotDegrees(90, 70); // Turn North
         goForwardDistance(1.5, 70); // Drive North
         pivotDegrees(90, 60);  // Turn East by NE
         goForwardDistance(3, 100); // Drive through kickstand.
@@ -46,9 +47,9 @@ void KickstandFromPark() {
         // it's 2, angled at 45 degrees to us.
     	PlaySound(soundBlip);
         pivotDegrees(-45, 80); // Turn NW
-        goForwardDistance(1.1, 80); // Driving NW.
+        goForwardDistance(1.1, 90); // Driving NW.
         pivotDegrees(90, 80); // Pivot right to point to kickstand.
-        goForwardDistance(2, 80); // Drive through kickstand
+        goForwardDistance(2, 90); // Drive through kickstand
         KickstandGetter();
         StopAndDone();
     }
