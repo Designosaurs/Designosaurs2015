@@ -33,6 +33,7 @@
 // If this is true, will stop if blocked:
 bool StopIfBlocked  = true;
 
+
 #include "system/debug.h"
 #include "system/drive.h"
 #include "system/servo.h"
@@ -43,16 +44,21 @@ bool StopIfBlocked  = true;
 #include "routine/FromRamp.h"
 
 task main() {
-	placerInit();
+		placerInit();
     goalGrabberUp();
     bMotorReflected[left_drive] = true;
     nMotorEncoder[right_drive] = 0;
     nMotorEncoder[left_drive] = 0;
 
+    servo[placer] = 170;
+
     waitForStart();
+
+    servo[placer] = 255;
+    servoChangeRate[placer] = 3;
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
     GoalFromRamp();
-  }
+}
