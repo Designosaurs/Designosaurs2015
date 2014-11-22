@@ -17,7 +17,7 @@ void KickstandGetter() {
  */
 void KickstandFromPark() {
 	int range = 255;
-    goForwardDistance(2, 100);
+    goForwardDistance(1.8, 100);
     stop();
     wait10Msec(50);
     range = getClosestRange();

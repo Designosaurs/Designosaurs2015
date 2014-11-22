@@ -48,6 +48,6 @@ task main() {
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
 
-    goForwardDistance(5, 80);
+    goForwardDistance(4.8, 80);
     StopAndDone();
 }
