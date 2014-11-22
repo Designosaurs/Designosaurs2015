@@ -50,12 +50,7 @@ task main() {
     nMotorEncoder[right_drive] = 0;
     nMotorEncoder[left_drive] = 0;
 
-    servo[placer] = 170;
-
     waitForStart();
-
-    servo[placer] = 255;
-    servoChangeRate[placer] = 3;
 
     StartTask(DebugTask);
     StartTask(UpdateEncoderTask);
