@@ -26,7 +26,7 @@
 
  */
 
-//#include "JoystickDriver.c"
+#include "JoystickDriver.c"
 #include "system/vars.h"
 #include "config/bot_specific.h"
 #include "system/debug.h"
