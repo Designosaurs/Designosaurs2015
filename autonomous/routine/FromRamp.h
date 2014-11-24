@@ -25,7 +25,7 @@ void GoalFromRamp(){
     // If we don't still have the tube, we are done.
     BackwardsArcToAngle(50, 0.3, 0); // 5 degrees aims us at wall.
     goBackwardDistance(4, 70);
-    pivotToTotalAngle(-90, 50); // Place in goal.
+    pivotToTotalAngle(-90, 50); // Place in parking zone.
     ResetTrip();
     goForwardDistance(0.5, 40);
     StopAndDone();
