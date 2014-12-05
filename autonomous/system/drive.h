@@ -1,16 +1,16 @@
 
 void stop() {
-    motor[left_drive] = 0;
-    motor[right_drive] = 0;
+	motor[left_drive] = 0;
+	motor[right_drive] = 0;
 }
 
 void StopAndDone() {
-    motor[left_drive] = 0;
-    motor[right_drive] = 0;
-    PlaySound(soundDownwardTones);
-    while(true) {
-        wait10Msec(10);
-    }
+	motor[left_drive] = 0;
+	motor[right_drive] = 0;
+	PlaySound(soundDownwardTones);
+	while(true) {
+		wait10Msec(10);
+	}
 }
 
 void goForwardTime(float seconds, int power) {
@@ -69,7 +69,7 @@ bool goDistance(float feet, float power, bool forward) {
 		if(feedback < 0.7) feedback = 0.7;
 
 		// Write debugging information if needed:
-    		movementTrace(angle_error, error_integration, feedback);
+			movementTrace(angle_error, error_integration, feedback);
 
 		// If it is veering right, decrease the left motor power.
 		if(error_value * direction > 0) {
@@ -114,7 +114,7 @@ void ArcToAngle(float power, float inside_ratio, float desired_angle) {
 	float how_far;
 	float inertia_allowance = 10;
 	power = power * (MAX_SPEED * 0.01); // Scale to whatever we make our max speed.
-    how_far = abs(desired_angle - total_angle);
+	how_far = abs(desired_angle - total_angle);
 
 	// Calculate inertial allowance.
 	if(how_far < 60) inertia_allowance = 5;
@@ -130,20 +130,20 @@ void ArcToAngle(float power, float inside_ratio, float desired_angle) {
 			wait1Msec(10);
 		}
 	} else {
-        // ccw arc, decreasing total angle
-        while(total_angle > desired_angle + inertia_allowance) {
-            motor[left_drive] =  power * inside_ratio;
-            motor[right_drive] = power;
-            wait1Msec(10);
-        }
-    }
+		// ccw arc, decreasing total angle
+		while(total_angle > desired_angle + inertia_allowance) {
+			motor[left_drive] =  power * inside_ratio;
+			motor[right_drive] = power;
+			wait1Msec(10);
+		}
+	}
 }
 
 void BackwardsArcToAngle(float power, float inside_ratio, float desired_angle) {
 	float how_far;
 	float inertia_allowance = 10;
 	power = power * (MAX_SPEED * 0.01);  // Scale to whatever we make our max speed.
-    how_far = abs(desired_angle - total_angle);
+	how_far = abs(desired_angle - total_angle);
 
 	// Calculate inertial allowance.
 	if(how_far < 60) inertia_allowance = 5;
@@ -159,61 +159,61 @@ void BackwardsArcToAngle(float power, float inside_ratio, float desired_angle) {
 			wait1Msec(10);
 		}
 	} else {
-        // ccw arc, decreasing total angle
-        while(total_angle > desired_angle + inertia_allowance) {
-            motor[left_drive] =  -power;
-            motor[right_drive] = -power * inside_ratio;
-            wait1Msec(10);
-        }
-    }
+		// ccw arc, decreasing total angle
+		while(total_angle > desired_angle + inertia_allowance) {
+			motor[left_drive] =  -power;
+			motor[right_drive] = -power * inside_ratio;
+			wait1Msec(10);
+		}
+	}
 }
 
 // This does not stop-- it wlll return with the motorts running
 // so as to pivot.  So, stop after if that is what you want to do.
 void pivotToTotalAngle(float desired_angle, int power) {
-    float how_far;
-    float current_speed = power * 0.5;
-    float inertia_allowance = 10;
-    how_far = abs(desired_angle - total_angle);
+	float how_far;
+	float current_speed = power * 0.5;
+	float inertia_allowance = 10;
+	how_far = abs(desired_angle - total_angle);
 
-    // Calculate inertial allowance.
-    if(how_far < 60) inertia_allowance = 5;
-    if(how_far < 30) inertia_allowance = 3;
-    if(how_far < 10) inertia_allowance = 0;
+	// Calculate inertial allowance.
+	if(how_far < 60) inertia_allowance = 5;
+	if(how_far < 30) inertia_allowance = 3;
+	if(how_far < 10) inertia_allowance = 0;
 
-    if(desired_angle > total_angle) {
-        // Pivot clockwise, so total angle is increasing:
-        while(total_angle < (desired_angle - inertia_allowance)) {
-            how_far = abs(desired_angle - total_angle);
-            if(how_far < 5.0) current_speed = power * 0.1;
-            if(how_far < 30.0) current_speed = power * 0.25;
-            motor[left_drive] = current_speed;
-            motor[right_drive] = -current_speed;
-            wait1Msec(10);
-        }
-    } else {
-        while(total_angle > (desired_angle + inertia_allowance)) {
-            how_far = abs(desired_angle - total_angle);
-            if(how_far < 10.0) current_speed = power * 0.05;
-            if(how_far < 30.0) current_speed = power * 0.3;
-            motor[left_drive] = -current_speed;
-            motor[right_drive] = current_speed;
-            wait1Msec(10);
-        }
-    }
+	if(desired_angle > total_angle) {
+		// Pivot clockwise, so total angle is increasing:
+		while(total_angle < (desired_angle - inertia_allowance)) {
+			how_far = abs(desired_angle - total_angle);
+			if(how_far < 5.0) current_speed = power * 0.1;
+			if(how_far < 30.0) current_speed = power * 0.25;
+			motor[left_drive] = current_speed;
+			motor[right_drive] = -current_speed;
+			wait1Msec(10);
+		}
+	} else {
+		while(total_angle > (desired_angle + inertia_allowance)) {
+			how_far = abs(desired_angle - total_angle);
+			if(how_far < 10.0) current_speed = power * 0.05;
+			if(how_far < 30.0) current_speed = power * 0.3;
+			motor[left_drive] = -current_speed;
+			motor[right_drive] = current_speed;
+			wait1Msec(10);
+		}
+	}
 }
 
 void pivotDegrees(float input, int power) {
-    float desired = 0;
-    desired = total_angle + input;
-    pivotToTotalAngle(desired, power);
+	float desired = 0;
+	desired = total_angle + input;
+	pivotToTotalAngle(desired, power);
 }
 
 
 void goBackwardTime(float seconds, int power) {
-    motor[left_drive] = power;
-    motor[right_drive] = power;
-    wait1Msec(seconds * 1000);
+	motor[left_drive] = power;
+	motor[right_drive] = power;
+	wait1Msec(seconds * 1000);
 }
 
 //  If DetectObstacles is nonzero, and an obstacle is within DetectObstacles range,

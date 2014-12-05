@@ -8,22 +8,22 @@ void RampKickstand(){
 	 */
 
 	pivotDegrees(-45, 60); //  Turn NW
-    goForwardDistance(2, 60); // Driving NW
-    pivotDegrees(-45, 60); // Turn west
-    goForwardDistance(2, 80);
+	goForwardDistance(2, 60); // Driving NW
+	pivotDegrees(-45, 60); // Turn west
+	goForwardDistance(2, 80);
 
-   	motor[right_drive] = 100; // Arc into the kickstand for a time.
-    motor[left_drive] = 30;
-    wait1Msec(1000);
+	motor[right_drive] = 100; // Arc into the kickstand for a time.
+	motor[left_drive] = 30;
+	wait1Msec(1000);
 
 	// Now spiral out for 10 sec.
 	for(i = 0; i < 10; i++) {
-        motor[left_drive] = -10 + 2 * i;
+		motor[left_drive] = -10 + 2 * i;
 		motor[right_drive] = 100;
 		wait1Msec(1000);
 	}
 
-    StopAndDone();
+	StopAndDone();
 }
 
 

@@ -1,8 +1,8 @@
 void processDpad() {
-    if(dpad.LEFT) {
-        goalGrabberDown();
-    }
-    if(dpad.RIGHT) {
-        goalGrabberUp();
-    }
+	if(dpad.LEFT) {
+		goalGrabberDown();
+	}
+	if(dpad.RIGHT) {
+		goalGrabberUp();
+	}
 }

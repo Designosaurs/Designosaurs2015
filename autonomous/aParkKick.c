@@ -20,8 +20,8 @@
  | |  | |/ _ \/ __| |/ _` | '_ \ / _ \/ __|/ _` | | | | '__/ __|
  | |__| |  __/\__ \ | (_| | | | | (_) \__ \ (_| | |_| | |  \__ \
  |_____/ \___||___/_|\__, |_| |_|\___/|___/\__,_|\__,_|_|  |___/
-                      __/ |
-                     |___/                            Team #6369
+					  __/ |
+					 |___/                            Team #6369
  Autonomous Code: 2014-2015 (Cascade Effect)
 
  */
@@ -38,16 +38,16 @@
 #include "routine/FromParking.h"
 
 task main() {
-    placerInit();
-    goalGrabberUp();
-  	bMotorReflected[left_drive] = true;
-    nMotorEncoder[right_drive] = 0;
-    nMotorEncoder[left_drive] = 0;
+	placerInit();
+	goalGrabberUp();
+	bMotorReflected[left_drive] = true;
+	nMotorEncoder[right_drive] = 0;
+	nMotorEncoder[left_drive] = 0;
 
-    waitForStart();
+	waitForStart();
 
-    StartTask(DebugTask);
-    StartTask(UpdateEncoderTask);
+	StartTask(DebugTask);
+	StartTask(UpdateEncoderTask);
 
-    KickstandFromPark();
+	KickstandFromPark();
 }

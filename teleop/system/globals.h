@@ -1,20 +1,20 @@
 typedef struct {
-    bool wait;
-    bool stopped;
-    bool running;
+	bool wait;
+	bool stopped;
+	bool running;
 } systemStateForm;
 
 systemStateForm systemState;
 
 typedef struct {
-    bool TOP;
-    bool LEFT;
-    bool RIGHT;
-    bool BOTTOM;
-    bool BOTTOM_LEFT;
-    bool BOTTOM_RIGHT;
-    bool TOP_LEFT;
-    bool TOP_RIGHT;
+	bool TOP;
+	bool LEFT;
+	bool RIGHT;
+	bool BOTTOM;
+	bool BOTTOM_LEFT;
+	bool BOTTOM_RIGHT;
+	bool TOP_LEFT;
+	bool TOP_RIGHT;
 } dpadForm;
 
 dpadForm dpad;

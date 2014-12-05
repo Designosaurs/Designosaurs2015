@@ -1,11 +1,11 @@
 task main() {
-    switchState(STATE_WAIT);
+	switchState(STATE_WAIT);
 
-    waitForStart();
+	waitForStart();
 
-    switchState(STATE_RUN);
+	switchState(STATE_RUN);
 
-    while(systemState.running) {
-        wait1Msec(100);
-    }
+	while(systemState.running) {
+		wait1Msec(100);
+	}
 }

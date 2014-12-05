@@ -1,11 +1,11 @@
 task UpdateDisplayTask() {
-    if (systemState.wait) {
+	if (systemState.wait) {
 
-    }
-    if (systemState.running) {
+	}
+	if (systemState.running) {
 
-    }
-    if (systemState.stopped) {
+	}
+	if (systemState.stopped) {
 
-    }
+	}
 }
