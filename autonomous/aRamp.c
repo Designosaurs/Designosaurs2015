@@ -31,7 +31,7 @@
 #include "config/bot_specific.h"
 
 // If this is true, will stop if blocked:
-bool StopIfBlocked  = true;
+bool KickstandIfBlocked = true;
 
 
 #include "system/debug.h"
