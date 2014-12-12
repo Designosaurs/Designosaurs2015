@@ -121,7 +121,7 @@ void GunnerController() {
 		if (y2 > 0)	y2 -= DEADBAND;
 		else y2 += DEADBAND;
 		elbowPos += y2 * 0.01;   // Set speed here.
-		servo[ elbow ] = (int) elbowPos;
+		servo[elbow] = (int) elbowPos;
 	}
 
 	if(abs(x2) > DEADBAND) {
