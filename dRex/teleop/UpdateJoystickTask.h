@@ -77,6 +77,10 @@ void DriverController() {
 // Right Joy Y => Elbow
 // Right Joy X => Wrist
 // High deadband-- normally will not be used.
+//Top (yellow) = position for 3'
+//Right (red) = place in goal.  (if positioned for 4', place at 4')
+//Left (blue) = Center goal.
+//Bottom (green) = floor
 
 void GunnerController() {
 	int y1 = joystick.joy2_y1;
@@ -97,14 +101,43 @@ void GunnerController() {
 		if (y2 > 0)	y2 -= DEADBAND;
 		else y2 += DEADBAND;
 		elbowPos += y2 * 0.01;   // Set speed here.
-	  servo[ elbow ] = (int) elbowPos;
+		servo[ elbow ] = (int) elbowPos;
 	}
 
-		if(abs(x2) > DEADBAND) {
+	if(abs(x2) > DEADBAND) {
 		if (x2 > 0)	x2 -= DEADBAND;
 		else x2 += DEADBAND;
 		wristPos += x2 * 0.01;   // Set speed here.
-	  servo[ wrist ] = (int) wristPos;
+		servo[ wrist ] = (int) wristPos;
+	}
+
+	//Top (yellow) = position for 3' High Goal
+	if(joy2Btn(04)) {
+		liftToHighGoal();
+	}
+
+	//Right (red) = place in goal.  (if positioned for 4', place at 4')
+	if(joy2Btn(03)) {
+		liftPlace();
+	}
+
+	// Bottom (green) button
+	if(joy2Btn(02)) {
+		liftToCenterGoal();
+	}
+
+	// Left (blue) button
+	if(joy2Btn(01)) {
+		liftToFloor();
+	}
+
+	// Right upper trigger- stop harvester
+	if(joy2Btn(06)) {
+		motor[ harvester ] = 100;
+	}
+
+	if(joy2Btn(08)) {
+			motor[ harvester ] = 0;
 	}
 
 }

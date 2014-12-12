@@ -15,6 +15,8 @@ task LiftEncoderTask() {
 		if(enc_speed > 1000) {
 			bad_reading = true;
 		}
+		if (enc_speed < 10) liftStopped = true;
+		else liftStopped = false;
 
 		if(!bad_reading) {
 			// Accumulate
