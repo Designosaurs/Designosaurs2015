@@ -1,35 +1,46 @@
-// Respond to driver and gunner controls.
-///////////////////////  DRIVER /////////////////////////////////////////////
+/*
+ * Responds to the driver and gunner joysticks.
+ * Handles the processing of the buttons and what they correspond to
+ */
 
-const int DEADBAND = 12;
-const float scale = 100 / (128 - DEADBAND);
 int drivePower = 100;
 
+/*
+ * Driver Controller
+ * y1 & y2 to drive
+ */
 void DriverController() {
 	int pwrLeft, pwrRight;
 	int y1 = joystick.joy1_y1;
 	int y2 = joystick.joy1_y2;
 
 	if(abs(y1) > DEADBAND) {
-		if (y1 > 0)	y1 -= DEADBAND;
-		else y1 += DEADBAND;
+		if(y1 > 0) {
+			y1 -= DEADBAND;
+		} else {
+			y1 += DEADBAND;
+		}
 		pwrLeft = y1 * scale * drivePower * 0.01;
 		motor[left_drive] = pwrLeft;
-		} else {
+	} else {
 		motor[left_drive] = 0;
 	}
+
 	if(abs(y2) > DEADBAND) {
-		if (y2 > 0)	y2 -= DEADBAND;
-		else y2 += DEADBAND;
+		if(y2 > 0) {
+			y2 -= DEADBAND;
+		} else {
+			y2 += DEADBAND;
+		}
 		pwrRight = y2 * scale * drivePower * 0.01;
 		motor[right_drive] = pwrRight;
-		} else {
+	} else {
 		motor[left_drive] = 0;
 	}
 
 	if(abs(pwrRight) > DEADBAND) {
 		motor[right_drive] = pwrRight * drivePower * 0.01;
-		} else {
+	} else {
 		motor[right_drive] = 0;
 	}
 
@@ -50,38 +61,47 @@ void DriverController() {
 	}
 
 	switch(joystick.joy1_TopHat) {
-	case 0:  // DPAD TOP
+		case 0: // TOP
+
 		break;
-	case 1: // DPAD TOP RIGHT
+		case 1: // TOP RIGHT
+
 		break;
-	case 2: // DPAD RIGHT
-		placerDown();
+		case 2: // RIGHT
+			placerDown();
 		break;
-	case 3: // DPAD BOTTOM RIGHT
+		case 3: // BOTTOM RIGHT
+
 		break;
-	case 4: // DPAD BOTTOM
+		case 4: // BOTTOM
+
 		break;
-	case 5: // DPAD BOTTOM LEFT
+		case 5: // BOTTOM LEFT
+
 		break;
-	case 6: // DPAD LEFT
-		placerPlace();
+		case 6: // LEFT
+			placerPlace();
 		break;
-	case 7: // DPAD TOP LEFT
+		case 7: // TOP LEFT
+
 		break;
-	default:
+		default:
+
+		break;
 	}
 }
 
-//////////////////// GUNNER ////////////////////////////////////////////////
-// Left Joy Y => Scissors up or down.
-// Right Joy Y => Elbow
-// Right Joy X => Wrist
-// High deadband-- normally will not be used.
-//Top (yellow) = position for 3'
-//Right (red) = place in goal.  (if positioned for 4', place at 4')
-//Left (blue) = Center goal.
-//Bottom (green) = floor
-
+/*
+ * Gunner Controller
+ * Left Joy Y => Scissors up or down.
+ * Right Joy Y => Elbow
+ * Right Joy X => Wrist
+ * High deadband - normally will not be used.
+ * Top (yellow) = position for 3'
+ * Right (red) = place in goal.  (if positioned for 4', place at 4')
+ * Left (blue) = Center goal.
+ * Bottom (green) = floor
+ */
 void GunnerController() {
 	int y1 = joystick.joy2_y1;
 	int y2 = joystick.joy2_y2;
@@ -111,12 +131,12 @@ void GunnerController() {
 		servo[ wrist ] = (int) wristPos;
 	}
 
-	//Top (yellow) = position for 3' High Goal
+	// Top (yellow) = position for 3' High Goal
 	if(joy2Btn(04)) {
 		liftToHighGoal();
 	}
 
-	//Right (red) = place in goal.  (if positioned for 4', place at 4')
+	// Right (red) = place in goal.  (if positioned for 4', place at 4')
 	if(joy2Btn(03)) {
 		liftPlace();
 	}
@@ -133,22 +153,11 @@ void GunnerController() {
 
 	// Right upper trigger- stop harvester
 	if(joy2Btn(06)) {
-		motor[ harvester ] = 100;
+		motor[harvester] = 100;
 	}
 
 	if(joy2Btn(08)) {
-			motor[ harvester ] = 0;
+		motor[harvester] = 0;
 	}
 
-}
-
-
-////////////////////////   UPDATE JOYSTICK TASK /////////////////////////////////////////
-task UpdateJoystickTask() {
-	while(true) {
-		getJoystickSettings(joystick);
-		DriverController();
-		GunnerController();
-		wait1Msec(50);
-	}
 }

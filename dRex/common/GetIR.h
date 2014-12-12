@@ -1,7 +1,5 @@
-
 // Show each of the sensor readings.
-void GetIR( void )
-{
+void GetIR(void) {
 	// read the current modulated signal direction
 	dirAC = HTIRS2readACDir(HTIRS2);
 

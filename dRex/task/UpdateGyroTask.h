@@ -1,11 +1,8 @@
-
-task Gyro()
-{
+task Gyro() {
 	float GyroPeriodS;
 	long ET;
 
-	while( true )
-	{
+	while(true) {
 		ET = time1[T1];
 		GyroPeriodS = (float) ET /1000;
 		time1[T1]=0;  // Reset timer.
@@ -13,5 +10,4 @@ task Gyro()
 		heading += rotSpeed * GyroPeriodS;
 		wait10Msec(1);
 	}
-
 }
