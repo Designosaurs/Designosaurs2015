@@ -12,3 +12,15 @@ void placerDown() {
 void placerPlace() {
 	servo[placer] = 85;
 }
+
+const int INIT_ELBOW_POS = 128;
+void initElbow() {
+	servo[ elbow ] = INIT_ELBOW_POS;
+	elbowPos = INIT_ELBOW_POS;
+}
+
+const int INIT_WRIST_POS = 128;
+void initWrist() {
+	servo[ wrist ] = INIT_WRIST_POS;
+	wristPos = INIT_ELBOW_POS;
+}

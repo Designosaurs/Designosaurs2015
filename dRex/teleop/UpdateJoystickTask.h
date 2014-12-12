@@ -1,9 +1,10 @@
+// Respond to driver and gunner controls.
+///////////////////////  DRIVER /////////////////////////////////////////////
+
 const int DEADBAND = 12;
 const float scale = 100 / (128 - DEADBAND);
-
 int drivePower = 100;
 
-///////////////////////  DRIVER /////////////////////////////////////////////
 void DriverController() {
 	int pwrLeft, pwrRight;
 	int y1 = joystick.joy1_y1;
@@ -80,16 +81,31 @@ void DriverController() {
 void GunnerController() {
 	int y1 = joystick.joy2_y1;
 	int y2 = joystick.joy2_y2;
+	int x2 = joystick.joy2_x2;
 	int pwrLift;
 
-	if(abs(y1) > 28) {
-		pwrLift = y1 - 28;
-		motor[left_drive] = pwrLift;
+	if(abs(y1) > DEADBAND) {
+		if (y1 > 0)	y1 -= DEADBAND;
+		else y1 += DEADBAND;
+		pwrLift = y1 * 0.5; // Set max speed here.
+		motor[lift] = pwrLift;
 		} else {
-		motor[left_drive] = 0;
+		motor[lift] = 0;
 	}
 
+	if(abs(y2) > DEADBAND) {
+		if (y2 > 0)	y2 -= DEADBAND;
+		else y2 += DEADBAND;
+		elbowPos += y2 * 0.01;   // Set speed here.
+	  servo[ elbow ] = (int) elbowPos;
+	}
 
+		if(abs(x2) > DEADBAND) {
+		if (x2 > 0)	x2 -= DEADBAND;
+		else x2 += DEADBAND;
+		wristPos += x2 * 0.01;   // Set speed here.
+	  servo[ wrist ] = (int) wristPos;
+	}
 
 }
 
