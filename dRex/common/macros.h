@@ -3,7 +3,7 @@ void liftUntuck() {
 }
 
 void liftToFloor() {
-    
+
 }
 
 void liftToHighGoal() {
