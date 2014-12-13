@@ -125,10 +125,17 @@ void GunnerController() {
 	}
 
 	if(abs(x2) > DEADBAND) {
-		if (x2 > 0)	x2 -= DEADBAND;
-		else x2 += DEADBAND;
+		if(x2 > 0)	 {
+			x2 -= DEADBAND;
+		} else {
+			x2 += DEADBAND;
+		}
 		wristPos += x2 * 0.01;   // Set speed here.
-		servo[ wrist ] = (int) wristPos;
+		servo[wrist] = (int) wristPos;
+	}
+
+	if(abs(x1) > DEADBAND) {
+		servo[harvester] = (int) x1 * 0.5;
 	}
 
 	// Top (yellow) = position for 3' High Goal
@@ -136,7 +143,7 @@ void GunnerController() {
 		liftToHighGoal();
 	}
 
-	// Right (red) = place in goal.  (if positioned for 4', place at 4')
+	// Right (red) = place in goal. (if positioned for 4', place at 4')
 	if(joy2Btn(03)) {
 		liftPlace();
 	}
@@ -151,7 +158,7 @@ void GunnerController() {
 		liftToFloor();
 	}
 
-	// Right upper trigger- stop harvester
+	// Right upper trigger - stop harvester
 	if(joy2Btn(06)) {
 		motor[harvester] = 100;
 	}
