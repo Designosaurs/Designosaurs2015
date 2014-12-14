@@ -16,11 +16,11 @@ void placerPlace() {
 const int INIT_ELBOW_POS = 128;
 void initElbow() {
 	servo[elbow] = INIT_ELBOW_POS;
-	elbowPos = INIT_ELBOW_POS;
+	elbowPos = (float) INIT_ELBOW_POS;
 }
 
 const int INIT_WRIST_POS = 128;
 void initWrist() {
 	servo[wrist] = INIT_WRIST_POS;
-	wristPos = INIT_ELBOW_POS;
+	wristPos = (float) INIT_WRIST_POS;
 }

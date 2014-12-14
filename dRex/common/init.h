@@ -8,7 +8,9 @@ void initDisplay() {
     nxtDisplayCenteredTextLine(6,"Start");
 }
 
-void initDriveConfig() {
-    bMotorReflected[left_drive] = true;
-    nMotorEncoder[right_drive] = 0;
-}
+//void initDriveConfig() {
+//    bMotorReflected[left_drive] = true;
+//    nMotorEncoder[right_drive] = 0;
+//	nMotorEncoder[left_drive]=0;
+//	nMotorEncoder[lift]=0;
+//}
