@@ -39,12 +39,6 @@ void DriverController() {
         motor[right_drive] = 0;
     }
 
-    if(abs(pwrRight) > DEADBAND) {
-        motor[right_drive] = pwrRight * drivePower * 0.01;
-    } else {
-        motor[right_drive] = 0;
-    }
-
     if(joy1Btn(06)) {
         drivePower = 90;
     }
