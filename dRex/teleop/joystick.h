@@ -103,7 +103,7 @@ void DriverController() {
 * Bottom (green) = floor
 */
 int pwrLift;
-#define GUNNER_DEADBAND 20
+#define GUNNER_DEADBAND 30
 void GunnerController() {
 
 	int y1 = joystick.joy2_y1;
@@ -111,8 +111,7 @@ void GunnerController() {
 	int x1 = joystick.joy2_x1;
 	int x2 = joystick.joy2_x2;
 
-
-
+	// Left joystick Y controls lift.
 	if(abs(y1) > GUNNER_DEADBAND) {
 		if (y1 > 0)	y1 -= GUNNER_DEADBAND;
 		else y1 += GUNNER_DEADBAND;
@@ -122,7 +121,7 @@ void GunnerController() {
 		motor[lift] = 0;
 	}
 
-	// Left joystic Y controls elbow
+	// Right joystic Y controls elbow
 	if(abs(y2) > GUNNER_DEADBAND) {
 		if (y2 > 0)	y2 -= GUNNER_DEADBAND;
 		else y2 += GUNNER_DEADBAND;
@@ -131,6 +130,7 @@ void GunnerController() {
 		servo[elbow] = (int) elbowPos;
 	}
 
+	// Right joystick X controls wrist.
 	if(abs(x2) > GUNNER_DEADBAND) {
 		if(x2 > 0)	 {
 			x2 -= GUNNER_DEADBAND;
@@ -142,6 +142,7 @@ void GunnerController() {
 		servo[wrist] = (int) wristPos;
 	}
 
+	// Left joystick X allows sllow slow control of harvester.
 	if(abs(x1) > GUNNER_DEADBAND) {
 		if (x1 > 0)	x1 -= GUNNER_DEADBAND;
 		else x1 += GUNNER_DEADBAND;

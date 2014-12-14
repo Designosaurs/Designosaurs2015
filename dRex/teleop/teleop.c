@@ -47,6 +47,7 @@ task main() {
 	placerDown();
 	initElbow();
 	initWrist();
+	initDriveConfig();
 
 	waitForStart();
 	eraseDisplay();

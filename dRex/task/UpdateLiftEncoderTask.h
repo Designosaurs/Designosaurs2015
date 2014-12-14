@@ -1,10 +1,12 @@
+const float LIFT_COUNTS_PER_INCH = 127;  // Approximate.  Find experimenatally.
+long enc_speed;
 long prev_lift_encoder = 0;
-long lift_counts = 0;
-const float LIFT_COUNTS_PER_INCH = 1000;
 
 task UpdateLiftEncoderTask() {
+
 	while(true) {
-		long enc_speed, lift_encoder;
+		long lift_encoder;
+		long lift_counts = 0;
 		bool bad_reading = false;
 		bool liftStopped = false;
 
@@ -21,7 +23,7 @@ task UpdateLiftEncoderTask() {
 
 		if(!bad_reading) {
 			// Accumulate
-			lift_counts += (int) (lift_encoder - prev_lift_encoder);
+			lift_counts = lift_encoder;
 			prev_lift_encoder = lift_encoder;
 			lift_inches = (float) lift_counts / LIFT_COUNTS_PER_INCH;
 		}
