@@ -122,10 +122,12 @@ void GunnerController() {
 		motor[lift] = 0;
 	}
 
+	// Left joystic Y controls elbow
 	if(abs(y2) > GUNNER_DEADBAND) {
 		if (y2 > 0)	y2 -= GUNNER_DEADBAND;
 		else y2 += GUNNER_DEADBAND;
 		elbowPos -= y2 * 0.1;   // Set speed here.
+	  elbowPos = clamp255( elbowPos );
 		servo[elbow] = (int) elbowPos;
 	}
 
@@ -136,6 +138,7 @@ void GunnerController() {
 			x2 += GUNNER_DEADBAND;
 		}
 		wristPos -= x2 * 0.1;   // Set speed here.
+		wristPos = clamp255( wristPos );
 		servo[wrist] = (int) wristPos;
 	}
 
