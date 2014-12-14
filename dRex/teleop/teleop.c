@@ -6,7 +6,7 @@
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     right_drive,   tmotorTetrix, PIDControl)
+#pragma config(Motor,  mtr_S1_C1_1,     right_drive,   tmotorTetrix, PIDControl, reversed)
 #pragma config(Motor,  mtr_S1_C1_2,     left_drive,    tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C3_1,     lift,          tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_2,     harvester,     tmotorTetrix, openLoop)

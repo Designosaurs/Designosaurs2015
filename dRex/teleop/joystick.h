@@ -3,17 +3,22 @@
  * Handles the processing of the buttons and what they correspond to
  */
 const int DEADBAND = 12;
-const float scale = 100 / (128 - DEADBAND);
 int drivePower = 100;
 
 /*
  * Driver Controller
  * y1 & y2 to drive
  */
+  int pwrLeft, pwrRight;
+  int theWrongValue;
 void DriverController() {
-    int pwrLeft, pwrRight;
+	 //motor[left_drive] = 10;
+	 //motor[right_drive] = 10;
+	 //return;
+
     int y1 = joystick.joy1_y1;
     int y2 = joystick.joy1_y2;
+    theWrongValue = y1;
 
     if(abs(y1) > DEADBAND) {
         if(y1 > 0) {
@@ -21,7 +26,7 @@ void DriverController() {
         } else {
             y1 += DEADBAND;
         }
-        pwrLeft = y1 * scale * drivePower * 0.01;
+        pwrLeft =  y1 * 0.86 * drivePower * 0.01; //Negative value for Y1 means joystick forward.
         motor[left_drive] = pwrLeft;
     } else {
         motor[left_drive] = 0;
@@ -33,14 +38,14 @@ void DriverController() {
         } else {
             y2 += DEADBAND;
         }
-        pwrRight = y2 * scale * drivePower * 0.01;
+        pwrRight = y2 * 0.86 * drivePower * 0.01;
         motor[right_drive] = pwrRight;
     } else {
         motor[right_drive] = 0;
     }
 
     if(joy1Btn(06)) {
-        drivePower = 90;
+        drivePower = 100;
     }
 
     if(joy1Btn(08)) {
