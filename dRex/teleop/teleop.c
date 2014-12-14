@@ -35,9 +35,11 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 #include "..\common\init.h"
 #include "..\common\functions.h"
 #include "..\common\servo.h"
-#include "..\common\lift-encoder.h"
 #include "..\common\macros.h"
+#include "..\task\UpdateLiftEncoderTask.h"
+#include "joystick.h"
 #include "UpdateJoystickTask.h"
+#include "UpdateDisplayTask.h"
 
 task main() {
 	goalGrabberUp();
@@ -47,7 +49,7 @@ task main() {
 
 	waitForStart();
 	StartTask(UpdateJoystickTask);
-	StartTask(LiftEncoderTask);
+	StartTask(UpdateLiftEncoderTask);
 	StartTask(UpdateDisplayTask);
 
 	stopAndWait();

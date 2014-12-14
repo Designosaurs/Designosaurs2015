@@ -12,8 +12,8 @@ task UpdateDriveBearingsTask() {
 		long enc_speed;
 		bool bad_reading = false;
 
-		left_encoder = nMotorEncoder[left_drive];
-		right_encoder = nMotorEncoder[right_drive];
+		long left_encoder = nMotorEncoder[left_drive];
+		long right_encoder = nMotorEncoder[right_drive];
 
 		/*
 		 * Detect bad encoder readings. If the encoder has changed wildly from the previous reading, it is
@@ -21,8 +21,8 @@ task UpdateDriveBearingsTask() {
 		 * just ignore this and use the next one.
 		 */
 
-		enc_speed = abs(left_encoder - prev_left_encoder);
-		enc_speed += abs(right_encoder - prev_right_encoder);
+		long enc_speed = abs(left_encoder - prev_left_encoder);
+		long enc_speed += abs(right_encoder - prev_right_encoder);
 		if(enc_speed > 1000) bad_reading = true;
 
 		if(!bad_reading) {
