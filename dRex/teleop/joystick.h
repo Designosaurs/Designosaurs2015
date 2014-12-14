@@ -36,7 +36,7 @@ void DriverController() {
         pwrRight = y2 * scale * drivePower * 0.01;
         motor[right_drive] = pwrRight;
     } else {
-        motor[left_drive] = 0;
+        motor[right_drive] = 0;
     }
 
     if(abs(pwrRight) > DEADBAND) {
