@@ -27,7 +27,7 @@ _____             _
 |_____/ \___||___/_|\__, |_| |_|\___/|___/\__,_|\__,_|_|  |___/
 					 __/ |
 					|___/                            Team #6369
-TeleOp Code: 2014-2015 (Cascade Effect)
+Autonomous Code: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
@@ -37,23 +37,22 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 #include "..\common\servo.h"
 #include "..\common\macros.h"
 #include "..\task\UpdateLiftEncoderTask.h"
-#include "joystick.h"
-#include "UpdateJoystickTask.h"
-#include "..\task\UpdateDisplayTask.h"
+#include "..\task\UpdateDriveBearings.h"
+#include "UpdateDisplayTask.h"
 
 task main() {
-	initDisplay();
-	goalGrabberUp();
-	placerDown();
-	initElbow();
-	initWrist();
-	initDriveConfig();
+    initDisplay();
+    goalGrabberUp();
+    placerDown();
+    initElbow();
+    initWrist();
+    initDriveConfig();
 
-	waitForStart();
-	eraseDisplay();
-	StartTask(UpdateJoystickTask);
-	StartTask(UpdateLiftEncoderTask);
-	StartTask(UpdateDisplayTask);
+    waitForStart();
+    eraseDisplay();
+    StartTask(UpdateLiftEncoderTask);
+    StartTask(UpdateDisplayTask);
+    StartTask(UpdateDriveBearingsTask);
 
-	stopAndWait();
+    stopAndWait();
 }
