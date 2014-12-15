@@ -1,8 +1,8 @@
 task UpdateJoystickTask() {
     while(true) {
         getJoystickSettings(joystick);
-        DriverController();
-        GunnerController();
+        StartTask(DriverController);
+        StartTask(GunnerController);
         wait1Msec(50);
     }
 }
