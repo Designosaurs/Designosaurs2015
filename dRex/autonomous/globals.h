@@ -5,6 +5,7 @@ int left_encoder = 0;
 int right_encoder = 0;
 int prev_left_encoder = 0;
 int prev_right_encoder = 0;
+int DetectObstacles = 0;
 
 float total_angle = 0;
 long left_distance_counts = 0;
