@@ -1,7 +1,8 @@
 task UpdateDisplayTask() {
 	while( true ) {
 		nxtDisplayTextLine(0, "6369 DESIGNOSARUS");
-		nxtDisplayTextLine(1, "Lift: %3.2f""", lift_inches);
+		if (liftStopped) nxtDisplayTextLine(1, "Lift: %3.2f""  STOP", lift_inches);
+		else nxtDisplayTextLine(1, "Lift: %3.2f"" RUN", lift_inches);
 		nxtDisplayTextLine(2, "Elbow: %d", servo[elbow]);
 		nxtDisplayTextLine(3, "Wrist: %d", servo[ wrist ]);
 

@@ -39,7 +39,7 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 #include "..\task\UpdateLiftEncoderTask.h"
 #include "DriverControllerTask.h"
 #include "GunnerControllerTask.h"
-#include "UpdateJoystickTask.h"
+//#include "UpdateJoystickTask.h"
 #include "..\task\UpdateDisplayTask.h"
 
 task main() {
@@ -52,9 +52,10 @@ task main() {
 
 	waitForStart();
 	eraseDisplay();
-	StartTask(UpdateJoystickTask);
 	StartTask(UpdateLiftEncoderTask);
 	StartTask(UpdateDisplayTask);
 
+	StartTask(GunnerControllerTask);
+	StartTask(DriverControllerTask);
 	stopAndWait();
 }
