@@ -59,7 +59,7 @@ task DriverControllerTask {
 
 			break;
 		case 2: // RIGHT
-			placerDown();
+			placeBall();
 			break;
 		case 3: // BOTTOM RIGHT
 
@@ -71,7 +71,7 @@ task DriverControllerTask {
 
 			break;
 		case 6: // LEFT
-			placerPlace();
+			raiseBall();
 			break;
 		case 7: // TOP LEFT
 

@@ -27,35 +27,41 @@ _____             _
 |_____/ \___||___/_|\__, |_| |_|\___/|___/\__,_|\__,_|_|  |___/
 					 __/ |
 					|___/                            Team #6369
-TeleOp Code: 2014-2015 (Cascade Effect)
+Autonomous Code: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
-#include "t_globals.h"
+#include "a_globals.h"
 #include "..\common\bot_specific.h"
 #include "..\common\init.h"
 #include "..\common\functions.h"
 #include "..\common\servo.h"
-#include "..\common\macros.h"
+#include "drive.h"
+#include "sonar.h"
+#include "..\sensor\ultrasonic.h"
 #include "..\common\UpdateLiftEncoderTask.h"
-#include "DriverControllerTask.h"
-#include "GunnerControllerTask.h"
+#include "..\common\UpdateDriveBearings.h"
 #include "..\common\UpdateDisplayTask.h"
+#include "FromParking.h"
+#include "IfBlocked.h"
+#include "FromRamp.h"
+
+// If this is true, will stop if blocked:
+bool KickstandIfBlocked = true;
 
 task main() {
-	initDisplay();
-	goalGrabberUp();
-	initPlacer();
-	initElbow();
-	initWrist();
-	initDriveConfig();
+    initDisplay();
+    goalGrabberUp();
+    initPlacer();
+    initElbow();
+    initWrist();
+    initDriveConfig();
 
-	waitForStart();
-	eraseDisplay();
-	StartTask(UpdateLiftEncoderTask);
-	StartTask(UpdateDisplayTask);
+    waitForStart();
+    eraseDisplay();
+    StartTask(UpdateLiftEncoderTask);
+    StartTask(UpdateDisplayTask);
+    StartTask(UpdateDriveBearingsTask);
 
-	StartTask(GunnerControllerTask);
-	StartTask(DriverControllerTask);
-	stopAndWait();
+    GoalFromRamp();
 }
