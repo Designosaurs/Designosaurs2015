@@ -31,7 +31,7 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
-#include "globals.h"
+#include "t_globals.h"
 #include "..\common\init.h"
 #include "..\common\functions.h"
 #include "..\common\servo.h"

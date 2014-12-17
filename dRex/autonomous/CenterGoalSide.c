@@ -26,7 +26,7 @@ Autonomous Code: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
-#include "globals.h"
+#include "a_globals.h"
 #include "..\common\functions.h"
 #include "..\common\servo.h"
 #include "..\common\macros.h"
