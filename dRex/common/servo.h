@@ -5,22 +5,23 @@ void goalGrabberDown() {
 	servo[goal_grab] = 23;
 }
 
+
 void placerDown() {
-	servo[placer] = 255;
+	servo[placer] = 240;
 }
 
 void placerPlace() {
 	servo[placer] = 85;
 }
 
-const int INIT_ELBOW_POS = 255;
+const int ELBOW_TUCK_POS = 240;
 void initElbow() {
-	servo[elbow] = INIT_ELBOW_POS;
-	elbowPos = (float) INIT_ELBOW_POS;
+	servo[elbow] = ELBOW_TUCK_POS;
+	elbowPos = (float) ELBOW_TUCK_POS;
 }
 
-const int INIT_WRIST_POS = 128;
+const int WRIST_TUCK_POS = 120;
 void initWrist() {
-	servo[wrist] = INIT_WRIST_POS;
-	wristPos = (float) INIT_WRIST_POS;
+	servo[wrist] = WRIST_TUCK_POS;
+	wristPos = (float) WRIST_TUCK_POS;
 }
