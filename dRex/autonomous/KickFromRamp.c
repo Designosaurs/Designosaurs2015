@@ -36,10 +36,10 @@ Autonomous Code: 2014-2015 (Cascade Effect)
 #include "..\common\functions.h"
 #include "..\common\servo.h"
 #include "..\common\macros.h"
-#include "..\task\UpdateLiftEncoderTask.h"
-#include "..\task\UpdateDriveBearings.h"
+#include "..\common\UpdateLiftEncoderTask.h"
+#include "..\common\UpdateDriveBearings.h"
 #include "..\sensor\ultrasonic.h"
-#include "UpdateDisplayTask.h"
+#include "..\common\UpdateDisplayTask.h"
 #include "drive.h"
 
 void KickstandGetter() {

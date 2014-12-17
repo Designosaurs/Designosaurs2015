@@ -36,11 +36,10 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 #include "..\common\functions.h"
 #include "..\common\servo.h"
 #include "..\common\macros.h"
-#include "..\task\UpdateLiftEncoderTask.h"
+#include "..\common\UpdateLiftEncoderTask.h"
 #include "DriverControllerTask.h"
 #include "GunnerControllerTask.h"
-//#include "UpdateJoystickTask.h"
-#include "..\task\UpdateDisplayTask.h"
+#include "..\common\UpdateDisplayTask.h"
 
 task main() {
 	initDisplay();
