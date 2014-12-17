@@ -81,7 +81,7 @@ task GunnerControllerTask {
 
 			break;
 		case 1: // TOP RIGHT
-
+			harvesterTo(0);
 			break;
 		case 2: // RIGHT
 			tuck();

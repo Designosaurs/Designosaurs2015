@@ -136,3 +136,13 @@ void liftToCenterGoal() {
 void liftPlace() {
 
 }
+
+void harvesterTo(int target_in_degrees) {
+	until(nMotorEncoder[harvester] % 1440 < ((target_in_degrees * 16) + 20)) {
+		motor[harvester] = 8;
+	}
+	until(nMotorEncoder[harvester] % 1440 > ((target_in_degrees * 16) - 20)) {
+		motor[harvester] = -8;
+	}
+	motor[harvester] = 0;
+}
