@@ -1,5 +1,16 @@
 // Macro all happen as part of the Gunner Controller Task.
 
+void harvesterTo(int target_in_degrees) {
+	until(nMotorEncoder[harvester] % 1440 < ((target_in_degrees * 16) + 20)) {
+		motor[harvester] = 8;
+	}
+	until(nMotorEncoder[harvester] % 1440 > ((target_in_degrees * 16) - 20)) {
+		motor[harvester] = -8;
+	}
+	motor[harvester] = 0;
+}
+
+
 bool stopMacro( void ) {
 	bool rtnValue = joy2Btn(09);
 	if (rtnValue) motor[ lift ] = 0;
@@ -40,6 +51,7 @@ void moveLift( float to_height ){
 }
 
 void untuck() {
+	harvesterTo(20);
 	servoChangeRate[ elbow ] = 1;
 	servoChangeRate[ wrist ] = 1;
 
@@ -87,6 +99,7 @@ void untuck() {
 
 
 void tuck() {
+	harvesterTo(-20);
 	servoChangeRate[ elbow ] = 1;
 	servoChangeRate[ wrist ] = 1;
 	// start from 4
@@ -162,14 +175,4 @@ void liftToCenterGoal() {
 
 void liftPlace() {
 	servo[wrist] = 96;
-}
-
-void harvesterTo(int target_in_degrees) {
-	until(nMotorEncoder[harvester] % 1440 < ((target_in_degrees * 16) + 20)) {
-		motor[harvester] = 8;
-	}
-	until(nMotorEncoder[harvester] % 1440 > ((target_in_degrees * 16) - 20)) {
-		motor[harvester] = -8;
-	}
-	motor[harvester] = 0;
 }

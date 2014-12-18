@@ -73,7 +73,7 @@ task GunnerControllerTask {
 		}
 
 		if(joy2Btn(06)) {
-			motor[harvester] = 0;
+			harvesterTo(0);
 		}
 
 		switch(joystick.joy2_TopHat) {
