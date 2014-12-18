@@ -21,6 +21,7 @@ task GunnerControllerTask {
 		if(abs(y2) > GUNNER_DEADBAND) {
 			if (y2 > 0)	y2 -= GUNNER_DEADBAND;
 			else y2 += GUNNER_DEADBAND;
+			servoChangeRate[ elbow ] = 5;
 			elbowPos -= y2 * 0.1;   // Set speed here.
 			elbowPos = clamp255(elbowPos);
 			servo[elbow] = (int) elbowPos;
@@ -33,6 +34,7 @@ task GunnerControllerTask {
 				} else {
 				x2 += GUNNER_DEADBAND;
 			}
+			servoChangeRate[ wrist ] = 5;
 			wristPos -= x2 * 0.1; // Set speed here.
 			wristPos = clamp255(wristPos);
 			servo[wrist] = (int) wristPos;
@@ -57,12 +59,12 @@ task GunnerControllerTask {
 
 		// Bottom (green) button
 		if(joy2Btn(02)) {
-			liftToCenterGoal();
+			liftToFloor();
 		}
 
 		// Left (blue) button
 		if(joy2Btn(01)) {
-			liftToFloor();
+			liftToCenterGoal();
 		}
 
 		// Right upper trigger - stop harvester

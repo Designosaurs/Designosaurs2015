@@ -2,22 +2,20 @@
 
 bool stopMacro( void ) {
 	bool rtnValue = joy2Btn(09);
+	if (rtnValue) motor[ lift ] = 0;
 	return 	rtnValue;
 }
 
 void debugStep() {
-	PlaySound(soundBlip);
 	return;
-	// wait for button released
-	while( joy2Btn( 07)) {
-		wait1Msec( 50 );
-	}
+	PlaySound(soundBlip);
+	//return;
 	// wait for button pressed
-	while( !joy2Btn( 07 )){
-		wait1Msec( 50 );
-	}
+	while( !joy2Btn( 07 ))		wait1Msec( 50 );
 
-	wait10Msec( 100 );
+	// wait for button released
+	while( joy2Btn( 07)) wait1Msec( 50 );
+
 }
 
 
@@ -38,7 +36,7 @@ void moveLift( float to_height ){
 			wait1Msec( 20 );
 		}
 	}
-	running_macro = false;
+	motor[lift] = 0;
 }
 
 void untuck() {
@@ -46,32 +44,32 @@ void untuck() {
 	servoChangeRate[ wrist ] = 1;
 
 	// Tuck position 0
-	servo[elbow] = 240;
+	servo[elbow] = 245;
 	servo[wrist] = 120;
-	wait1Msec( 1000 );
+	wait1Msec( 100 );
 	debugStep();
 
 	// Center wrist servo between harvester and bar, slightly tilt cup 1
-	servo[elbow] = 235;
+	servo[elbow] = 240;
 	servo[wrist] = 107;
-	wait1Msec( 1000 );
+	wait1Msec( 100 );
 	debugStep();
 
-	// Raise just alittle 2
+	// Raise just alittle
 	moveLift( 3.3 );
 	motor[lift] = 0;
 	debugStep();
 
 	// Up and wrsit servo back 3
-	servo[elbow] = 240;
+	servo[elbow] = 245;
 	servo[wrist] = 107;
 	moveLift( 5.4);
 	motor[lift] = 0;
 	debugStep();
 
 
-		// up, servo back to keep from hitting harvester
-	servo[elbow] = 250;
+	// up, servo back to keep from hitting harvester
+	servo[elbow] = 255;
 	servo[wrist] = 84;
 	moveLift( 7.22 );
 	motor[lift] = 0;
@@ -89,28 +87,38 @@ void untuck() {
 
 
 void tuck() {
-		servoChangeRate[ elbow ] = 1;
+	servoChangeRate[ elbow ] = 1;
 	servoChangeRate[ wrist ] = 1;
 	// start from 4
 	servo[elbow] = 255;
-	servo[wrist] = 84;
+	servo[wrist] = 120;
 	moveLift( 5.55 );
 	motor[lift] = 0;
 	debugStep();
 
-	servo[elbow] = 248;
-	servo[wrist] = 84;
+	servo[elbow] = 243;
+	servo[wrist] = 120;
 	moveLift( 3.3 );
 	motor[lift] = 0;
 	debugStep();
 
-	servo[elbow] = 240;
+	servo[elbow] = 235;
 	servo[wrist] = 120;
 	moveLift( 0.5 );  // move to close to home.
 	motor[lift] = -5;	// power lightly down
 	wait1Msec( 300 ); // for a little time.
 	motor[lift] = 0;	// now motor off.
+	debugStep();
 
+	// tilt cup back and wedge it back
+	servo[elbow] = 245;
+	servo[wrist] = 80;
+	wait1Msec( 200 );
+	debugStep();
+
+	// Now level the up-- uses back of cup to lock in place
+	servo[wrist] = 120;
+	debugStep();
 
 }
 
@@ -119,10 +127,32 @@ void tuck() {
 //}
 
 void liftToFloor() {
+	servoChangeRate[ elbow ] = 5;
+	servoChangeRate[ wrist ] = 5;
+	servo[elbow] = 255;
+	servo[wrist] = 84;
+	moveLift( 13 );
+	debugStep();
 
+	tuck();
 }
 
 void liftToHighGoal() {
+	untuck();
+	moveLift( 16.3);
+	debugStep();
+
+	servoChangeRate[ elbow ] = 1;
+	servoChangeRate[ wrist ] = 1;
+	servo[elbow] = 137;
+	servo[wrist] = 194;
+	wait1Msec( 300 );
+	debugStep();
+
+	servo[elbow] = 0;
+	servo[wrist] = 255;
+	debugStep();
+
 
 }
 
@@ -131,7 +161,7 @@ void liftToCenterGoal() {
 }
 
 void liftPlace() {
-
+	servo[wrist] = 96;
 }
 
 void harvesterTo(int target_in_degrees) {

@@ -15,7 +15,7 @@ void placeBall() {
 	servo[placer] = GOAL_PLACE_SERVO_POS;
 }
 
-const int ELBOW_TUCK_POS = 240;
+const int ELBOW_TUCK_POS = 245;
 void initElbow() {
 	servo[elbow] = ELBOW_TUCK_POS;
 	elbowPos = (float) ELBOW_TUCK_POS;
