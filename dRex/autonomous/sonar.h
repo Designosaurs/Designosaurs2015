@@ -89,7 +89,7 @@ bool GoalPlacer() {
 	float jog_dist;
 
 	pointToGoal();
-
+	stopAndWait();
 	// First get to within defined distance, but not too close, because aim errors
 	// become more significant then.
 	raiseBall();

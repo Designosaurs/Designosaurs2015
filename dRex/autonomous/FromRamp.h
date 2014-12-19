@@ -2,12 +2,12 @@ void GoalFromRamp(){
     float angle_before_goal = 0;
 
     // Starting from top of ramp, go place the ball in the goal.
-    goForwardDistance(3.9, 80);
+    goForwardDistance(4.2, 70);
     DetectObstacles = 20;
     if(goForwardDistance(2, 60)) IfBlocked();
     DetectObstacles = 0;
     stop();
-
+    //stopAndWait();
     // Record the angle before we find the goal
     angle_before_goal = total_angle;
     GoalPlacer();
