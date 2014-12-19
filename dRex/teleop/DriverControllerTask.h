@@ -49,6 +49,7 @@ task DriverControllerTask {
 
 		if(joy1Btn(07)) {
 			goalGrabberDown();
+			//PlaySound(soundDownwardTones);
 		}
 
 		switch(joystick.joy1_TopHat) {

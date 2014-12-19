@@ -6,5 +6,4 @@ const int DEADBAND = 12;
 int drivePower = 100;
 int pwrLift;
 const int GUNNER_DEADBAND = 30;
-bool running_macro = false;
-bool override_macro = false;
+bool run_harvester = false;

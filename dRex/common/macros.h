@@ -1,15 +1,24 @@
 // Macro all happen as part of the Gunner Controller Task.
 
-void harvesterTo(int target_in_degrees) {
-	until(nMotorEncoder[harvester] % 1440 < ((target_in_degrees * 16) + 20)) {
-		motor[harvester] = 8;
-	}
-	until(nMotorEncoder[harvester] % 1440 > ((target_in_degrees * 16) - 20)) {
-		motor[harvester] = -8;
-	}
-	motor[harvester] = 0;
+//void harvesterTo(int target_in_degrees) {
+//	until(nMotorEncoder[harvester] % 1440 < ((target_in_degrees * 16) + 20)) {
+//		motor[harvester] = 8;
+//	}
+//	until(nMotorEncoder[harvester] % 1440 > ((target_in_degrees * 16) - 20)) {
+//		motor[harvester] = -8;
+//	}
+//	motor[harvester] = 0;
+//}
+
+
+void waitForHarvester(){
+	if (run_harvester) {
+		run_harvester = false;
+		wait1Msec( 1000 );
+
 }
 
+}
 
 bool stopMacro( void ) {
 	bool rtnValue = joy2Btn(09);
@@ -34,15 +43,13 @@ void debugStep() {
 void moveLift( float to_height ){
 	if (lift_inches < to_height ) {
 		while( lift_inches < to_height ) {
-			running_macro = true;
-			motor[ lift ] = 10;
+			motor[ lift ] = 30;
 			if (stopMacro()) break;
 			wait1Msec( 20 );
 		}
 		} else {
 		while( lift_inches > to_height ) {
-			running_macro = true;
-			motor[ lift ] = -5;
+			motor[ lift ] = -10;
 			if (stopMacro()) break;
 			wait1Msec( 20 );
 		}
@@ -51,9 +58,10 @@ void moveLift( float to_height ){
 }
 
 void untuck() {
-	harvesterTo(20);
-	servoChangeRate[ elbow ] = 1;
-	servoChangeRate[ wrist ] = 1;
+	waitForHarvester();
+	//harvesterTo(20);
+	servoChangeRate[ elbow ] = 2;
+	servoChangeRate[ wrist ] = 2;
 
 	// Tuck position 0
 	servo[elbow] = 245;
@@ -93,13 +101,12 @@ void untuck() {
 	moveLift( 11.5 );
 	motor[lift] = 0;
 	debugStep();
-
-
 }
 
 
 void tuck() {
-	harvesterTo(-20);
+	waitForHarvester();
+	//harvesterTo(-20);
 	servoChangeRate[ elbow ] = 1;
 	servoChangeRate[ wrist ] = 1;
 	// start from 4
@@ -119,8 +126,9 @@ void tuck() {
 	servo[wrist] = 120;
 	moveLift( 0.5 );  // move to close to home.
 	motor[lift] = -5;	// power lightly down
-	wait1Msec( 300 ); // for a little time.
+	wait1Msec( 400 ); // for a little time.
 	motor[lift] = 0;	// now motor off.
+	nMotorEncoder[lift] = 0; // This is our new zero
 	debugStep();
 
 	// tilt cup back and wedge it back
@@ -140,8 +148,8 @@ void tuck() {
 //}
 
 void liftToFloor() {
-	servoChangeRate[ elbow ] = 5;
-	servoChangeRate[ wrist ] = 5;
+	servoChangeRate[ elbow ] = 10;
+	servoChangeRate[ wrist ] = 10;
 	servo[elbow] = 255;
 	servo[wrist] = 84;
 	moveLift( 13 );
@@ -155,8 +163,8 @@ void liftToHighGoal() {
 	moveLift( 16.3);
 	debugStep();
 
-	servoChangeRate[ elbow ] = 1;
-	servoChangeRate[ wrist ] = 1;
+	servoChangeRate[ elbow ] = 5;
+	servoChangeRate[ wrist ] = 5;
 	servo[elbow] = 137;
 	servo[wrist] = 194;
 	wait1Msec( 300 );
@@ -165,14 +173,26 @@ void liftToHighGoal() {
 	servo[elbow] = 0;
 	servo[wrist] = 255;
 	debugStep();
-
-
 }
 
 void liftToCenterGoal() {
+	untuck();
+	moveLift( 26.55 );
+	debugStep();
 
+	servoChangeRate[ elbow ] = 5;
+	servoChangeRate[ wrist ] = 5;
+	//servo[elbow] = 137;
+	//servo[wrist] = 194;
+	//wait1Msec( 300 );
+	//debugStep();
+
+	servo[elbow] = 129;
+	servo[wrist] = 204;
+	debugStep();
 }
 
 void liftPlace() {
+	servoChangeRate[ wrist ] = 5;
 	servo[wrist] = 96;
 }

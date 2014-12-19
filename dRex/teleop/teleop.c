@@ -9,7 +9,7 @@
 #pragma config(Motor,  mtr_S1_C1_1,     right_drive,   tmotorTetrix, PIDControl, reversed)
 #pragma config(Motor,  mtr_S1_C1_2,     left_drive,    tmotorTetrix, PIDControl)
 #pragma config(Motor,  mtr_S1_C3_1,     lift,          tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C3_2,     harvester,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_2,     harvester,     tmotorTetrix, PIDControl)
 #pragma config(Servo,  srvo_S1_C2_1,    placer,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    goal_grab,            tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_3,    elbow,                tServoStandard)
@@ -41,6 +41,7 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 #include "DriverControllerTask.h"
 #include "GunnerControllerTask.h"
 #include "..\common\UpdateDisplayTask.h"
+#include "HarvesterTask.h"
 
 task main() {
 	initDisplay();
@@ -57,5 +58,6 @@ task main() {
 
 	StartTask(GunnerControllerTask);
 	StartTask(DriverControllerTask);
+	StartTask(HarvesterTask);
 	stopAndWait();
 }

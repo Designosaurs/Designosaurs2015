@@ -1,8 +1,11 @@
+// Smaller value = more up
 void goalGrabberUp() {
-	servo[goal_grab] = 60;
-}
-void goalGrabberDown() {
 	servo[goal_grab] = 23;
+}
+
+// Larger value = further down
+void goalGrabberDown() {
+	servo[goal_grab] = 68;
 }
 
 void raiseBall() {

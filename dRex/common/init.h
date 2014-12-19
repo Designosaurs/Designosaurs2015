@@ -12,4 +12,5 @@ void initDriveConfig() {
    nMotorEncoder[right_drive] = 0;
 	nMotorEncoder[left_drive]=0;
 	nMotorEncoder[lift]=0;
+	nMotorEncoder[harvester] = 0;
 }

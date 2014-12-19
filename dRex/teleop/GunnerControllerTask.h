@@ -67,13 +67,13 @@ task GunnerControllerTask {
 			liftToCenterGoal();
 		}
 
-		// Right upper trigger - stop harvester
+		// Right upper trigger - run harvester.
 		if(joy2Btn(08)) {
-			motor[harvester] = 100;
+			run_harvester = true;
 		}
 
 		if(joy2Btn(06)) {
-			harvesterTo(0);
+			run_harvester = false;
 		}
 
 		switch(joystick.joy2_TopHat) {
@@ -83,7 +83,7 @@ task GunnerControllerTask {
 
 			break;
 		case 1: // TOP RIGHT
-			harvesterTo(0);
+			//harvesterTo(0);
 			break;
 		case 2: // RIGHT
 			tuck();
