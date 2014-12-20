@@ -54,32 +54,36 @@ task DriverControllerTask {
 
 		switch(joystick.joy1_TopHat) {
 		case 0: // TOP
-
-			break;
+			placeBall();
+		break;
 		case 1: // TOP RIGHT
 
-			break;
+		break;
 		case 2: // RIGHT
-			placeBall();
-			break;
+			motor[left_drive] = 5;
+				motor[right_drive] = -5;
+				wait1Msec(300);
+		break;
 		case 3: // BOTTOM RIGHT
 
-			break;
+		break;
 		case 4: // BOTTOM
-
-			break;
+			raiseBall();
+		break;
 		case 5: // BOTTOM LEFT
 
-			break;
+		break;
 		case 6: // LEFT
-			raiseBall();
-			break;
+			motor[left_drive] = -5;
+			motor[right_drive] = 5;
+			wait1Msec(300);
+		break;
 		case 7: // TOP LEFT
 
-			break;
+		break;
 		default:
 
-			break;
+		break;
 		}
 		wait1Msec(50);
 	}
