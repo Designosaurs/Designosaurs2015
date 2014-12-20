@@ -3,6 +3,11 @@ void goalGrabberUp() {
 	servo[goal_grab] = 23;
 }
 
+void updateServoPos( ) {
+	elbowPos = (float) servo[ elbow ];
+	wristPos = (float) servo[ wrist ];
+}
+
 // Larger value = further down
 void goalGrabberDown() {
 	servo[goal_grab] = 68;
