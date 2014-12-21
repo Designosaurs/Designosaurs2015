@@ -52,9 +52,22 @@ task DriverControllerTask {
 			//PlaySound(soundDownwardTones);
 		}
 
+		if(joy1Btn(09)) {
+			initPlacer();
+		}
+
+		if(joy1Btn(10)) {
+			placeBall();
+		}
+
 		switch(joystick.joy1_TopHat) {
 		case 0: // TOP
-			placeBall();
+			// Pivot nudge forward.
+			motor[left_drive] = 25;
+			motor[right_drive] = 25;
+			wait1Msec(100);
+			motor[left_drive] = 0;
+			motor[right_drive] = 0;
 		break;
 		case 1: // TOP RIGHT
 
@@ -71,7 +84,12 @@ task DriverControllerTask {
 
 		break;
 		case 4: // BOTTOM
-			raiseBall();
+			// Pivot nudge backward.
+			motor[left_drive] = -25;
+			motor[right_drive] = -25;
+			wait1Msec(100);
+			motor[left_drive] = 0;
+			motor[right_drive] = 0;
 		break;
 		case 5: // BOTTOM LEFT
 
