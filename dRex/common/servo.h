@@ -15,12 +15,12 @@ void goalGrabberDown() {
 
 void raiseBall() {
 	servoChangeRate[placer] = 1;
-	servo[placer] = GOAL_PLACE_RAISE_POS;
+	servo[placer] = 180;
 }
 
 void placeBall() {
-	servoChangeRate[placer] = 1;
-	servo[placer] = GOAL_PLACE_SERVO_POS;
+	servoChangeRate[placer] = 3;
+	servo[placer] = 90;
 }
 
 const int ELBOW_TUCK_POS = 245;
