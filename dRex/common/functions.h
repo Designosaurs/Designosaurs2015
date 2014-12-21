@@ -7,6 +7,8 @@ float clamp255( float input) {
 
 
 void stopAndWait() {
+  	motor[left_drive] = 0;
+    motor[right_drive] = 0;
     while(true) {
         wait1Msec(100);
     }

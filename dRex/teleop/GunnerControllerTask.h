@@ -22,7 +22,7 @@ task GunnerControllerTask {
 			if (y2 > 0)	y2 -= GUNNER_DEADBAND;
 			else y2 += GUNNER_DEADBAND;
 			servoChangeRate[ elbow ] = 5;
-			elbowPos -= y2 * 0.1;   // Set speed here.
+			elbowPos -= y2 * 0.05;   // Set speed here.
 			elbowPos = clamp255(elbowPos);
 			servo[elbow] = (int) elbowPos;
 		}

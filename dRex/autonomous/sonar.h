@@ -76,37 +76,50 @@ bool pointToGoal() {
 	writeDebugStreamLine("Angle at low end: %3.1f", angle_at_low_end);
 	writeDebugStreamLine("Best Aim Angle: %3.1f", best_aim_angle);
 
-	// Add a slight negative compensation to account for the scan lag.
-	// If it is aiming too far to the right, make this a more negative number.
-	pivotToTotalAngle(best_aim_angle - 1.5, 80);
+	// Add or subtract to best aim angle experimentally, so it hits
+	// straight on.
+	pivotToTotalAngle(best_aim_angle + 3, 30);
 	stop();
 	//StopAndDone();
 	return have_low;
 }
+
+
+// Routine to place in 2' goal.
+// Robot nominally starts 11" (measured) from ultrasonic sensor to tube.
+// Ultrasonic sensor pointed straight at the tube.
+// It can hande wide varation, but typically start there.
+
+const float GOAL_PLACE_DIST = 20;  // cm fron goal, indicated by ultrsonic sensor, at place
 
 bool GoalPlacer() {
 	int returned_range = 255;
 	float jog_dist;
 
 	pointToGoal();
-	stopAndWait();
+	//stopAndWait();
 	// First get to within defined distance, but not too close, because aim errors
 	// become more significant then.
 	raiseBall();
-	goToRange(30, 30);
+	goToRange(30, 20);
 
-	// Start the ball movement
-	placeBall();
-	// Now get in the last bit. Calculate based on ultrasonic reading.
+	// Now get in the last bit. Calculate based on ultrasonic reading from a bit our
 	returned_range = (int) SensorValue[ultrasonic];
 	jog_dist = (float) returned_range - GOAL_PLACE_DIST;
 	writeDebugStreamLine("Final Jog dist %3.2f", jog_dist);
-	jogForwardCm(jog_dist, 20);
-	stop();
+	jogForwardCm(jog_dist, 10);
+
+	// Ths compensates for the fact that the placer is not centered.
+	pivotDegrees(24, 20);
+	placeBall();
+
 	returned_range = (int) SensorValue[ultrasonic];
 	writeDebugStreamLine("Range before place: %d", SensorValue[ultrasonic]);
-	wait10Msec(100); // Give some for the ball placer to work.
-	//StopAndDone();
+	wait1Msec(1000); // Give some for the ball placer to work.
 	initPlacer();
+
+	// Back to pointing the goal grabber
+	pivotDegrees(-16, 20);
+
 	return true;
 }

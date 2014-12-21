@@ -16,7 +16,7 @@ void waitForHarvester(){
 		run_harvester = false;
 		wait1Msec( 1000 );
 
-}
+	}
 
 }
 
@@ -127,6 +127,11 @@ void tuck() {
 	moveLift( 0.5 );  // move to close to home.
 	motor[lift] = -5;	// power lightly down
 	wait1Msec( 400 ); // for a little time.
+	while( 	!liftStopped ) {  // Now, keep going until stopped
+		PlaySound(soundBlip );
+		wait1Msec( 10 );
+
+}
 	motor[lift] = 0;	// now motor off.
 	nMotorEncoder[lift] = 0; // This is our new zero
 	debugStep();
@@ -139,6 +144,7 @@ void tuck() {
 
 	// Now level the up-- uses back of cup to lock in place
 	servo[wrist] = 120;
+	updateServoPos( );
 	debugStep();
 
 }
@@ -152,6 +158,7 @@ void liftToFloor() {
 	servoChangeRate[ wrist ] = 10;
 	servo[elbow] = 255;
 	servo[wrist] = 84;
+	wait1Msec( 300 ); // give the servos a head start.
 	moveLift( 13 );
 	debugStep();
 
@@ -170,8 +177,14 @@ void liftToHighGoal() {
 	wait1Msec( 300 );
 	debugStep();
 
-	servo[elbow] = 0;
+	servo[elbow] = 40;
 	servo[wrist] = 255;
+	wait1Msec( 300 );
+	// Slow for the last approach.
+	servoChangeRate[ elbow ] = 2;
+	servo[elbow] = 0;
+
+	updateServoPos( );
 	debugStep();
 }
 
@@ -187,8 +200,9 @@ void liftToCenterGoal() {
 	//wait1Msec( 300 );
 	//debugStep();
 
-	servo[elbow] = 129;
+	servo[elbow] = 120;
 	servo[wrist] = 204;
+	updateServoPos( );
 	debugStep();
 }
 
