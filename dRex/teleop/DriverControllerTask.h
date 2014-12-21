@@ -60,24 +60,12 @@ task DriverControllerTask {
 
 		break;
 		case 2: // RIGHT
-<<<<<<< HEAD
-<<<<<<< HEAD
-			motor[left_drive] = 5;
-			motor[right_drive] = -5;
-			wait1Msec(300);
-=======
-=======
->>>>>>> origin/master
 			// Pivot nudge to right.
 			motor[left_drive] = 25;
-				motor[right_drive] = -25;
-				wait1Msec(100);
-				motor[left_drive] = 0;
+			motor[right_drive] = -25;
+			wait1Msec(100);
+			motor[left_drive] = 0;
 			motor[right_drive] = 0;
-<<<<<<< HEAD
->>>>>>> be80e99156212d73a376c050212cb8f8b8399050
-=======
->>>>>>> origin/master
 		break;
 		case 3: // BOTTOM RIGHT
 
