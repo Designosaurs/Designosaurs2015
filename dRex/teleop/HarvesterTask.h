@@ -25,6 +25,16 @@ task HarvesterTask{
 		}
 		else
 		{
+			if(harv_back_jog) {
+				motor[harvester] = -20;
+				wait1Msec(200);
+				updateHarvDeg();
+				while(harv_deg > 60) {
+					updateHarvDeg();
+					motor[harvester] = -20;
+				}
+				harv_back_jog = false;
+			}
 			if  (!harv_flag)
 				motor[harvester] = 20;
 			else {

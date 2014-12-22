@@ -7,3 +7,4 @@ int drivePower = 100;
 int pwrLift;
 const int GUNNER_DEADBAND = 30;
 bool run_harvester = false;
+bool harv_back_jog = false;

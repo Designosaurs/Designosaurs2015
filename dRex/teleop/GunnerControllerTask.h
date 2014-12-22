@@ -67,6 +67,11 @@ task GunnerControllerTask {
 			liftToCenterGoal();
 		}
 
+		if(joy2Btn(10)) {
+			run_harvester = false;
+			harv_back_jog = true;
+		}
+
 		// Right upper trigger - run harvester.
 		if(joy2Btn(08)) {
 			run_harvester = true;
