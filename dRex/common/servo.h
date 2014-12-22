@@ -20,7 +20,7 @@ void raiseBall() {
 
 void placeBall() {
 	servoChangeRate[placer] = 3;
-	servo[placer] = 90;
+	servo[placer] = 87;
 }
 
 const int ELBOW_TUCK_POS = 245;
