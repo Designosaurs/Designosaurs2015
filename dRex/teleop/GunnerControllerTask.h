@@ -83,29 +83,25 @@ task GunnerControllerTask {
 
 		switch(joystick.joy2_TopHat) {
 		case 0: // TOP
-			moveLift( 1 );
-			motor[ lift ] = 0;
 
 			break;
 		case 1: // TOP RIGHT
 			//harvesterTo(0);
 			break;
 		case 2: // RIGHT
-			tuck();
+
 			break;
 		case 3: // BOTTOM RIGHT
 
 			break;
 		case 4: // BOTTOM
-			moveLift( -1 );
-			motor[ lift ] = 0;
 
 			break;
 		case 5: // BOTTOM LEFT
 
 			break;
 		case 6: // LEFT
-			untuck();
+
 			break;
 		case 7: // TOP LEFT
 
