@@ -64,13 +64,13 @@ void untuck() {
 	servoChangeRate[ wrist ] = 2;
 
 	// Tuck position 0
-	servo[elbow] = 245;
+	servo[elbow] = 225;
 	servo[wrist] = 120;
 	wait1Msec( 100 );
 	debugStep();
 
 	// Center wrist servo between harvester and bar, slightly tilt cup 1
-	servo[elbow] = 240;
+	servo[elbow] = 225;
 	servo[wrist] = 107;
 	wait1Msec( 100 );
 	debugStep();
@@ -81,7 +81,7 @@ void untuck() {
 	debugStep();
 
 	// Up and wrsit servo back 3
-	servo[elbow] = 245;
+	servo[elbow] = 225;
 	servo[wrist] = 107;
 	moveLift( 5.4);
 	motor[lift] = 0;
@@ -89,7 +89,7 @@ void untuck() {
 
 
 	// up, servo back to keep from hitting harvester
-	servo[elbow] = 255;
+	servo[elbow] = 225;
 	servo[wrist] = 84;
 	moveLift( 7.22 );
 	motor[lift] = 0;
@@ -122,7 +122,7 @@ void tuck() {
 	motor[lift] = 0;
 	debugStep();
 
-	servo[elbow] = 235;
+	servo[elbow] = 225;
 	servo[wrist] = 120;
 	moveLift( 0.5 );  // move to close to home.
 	motor[lift] = -5;	// power lightly down
@@ -137,7 +137,7 @@ void tuck() {
 	debugStep();
 
 	// tilt cup back and wedge it back
-	servo[elbow] = 245;
+	servo[elbow] = 225;
 	servo[wrist] = 80;
 	wait1Msec( 200 );
 	debugStep();
