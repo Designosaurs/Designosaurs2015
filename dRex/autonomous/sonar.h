@@ -11,7 +11,7 @@ void goToRange(int range, int power) {
 
 // How far in degrees to scan, left and right, when searching (double for total range)
 const float SCAN_RANGE = 25.0;
-const int SCAN_DELAY = 5;
+const int SCAN_DELAY = 10;
 const int SCAN_SPEED = 10; // Any faster and it misses because lag for sensor is too high.
 
 bool pointToGoal() {
