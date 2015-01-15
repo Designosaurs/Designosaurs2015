@@ -86,7 +86,7 @@ bool pointToGoal() {
 
 
 // Routine to place in 2' goal.
-// Robot nominally starts at 12-13" from ultrasonic sensor to tube.
+// Robot nominally starts at 8-10" from ultrasonic sensor to tube. Works as close as 6".
 // Ultrasonic sensor pointed straight at the tube.
 // It can hande wide varation, but typically start there.
 
