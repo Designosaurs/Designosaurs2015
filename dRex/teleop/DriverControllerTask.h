@@ -1,3 +1,5 @@
+bool is_reversed = false;
+
 task DriverControllerTask {
 	int y1, y2;
 	int pwrLeft, pwrRight;
@@ -18,7 +20,9 @@ task DriverControllerTask {
 				y1 += DEADBAND;
 			}
 			pwrLeft = y1 * 0.86 * drivePower * 0.01; //Negative value for Y1 means joystick forward.
-			motor[left_drive] = pwrLeft;
+			if(is_reversed) {
+				motor[right_drive] = -pwrLeft;
+			} else motor[left_drive] = pwrLeft;
 			} else {
 			motor[left_drive] = 0;
 		}
@@ -30,7 +34,9 @@ task DriverControllerTask {
 				y2 += DEADBAND;
 			}
 			pwrRight = y2 * 0.86 * drivePower * 0.01;
-			motor[right_drive] = pwrRight;
+			if(is_reversed) {
+				motor[left_drive] = -pwrRight;
+			} else motor[right_drive] = pwrRight;
 			} else {
 			motor[right_drive] = 0;
 		}
@@ -59,6 +65,10 @@ task DriverControllerTask {
 		if(joy1Btn(10)) {
 			placeBall();
 		}
+
+		if(joy1Btn(04)) is_reversed = false;
+
+		if(joy1Btn(02)) is_reversed = true;
 
 		switch(joystick.joy1_TopHat) {
 		case 0: // TOP
