@@ -23,7 +23,7 @@ void placeBall() {
 	servo[placer] = 87;
 }
 
-const int ELBOW_TUCK_POS = 245;
+const int ELBOW_TUCK_POS = 225;
 void initElbow() {
 	servo[elbow] = ELBOW_TUCK_POS;
 	elbowPos = (float) ELBOW_TUCK_POS;
