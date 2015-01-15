@@ -23,8 +23,10 @@ task DriverControllerTask {
 			if(is_reversed) {
 				motor[right_drive] = -pwrLeft;
 			} else motor[left_drive] = pwrLeft;
-			} else {
-			motor[left_drive] = 0;
+		} else {
+			if(is_reversed) {
+				motor[right_drive] = 0;
+			} else motor[left_drive] = 0;
 		}
 
 		if(abs(y2) > DEADBAND) {
@@ -37,8 +39,10 @@ task DriverControllerTask {
 			if(is_reversed) {
 				motor[left_drive] = -pwrRight;
 			} else motor[right_drive] = pwrRight;
-			} else {
-			motor[right_drive] = 0;
+		} else {
+			if(is_reversed) {
+				motor[left_drive] = 0;
+			} else motor[right_drive] = 0;
 		}
 
 		if(joy1Btn(06)) {
