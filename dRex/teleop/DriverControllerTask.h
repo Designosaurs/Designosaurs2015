@@ -77,8 +77,13 @@ task DriverControllerTask {
 		switch(joystick.joy1_TopHat) {
 		case 0: // TOP
 			// Pivot nudge forward.
-			motor[left_drive] = 25;
-			motor[right_drive] = 25;
+			if(!is_reversed) {
+				motor[left_drive] = 25;
+				motor[right_drive] = 25;
+			} else {
+				motor[left_drive] = -25;
+				motor[right_drive] = -25;
+			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
@@ -88,8 +93,13 @@ task DriverControllerTask {
 		break;
 		case 2: // RIGHT
 			// Pivot nudge to right.
-			motor[left_drive] = 25;
-			motor[right_drive] = -25;
+			if(!is_reversed) {
+				motor[left_drive] = 25;
+				motor[right_drive] = -25;
+			} else {
+				motor[left_drive] = -25;
+				motor[right_drive] = 25;
+			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
@@ -99,8 +109,13 @@ task DriverControllerTask {
 		break;
 		case 4: // BOTTOM
 			// Pivot nudge backward.
-			motor[left_drive] = -25;
-			motor[right_drive] = -25;
+			if(!is_reversed) {
+				motor[left_drive] = -25;
+				motor[right_drive] = -25;
+			} else {
+				motor[left_drive] = 25;
+				motor[right_drive] = 25;
+			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
@@ -110,8 +125,13 @@ task DriverControllerTask {
 		break;
 		case 6: // LEFT
 			// Pivot nudge to left.
-			motor[left_drive] = -25;
-			motor[right_drive] = 25;
+			if(!is_reversed) {
+				motor[left_drive] = -25;
+				motor[right_drive] = 25;
+			} else {
+				motor[left_drive] = 25;
+				motor[right_drive] = -25;
+			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
