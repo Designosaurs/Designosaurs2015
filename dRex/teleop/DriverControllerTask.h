@@ -79,7 +79,7 @@ task DriverControllerTask {
 			// Pivot nudge forward.
 			motor[left_drive] = 25;
 			motor[right_drive] = 25;
-			wait1Msec(100);
+			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
 		break;
@@ -90,7 +90,7 @@ task DriverControllerTask {
 			// Pivot nudge to right.
 			motor[left_drive] = 25;
 			motor[right_drive] = -25;
-			wait1Msec(100);
+			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
 		break;
@@ -101,7 +101,7 @@ task DriverControllerTask {
 			// Pivot nudge backward.
 			motor[left_drive] = -25;
 			motor[right_drive] = -25;
-			wait1Msec(100);
+			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
 		break;
@@ -112,7 +112,7 @@ task DriverControllerTask {
 			// Pivot nudge to left.
 			motor[left_drive] = -25;
 			motor[right_drive] = 25;
-			wait1Msec(100);
+			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
 		break;
