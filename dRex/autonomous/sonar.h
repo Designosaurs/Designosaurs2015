@@ -61,8 +61,9 @@ bool pointToGoal() {
 				writeDebugStreamLine("Repeated Low");
 			}
 			// If we have had a new low, look for coming off the low.
+			// add one for noise rejection.
 			// If we do, stop the scan;
-			if (have_low && (returned_range > low_so_far)) {
+			if (have_low && (returned_range > low_so_far + 1)) {
 				stop_scan = true;
 			}
 			// Look for stop the scan due to end of scan range:
@@ -90,7 +91,7 @@ bool pointToGoal() {
 // Ultrasonic sensor pointed straight at the tube.
 // It can hande wide varation, but typically start there.
 
-const float GOAL_PLACE_DIST = 20;  // cm fron goal, indicated by ultrsonic sensor, at place
+const float GOAL_PLACE_DIST = 23;  // cm fron goal, indicated by ultrsonic sensor, at place
 
 bool GoalPlacer() {
 	int returned_range = 255;
