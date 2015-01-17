@@ -2,9 +2,9 @@ void GoalFromRamp(){
     float angle_before_goal = 0;
 
     // Starting from top of ramp, go place the ball in the goal.
-    goForwardDistance(4.3, 40);
+    goForwardDistance(4.6, 40);
     DetectObstacles = 20;
-    if(goForwardDistance(2, 50)) IfBlocked();
+    if(goForwardDistance(2.1, 50)) IfBlocked();
     DetectObstacles = 0;
     stop();
     //stopAndWait();
@@ -24,7 +24,7 @@ void GoalFromRamp(){
     goBackwardDistance(1.8, 70);
     // If we don't still have the tube, we are done.
     BackwardsArcToAngle(50, 0.3, -5); // 5 degrees aims us at wall.
-    goBackwardDistance(4, 70);
+    goBackwardDistance(4.2, 70);
     pivotToTotalAngle(-100, 50); // Place in parking zone.
     ResetTrip();
     //goForwardDistance(0.5, 40);

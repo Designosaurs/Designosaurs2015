@@ -112,7 +112,7 @@ bool GoalPlacer() {
 	jogForwardCm(jog_dist, 10);
 
 	// Ths compensates for the fact that the placer is not centered.
-	pivotDegrees(12, 20);
+	pivotDegrees(15, 20);
 	placeBall();
 	//stopAndWait();
 
