@@ -59,29 +59,24 @@ void moveLift( float to_height ){
 
 void untuck() {
 	waitForHarvester();
-	//harvesterTo(20);
 	servoChangeRate[ elbow ] = 2;
 	servoChangeRate[ wrist ] = 2;
 
-	// Tuck position 0
-	servo[elbow] = 225;
-	servo[wrist] = 120;
+	// Cup centered between harvester
+	servo[elbow] = 217;
+	servo[wrist] = 120;  // cup level
 	wait1Msec( 100 );
 	debugStep();
 
-	// Center wrist servo between harvester and bar, slightly tilt cup 1
-	servo[elbow] = 225;
+	// Tilt cup slightly up.
+	servo[elbow] = 217;
 	servo[wrist] = 107;
 	wait1Msec( 100 );
 	debugStep();
 
-	// Raise just alittle
-	moveLift( 3.3 );
-	motor[lift] = 0;
-	debugStep();
 
-	// Up and wrsit servo back 3
-	servo[elbow] = 225;
+	// Raise a bit.  Elbow slightly back to compensate
+	servo[elbow] = 235;
 	servo[wrist] = 107;
 	moveLift( 5.4);
 	motor[lift] = 0;
@@ -89,9 +84,9 @@ void untuck() {
 
 
 	// up, servo back to keep from hitting harvester
-	servo[elbow] = 225;
-	servo[wrist] = 84;
-	moveLift( 7.22 );
+	servo[elbow] = 247;
+	servo[wrist] = 100;
+	moveLift( 8.8 );
 	motor[lift] = 0;
 	debugStep();
 
@@ -109,21 +104,36 @@ void tuck() {
 	//harvesterTo(-20);
 	servoChangeRate[ elbow ] = 1;
 	servoChangeRate[ wrist ] = 1;
-	// start from 4
-	servo[elbow] = 255;
+
+	// This is to just inside the tines of the harvester
+		servo[elbow] = 245;
+	servo[wrist] = 120;
+	moveLift( 9.55 );
+	motor[lift] = 0;
+	debugStep();
+	//PlaySound(soundDownwardTones);
+
+
+	// Into the harvester
+	servo[elbow] = 250;
 	servo[wrist] = 120;
 	moveLift( 5.55 );
 	motor[lift] = 0;
 	debugStep();
+	//PlaySound(soundFastUpwardTones);
 
-	servo[elbow] = 243;
+	// into the pocket, elbow slightly forward
+	servo[elbow] = 220;
 	servo[wrist] = 120;
 	moveLift( 3.3 );
 	motor[lift] = 0;
 	debugStep();
 
-	servo[elbow] = 225;
-	servo[wrist] = 120;
+	// Cup centered between harvester, lcok it down.
+	servo[elbow] = 217;
+	servo[wrist] = 120;  // cup level
+	wait1Msec( 100 );
+	debugStep();
 	moveLift( 0.5 );  // move to close to home.
 	motor[lift] = -5;	// power lightly down
 	wait1Msec( 400 ); // for a little time.
@@ -131,14 +141,15 @@ void tuck() {
 		PlaySound(soundBlip );
 		wait1Msec( 10 );
 
-}
+	}
 	motor[lift] = 0;	// now motor off.
 	nMotorEncoder[lift] = 0; // This is our new zero
 	debugStep();
 
-	// tilt cup back and wedge it back
-	servo[elbow] = 225;
-	servo[wrist] = 80;
+	// Now move the cup back slightly.
+	servo[elbow] = 233;
+	servo[wrist] = 120;
+	updateServoPos( );
 	wait1Msec( 200 );
 	debugStep();
 
@@ -146,12 +157,7 @@ void tuck() {
 	servo[wrist] = 120;
 	updateServoPos( );
 	debugStep();
-
 }
-
-//void liftUntuck() {
-
-//}
 
 void liftToFloor() {
 	servoChangeRate[ elbow ] = 10;
@@ -163,6 +169,7 @@ void liftToFloor() {
 	debugStep();
 
 	tuck();
+	LiftPos = 0;
 }
 
 void liftToHighGoal() {
@@ -186,6 +193,7 @@ void liftToHighGoal() {
 
 	updateServoPos( );
 	debugStep();
+	LiftPos = 1;
 }
 
 void liftToCenterGoal() {
@@ -204,6 +212,7 @@ void liftToCenterGoal() {
 	servo[wrist] = 204;
 	updateServoPos( );
 	debugStep();
+	LiftPos = 2;
 }
 
 void liftPlace() {
