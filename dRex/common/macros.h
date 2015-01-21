@@ -173,7 +173,7 @@ void liftToFloor() {
 }
 
 void liftToHighGoal() {
-	untuck();
+	if (LiftPos == 0) untuck();
 	moveLift( 16.3);
 	debugStep();
 
@@ -197,7 +197,14 @@ void liftToHighGoal() {
 }
 
 void liftToCenterGoal() {
-	untuck();
+	if (LiftPos == 0) untuck();
+	else {
+		servo[elbow] = 120;
+	servo[wrist] = 204;
+	updateServoPos( );
+
+}
+
 	moveLift( 26.55 );
 	debugStep();
 
