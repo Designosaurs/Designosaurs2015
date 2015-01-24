@@ -11,7 +11,7 @@ task GunnerControllerTask {
 		if(abs(y1) > GUNNER_DEADBAND) {
 			if (y1 > 0)	y1 -= GUNNER_DEADBAND;
 			else y1 += GUNNER_DEADBAND;
-			pwrLift = y1 * 0.5; // Set max speed here.
+			pwrLift = y1 * 0.1; // Set max speed here.
 			motor[lift] = pwrLift;
 			} else {
 			motor[lift] = 0;
