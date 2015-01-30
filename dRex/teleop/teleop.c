@@ -41,7 +41,7 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 #include "DriverControllerTask.h"
 #include "GunnerControllerTask.h"
 #include "..\common\UpdateDisplayTask.h"
-#include "HarvesterTask.h"
+#include "../HarvesterTask.h"
 
 task main() {
 	initDisplay();
