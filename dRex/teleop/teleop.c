@@ -3,7 +3,7 @@
 #pragma config(Sensor, S2,     ultrasonic,     sensorSONAR)
 #pragma config(Sensor, S3,     Gyro,           sensorI2CHiTechnicGyro)
 #pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker1200)
-#pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
+#pragma config(Motor,  motorA,          ksm,           tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  mtr_S1_C1_1,     right_drive,   tmotorTetrix, PIDControl, reversed)
@@ -50,7 +50,6 @@ task main() {
 	initElbow();
 	initWrist();
 	initDriveConfig();
-
 	waitForStart();
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);

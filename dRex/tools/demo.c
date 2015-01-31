@@ -31,6 +31,7 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
+#include "t_globals.h"
 #include "..\common\bot_specific.h"
 #include "..\common\init.h"
 #include "..\common\functions.h"
@@ -38,7 +39,7 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 #include "..\common\macros.h"
 #include "..\common\UpdateLiftEncoderTask.h"
 #include "..\common\UpdateDisplayTask.h"
-#include ../"HarvesterTask.h"
+#include "..\common\HarvesterTask.h"
 #include "drive.h"
 
 task main() {
@@ -50,15 +51,17 @@ task main() {
     initDriveConfig();
 
     eraseDisplay();
+    StartTask(UpdateLiftEncoderTask);
+    StartTask(HarvesterTask);
     run_harvester = true;
     wait1Msec(5000);
     run_harvester = false;
     liftToHighGoal();
-    pivotToTotalAngle(180);
+    pivotToTotalAngle(180, 70);
     liftToCenterGoal();
     wait1Msec(2000);
     liftPlace();
     wait1Msec(2000);
     liftToFloor();
-    pivotToTotalAngle(0);
+    pivotToTotalAngle(0, 70);
 }

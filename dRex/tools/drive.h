@@ -14,7 +14,7 @@ void StopAndDone() {
 }
 
 void goForwardTime(float seconds, int power) {
-    motor[left_drive] = power;
+    motor[left_drive ] = power;
     motor[right_drive] = power;
     wait1Msec(seconds * 1000);
 }
