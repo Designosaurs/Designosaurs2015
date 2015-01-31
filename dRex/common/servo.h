@@ -10,7 +10,7 @@ void updateServoPos( ) {
 
 // Larger value = further down
 void goalGrabberDown() {
-	servo[goal_grab] = 68;
+	servo[goal_grab] = 58;
 }
 
 void raiseBall() {
