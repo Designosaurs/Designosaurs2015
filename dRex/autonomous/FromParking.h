@@ -2,12 +2,7 @@
  * Drive in an increasing spiral to the right.  (Not a pivot, but really tight.)
  */
 void KickstandGetter() {
-	int i;
-	for(i = 0; i < 11; i++) {
-	motor[left_drive] = 100;
-		motor[right_drive] = -20 + 4 * i;
-		wait1Msec(1000);
-	}
+	goForwardDistance(2, 100);
 }
 
 /*
