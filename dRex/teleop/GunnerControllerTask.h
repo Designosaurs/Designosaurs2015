@@ -6,6 +6,7 @@ task GunnerControllerTask {
 		y2 = joystick.joy2_y2;
 		x1 = joystick.joy2_x1;
 		x2 = joystick.joy2_x2;
+        motor[motorA] = 0;
 
 		// Left joystick Y controls lift.
 		if(abs(y1) > GUNNER_DEADBAND) {
@@ -61,6 +62,14 @@ task GunnerControllerTask {
 		if(joy2Btn(02)) {
 			liftToFloor();
 		}
+
+        if(joy2Btn(07)) {
+            motor[motorA] = 75;
+        }
+
+        if(joy2Btn(05)) {
+            motor[motorA] = -75;
+        }
 
 		// Left (blue) button
 		if(joy2Btn(01)) {
