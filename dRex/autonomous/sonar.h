@@ -21,6 +21,7 @@ bool pointToGoal() {
 	float best_aim_angle = total_angle;
 	float angle_at_low_start = total_angle;
 	float angle_at_low_end = total_angle;
+	float angle_before_low_start = total_angle;
 	float start_angle = total_angle - SCAN_RANGE;
 	float stop_angle = total_angle + SCAN_RANGE;
 	int returned_range = 255;
@@ -34,6 +35,8 @@ bool pointToGoal() {
 
 	// Make the scan
 	returned_range = (int) SensorValue[ultrasonic];
+	low_so_far = returned_range;
+	angle_before_low_start =  total_angle;
 	while(!stop_scan) {
 		motor[right_drive] = -SCAN_SPEED;
 		motor[left_drive] = SCAN_SPEED;
@@ -42,17 +45,27 @@ bool pointToGoal() {
 		Points++;
 		writeDebugStreamLine(" -------------------------");
 		writeDebugStream("Points: %d ", Points );
-		writeDebugStream("Angle: %3.2f",(float) total_angle);
+		writeDebugStream("Angle: %3.2f ",(float) total_angle);
 		writeDebugStreamLine("Range: %d", SensorValue[ultrasonic]);
 		if (returned_range < 50) {
-			// Look for a new low:
+			// Look for a new low.  When we find one, update the angle before low.
+			if (returned_range < 16 ){
+				writeDebugStreamLine("Something is too close.");
+				PlaySound(soundDownwardTones);
+				stopAndWait();
+				stop_scan = true;
+			}
+
+
 			if (returned_range < low_so_far ) {
 				low_so_far = returned_range;
+				angle_before_low_start = total_angle;
 				start_of_low = total_angle;
 				have_low = true;
 				angle_at_low_start = total_angle;
 				writeDebugStreamLine("New Low");
 			}
+
 			// Record each repeated low, for one will be the last one:
 			if (have_low && (returned_range == low_so_far)) {
 				end_of_low = total_angle;
@@ -66,8 +79,13 @@ bool pointToGoal() {
 			if (have_low && (returned_range > low_so_far + 1)) {
 				stop_scan = true;
 			}
-			// Look for stop the scan due to end of scan range:
-			if(total_angle > stop_angle) stop_scan = true;
+			// If it never finds goal, stop.
+			if(total_angle > stop_angle) {
+				writeDebugStreamLine("Could not find goal.  Stopping.");
+				PlaySound(soundDownwardTones);
+				stopAndWait();
+				stop_scan = true;
+			}
 		}
 	}
 	stop();
