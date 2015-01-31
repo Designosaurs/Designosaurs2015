@@ -132,7 +132,7 @@ bool GoalPlacer() {
 
 
 	// Ths compensates for the fact that the placer is not centered.
-	pivotDegrees(13, 20);
+	pivotDegrees(7, 25);
 	placeBall();
 	//stopAndWait();
 
