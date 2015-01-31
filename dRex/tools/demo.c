@@ -38,7 +38,7 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 #include "..\common\servo.h"
 #include "..\common\macros.h"
 #include "..\common\UpdateLiftEncoderTask.h"
-#include "..\common\UpdateDisplayTask.h"
+#include "..\common\UpdateDriveBearings.h"
 #include "..\common\HarvesterTask.h"
 #include "drive.h"
 
@@ -53,11 +53,16 @@ task main() {
     eraseDisplay();
     StartTask(UpdateLiftEncoderTask);
     StartTask(HarvesterTask);
+    StartTask(UpdateDriveBearingsTask);
     run_harvester = true;
     wait1Msec(5000);
     run_harvester = false;
+    wait1Msec(2000);
     liftToHighGoal();
+    wait1Msec(1000);
     pivotToTotalAngle(180, 70);
+    stop();
+    wait1Msec(2000);
     liftToCenterGoal();
     wait1Msec(2000);
     liftPlace();
