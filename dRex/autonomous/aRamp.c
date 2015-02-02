@@ -47,9 +47,6 @@ Autonomous Code: 2014-2015 (Cascade Effect)
 #include "IfBlocked.h"
 #include "FromRamp.h"
 
-// If this is true, will stop if blocked:
-bool KickstandIfBlocked = true;
-
 task main() {
     initDisplay();
     goalGrabberUp();

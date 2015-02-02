@@ -1,3 +1,14 @@
+// We check for goal a few times.
+// We only stop if we cannot find it any time.
+bool haveGoal = false;
+void checkForGoal(){
+	if (SensorValue[ultrasonic] < 30) {
+		haveGoal = true;
+		PlaySound(soundUpwardTones);
+		}
+}
+
+
 void GoalFromRamp(){
     float angle_before_goal = 0;
 
@@ -25,9 +36,12 @@ void GoalFromRamp(){
 
     // GO PARK THE TUBE
     BackwardsArcToAngle(50, 0.3, 50);
-    goBackwardDistance(1.8, 70);
-    // If we don't still have the tube, we are done.
+ 		checkForGoal();
+   	goBackwardDistance(1.8, 70);
+   	checkForGoal();
     BackwardsArcToAngle(50, 0.3, -5); // 5 degrees aims us at wall.
+   	checkForGoal();
+   	if (haveGoal == false) stopAndWait();
     goBackwardDistance(4.2, 70);
     pivotToTotalAngle(-100, 50); // Place in parking zone.
     ResetTrip();
