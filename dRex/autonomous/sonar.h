@@ -109,7 +109,7 @@ bool pointToGoal() {
 // Ultrasonic sensor pointed straight at the tube.
 // It can hande wide varation, but typically start there.
 
-const float GOAL_PLACE_DIST = 19;  // cm from goal, indicated by ultrsonic sensor, at place
+const float GOAL_PLACE_DIST = 22;  // cm from goal, indicated by ultrsonic sensor, at place
 
 bool GoalPlacer() {
 	int returned_range = 255;
