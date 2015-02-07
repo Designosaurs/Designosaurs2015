@@ -1,7 +1,7 @@
 #pragma config(Hubs,  S1, HTMotor,  HTServo,  HTMotor,  none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     ultrasonic,     sensorSONAR)
-#pragma config(Sensor, S3,     Gyro,           sensorI2CHiTechnicGyro)
+#pragma config(Sensor, S3,     HTIRS2,              sensorI2CCustom)
 #pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker1200)
 #pragma config(Motor,  motorA,           motorA,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
@@ -36,11 +36,14 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 #include "..\common\init.h"
 #include "..\common\functions.h"
 #include "..\common\servo.h"
+#include "..\sensor\drivers\hitechnic-irseeker-v2.h"
+#include "..\sensor\GetIR.h"
 #include "..\common\macros.h"
 #include "..\common\UpdateLiftEncoderTask.h"
 #include "..\common\UpdateDriveBearings.h"
 #include "..\common\HarvesterTask.h"
 #include "drive.h"
+#include "sonar.h"
 
 task main() {
     initDisplay();
@@ -56,16 +59,18 @@ task main() {
     StartTask(UpdateDriveBearingsTask);
 
     goForwardDistance(2.0, 80);
-    goToRange(40, 40);
-    if(!PointToIR()) stopAndWait();
+    goToRange(43, 40);
+    float angle_before_ir = total_angle;
+    PointToIR();
     liftToCenterGoal();
-    wait1Msec(1000);
+    wait1Msec(500);
     liftPlace();
-    wait1Msec(1000);
+    wait1Msec(500);
     liftToFloor();
-    wait1Msec();
-    pivotToTotalAngle(90, 70);
-    goForwardDistance(1.5, 80);
-    pivotToTotalAngle(0, 70);
+    pivotToTotalAngle(angle_before_ir, 70);
+    wait1Msec(500);
+    pivotDegrees(90, 70);
+    goForwardDistance(1, 80);
+    pivotDegrees(-90, 70);
     goForwardDistance(3.0, 80);
 }

@@ -109,7 +109,7 @@ bool pointToGoal() {
 // Ultrasonic sensor pointed straight at the tube.
 // It can hande wide varation, but typically start there.
 
-const float GOAL_PLACE_DIST = 22;  // cm from goal, indicated by ultrsonic sensor, at place
+const float GOAL_PLACE_DIST = 20;  // cm from goal, indicated by ultrsonic sensor, at place
 
 bool GoalPlacer() {
 	int returned_range = 255;
@@ -132,7 +132,7 @@ bool GoalPlacer() {
 
 
 	// Ths compensates for the fact that the placer is not centered.
-	pivotDegrees(7, 25);
+	pivotDegrees(4, 25);
 	placeBall();
 	//stopAndWait();
 
