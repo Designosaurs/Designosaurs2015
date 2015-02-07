@@ -215,7 +215,7 @@ void liftToCenterGoal() {
 	//wait1Msec( 300 );
 	//debugStep();
 
-	servo[elbow] = 120;
+	servo[elbow] = 110;
 	servo[wrist] = 204;
 	updateServoPos( );
 	debugStep();
