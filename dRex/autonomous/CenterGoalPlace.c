@@ -38,12 +38,52 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 #include "..\common\servo.h"
 #include "..\sensor\drivers\hitechnic-irseeker-v2.h"
 #include "..\sensor\GetIR.h"
+#include "..\sensor\ultrasonic.h"
 #include "..\common\macros.h"
 #include "..\common\UpdateLiftEncoderTask.h"
+#include "..\common\UpdateDisplayTask.h"
 #include "..\common\UpdateDriveBearings.h"
 #include "..\common\HarvesterTask.h"
 #include "drive.h"
 #include "sonar.h"
+
+int getGoalState() {
+    int range = getClosestRange();
+    writeDebugStreamLine("%d", range);
+    if(range < 65) {
+        // |
+        return 1;
+    } else if(range < 100) {
+        // -
+        return 2;
+    } else {
+        // /
+        return 3;
+    }
+}
+
+void knockKickstand() {
+    wait1Msec(500);
+    pivotDegrees(45, 40);
+    goForwardDistance(1.5, 60);
+    pivotDegrees(-55, 40);
+    goForwardDistance(3.0, 100);
+}
+
+void placeInCenter() {
+    goToRange(46, 40);
+    angle_before_ir = total_angle;
+    // stopAndWait();
+    PointToIR();
+    liftToCenterGoal();
+    wait1Msec(1000);
+    liftPlace();
+    wait1Msec(1000);
+    // stopAndWait();
+    liftToFloor();
+    pivotToTotalAngle(angle_before_ir, 40);
+    // stopAndWait();
+}
 
 task main() {
     initDisplay();
@@ -57,20 +97,31 @@ task main() {
     StartTask(UpdateLiftEncoderTask);
     StartTask(HarvesterTask);
     StartTask(UpdateDriveBearingsTask);
+    StartTask(UpdateDisplayTask);
 
-    goForwardDistance(2.0, 80);
-    goToRange(43, 40);
-    float angle_before_ir = total_angle;
-    PointToIR();
-    liftToCenterGoal();
-    wait1Msec(500);
-    liftPlace();
-    wait1Msec(500);
-    liftToFloor();
-    pivotToTotalAngle(angle_before_ir, 70);
-    wait1Msec(500);
-    pivotDegrees(90, 70);
-    goForwardDistance(1, 80);
-    pivotDegrees(-90, 70);
-    goForwardDistance(3.0, 80);
+    goForwardDistance(2, 30);
+    switch(getGoalState()) {
+        case 1:
+            placeInCenter();
+            break;
+        case 2:
+						PlaySound(soundBeepBeep);
+						pivotDegrees(-60, 40);
+						goForwardDistance(4, 40);
+						pivotToTotalAngle(0, 40);
+						goForwardDistance(0.5, 40);
+						pivotToTotalAngle(95, 40);
+						PointToIR();
+						placeInCenter();
+        break;
+        case 3:
+						PlaySound(soundException);
+						pivotDegrees(-70, 40);
+						goForwardDistance(2.3, 40);
+						pivotToTotalAngle(45, 40);
+						PointToIR();
+						placeInCenter();
+        break;
+    }
+    knockKickstand();
 }

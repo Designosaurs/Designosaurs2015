@@ -19,3 +19,4 @@ float trip_distance_feet = 0;
 bool run_harvester = false;
 int LiftPos = 0;
 bool harv_back_jog = false;
+float angle_before_ir = 0;
