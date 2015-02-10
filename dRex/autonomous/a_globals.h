@@ -1,10 +1,10 @@
 float elbowPos;
 float wristPos;
 float lift_inches;
-int left_encoder = 0;
-int right_encoder = 0;
-int prev_left_encoder = 0;
-int prev_right_encoder = 0;
+long left_encoder = 0;
+long right_encoder = 0;
+long prev_left_encoder = 0;
+long prev_right_encoder = 0;
 int DetectObstacles = 0;
 bool liftStopped;
 

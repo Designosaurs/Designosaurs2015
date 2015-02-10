@@ -72,6 +72,6 @@ bool PointToIR( void ) {
 		}
 		if (numTrys++ > 100) return false;
 
-		wait1Msec( 50 );
+		wait10Msec( 10 );
 	}
 }
