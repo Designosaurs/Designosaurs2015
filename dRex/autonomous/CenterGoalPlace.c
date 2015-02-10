@@ -25,8 +25,8 @@ _____             _
 | |  | |/ _ \/ __| |/ _` | '_ \ / _ \/ __|/ _` | | | | '__/ __|
 | |__| |  __/\__ \ | (_| | | | | (_) \__ \ (_| | |_| | |  \__ \
 |_____/ \___||___/_|\__, |_| |_|\___/|___/\__,_|\__,_|_|  |___/
-					 __/ |
-					|___/                            Team #6369
+__/ |
+|___/                            Team #6369
 Judge Demo Program: 2014-2015 (Cascade Effect)
 */
 
@@ -47,81 +47,95 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 #include "drive.h"
 #include "sonar.h"
 
+
+// Usage: start from the center of the parking zone.
+// Go for a fixed distance.  Then  you know if the range is:
+// Low - the skinnny end is pointed toward you.
+// Mid - the flat end is pointed toward you.
+// Hi (no reading => 255) the goal is at 45.
 int getGoalState() {
-    int range = getClosestRange();
-    writeDebugStreamLine("%d", range);
-    if(range < 65) {
-        // |
-        return 1;
-    } else if(range < 100) {
-        // -
-        return 2;
-    } else {
-        // /
-        return 3;
-    }
+	int range = getClosestRange();
+	writeDebugStreamLine("%d", range);
+	if(range < 65) {
+		// |
+		return 1;
+		} else if(range < 100) {
+		// -
+		return 2;
+		} else {
+		// /
+		return 3;
+	}
 }
 
 void knockKickstand() {
-    wait1Msec(500);
-    pivotDegrees(45, 40);
-    goForwardDistance(1.5, 60);
-    pivotDegrees(-55, 40);
-    goForwardDistance(3.0, 100);
+	wait1Msec(500);
+	pivotDegrees(45, 40);
+	goForwardDistance(1.5, 60);
+	pivotDegrees(-55, 40);
+	goForwardDistance(2.0, 100);
+	goForwardDistance(1.0, 50);
 }
 
 void placeInCenter() {
-    goToRange(46, 40);
-    angle_before_ir = total_angle;
-    // stopAndWait();
-    PointToIR();
-    liftToCenterGoal();
-    wait1Msec(1000);
-    liftPlace();
-    wait1Msec(1000);
-    // stopAndWait();
-    liftToFloor();
-    pivotToTotalAngle(angle_before_ir, 40);
-    // stopAndWait();
+	goToRange(46, 40);
+	angle_before_ir = total_angle;
+	// stopAndWait();
+	if (PointToIR() == false) stopAndWait();
+	liftToCenterGoal();
+	wait1Msec(500);
+	liftPlace();
+	wait1Msec(500);
+	// stopAndWait();
+	liftToFloor();
+	pivotToTotalAngle(angle_before_ir, 40);
+	// stopAndWait();
 }
 
 task main() {
-    initDisplay();
-    goalGrabberUp();
-    initPlacer();
-    initElbow();
-    initWrist();
-    initDriveConfig();
+	initDisplay();
+	goalGrabberUp();
+	initPlacer();
+	initDriveConfig();
 
-    eraseDisplay();
-    StartTask(UpdateLiftEncoderTask);
-    StartTask(HarvesterTask);
-    StartTask(UpdateDriveBearingsTask);
-    StartTask(UpdateDisplayTask);
+	// 	Initial position for cup is tilted a little up, so we do not lose
+	// The small balls.
+	servo[wrist] = 100;
+	wristPos = (float) 100;
+	servo[elbow] = 240;
+	elbowPos = 240;
 
-    goForwardDistance(2, 30);
-    switch(getGoalState()) {
-        case 1:
-            placeInCenter();
-            break;
-        case 2:
-						PlaySound(soundBeepBeep);
-						pivotDegrees(-60, 40);
-						goForwardDistance(4, 40);
-						pivotToTotalAngle(0, 40);
-						goForwardDistance(0.5, 40);
-						pivotToTotalAngle(95, 40);
-						PointToIR();
-						placeInCenter();
-        break;
-        case 3:
-						PlaySound(soundException);
-						pivotDegrees(-70, 40);
-						goForwardDistance(2.3, 40);
-						pivotToTotalAngle(45, 40);
-						PointToIR();
-						placeInCenter();
-        break;
-    }
-    knockKickstand();
+	wait1Msec( 1000 );
+	//waitForStart();
+	eraseDisplay();
+	StartTask(UpdateLiftEncoderTask);
+	StartTask(HarvesterTask);
+	StartTask(UpdateDriveBearingsTask);
+	StartTask(UpdateDisplayTask);
+
+	goForwardDistance(2, 30);
+	switch(getGoalState()) {
+	case 1:
+		placeInCenter();
+		break;
+	case 2:
+		PlaySound(soundBeepBeep);
+		pivotDegrees(-60, 40);
+		goForwardDistance(4, 40);
+		pivotToTotalAngle(0, 40);
+		goForwardDistance(0.5, 40);
+		pivotToTotalAngle(95, 40);
+		if (PointToIR() == false) stopAndWait();
+		placeInCenter();
+		break;
+	case 3:
+		PlaySound(soundException);
+		pivotDegrees(-70, 40);
+		goForwardDistance(2.3, 40);
+		pivotToTotalAngle(45, 40);
+		if (PointToIR() == false) stopAndWait();
+		placeInCenter();
+		break;
+	}
+	knockKickstand();
 }
