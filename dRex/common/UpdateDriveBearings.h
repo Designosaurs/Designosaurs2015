@@ -39,10 +39,18 @@ task UpdateDriveBearingsTask() {
 			// Angle calculation
 			delta = (LEFT_ENC_COMP * (float) left_distance_counts - (float) right_distance_counts);
 			total_angle = (float) delta / COUNTS_PER_DEGREE;
+			//total_angle= 6;
 
 			prev_left_encoder = left_encoder;
 			prev_right_encoder = right_encoder;
+
+
+
 		}
+		else {
+			PlaySound(soundException);
+	}
+
 
 		wait1Msec(10);
 	}

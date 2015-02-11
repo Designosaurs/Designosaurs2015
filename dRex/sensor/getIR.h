@@ -1,7 +1,6 @@
 // Show each of the sensor readings.
 // IR Seeker outputs
-int dirAC = 0;
-int PeakIR = 0;
+
 int acS1, acS2, acS3, acS4, acS5 = 0;
 int Center6 = 0;  // Aim with respect to the center of direction 6.  Positive means to the right.
 
@@ -25,7 +24,6 @@ void GetIR(void) {
 	if (Center6 > 10) Center6 = 10;
 	if (Center6 < -10) Center6 = -10;
 
-	nxtDisplayTextLine(5, "IR: %d DIR: %d ", PeakIR, dirAC);
 
 }
 

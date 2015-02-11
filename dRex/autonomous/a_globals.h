@@ -16,6 +16,9 @@ long left_trip_counts = 0;
 long right_trip_counts = 0;
 float trip_distance_feet = 0;
 
+int dirAC = 0;
+int PeakIR = 0;
+
 bool run_harvester = false;
 int LiftPos = 0;
 bool harv_back_jog = false;

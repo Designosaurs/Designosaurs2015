@@ -34,6 +34,7 @@ Autonomous Code: 2014-2015 (Cascade Effect)
 #include "..\common\init.h"
 #include "..\common\functions.h"
 #include "..\common\servo.h"
+#include "..\common\macros.h"
 #include "drive.h"
 #include "sonar.h"
 #include "..\sensor\ultrasonic.h"
@@ -65,7 +66,9 @@ task main() {
  // attempt to set to DSP mode.
  // HTIRS2setDSPMode(HTIRS2, _mode);
 
-	wait1Msec(2000);
+	wait1Msec(1000);
+ 	liftToCenterGoal();
+  wait1Msec(1000);
 
 	while( true ) {
 		PointToIR();

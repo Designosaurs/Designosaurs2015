@@ -205,7 +205,7 @@ void liftToCenterGoal() {
 
 }
 
-	moveLift( 26.55 );
+	moveLift( 25 );// 2/10/205 was 26.55
 	debugStep();
 
 	servoChangeRate[ elbow ] = 5;
