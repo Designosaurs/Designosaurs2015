@@ -117,10 +117,10 @@ task main() {
 	stop();
 	//stopAndWait();
 	switch(getGoalState()) {
-	case 1:
+	case 1:  // Skinny side facing us
 		placeInCenter();
 		break;
-	case 2: //---
+	case 2: //---  Flat side facing us
 		PlaySound(soundFastUpwardTones);
 		pivotDegrees(-60, 50);
 		goForwardDistance(4, 50);
@@ -130,10 +130,10 @@ task main() {
 		if (PointToIR() == false) stopAndWait();
 		placeInCenter();
 		break;
-	case 3:
+	case 3:  /// / Angled goal
 		PlaySound(soundException);
-		pivotDegrees(-80, 50);
-		goForwardDistance(1.9, 50);
+		pivotDegrees(-85, 50);
+		goForwardDistance(2.2, 50);
 		pivotToTotalAngle(45, 50);
 		//stopAndWait();
 		if (PointToIR() == false) stopAndWait();
