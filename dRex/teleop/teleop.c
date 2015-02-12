@@ -1,8 +1,7 @@
 #pragma config(Hubs,  S1, HTMotor,  HTServo,  HTMotor,  none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     ultrasonic,     sensorSONAR)
-#pragma config(Sensor, S3,     Gyro,           sensorI2CHiTechnicGyro)
-#pragma config(Sensor, S4,     IR,             sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S3,     HTIRS2,              sensorI2CCustom)
 #pragma config(Motor,  motorA,          ksm,           tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
@@ -38,6 +37,8 @@ TeleOp Code: 2014-2015 (Cascade Effect)
 #include "..\common\servo.h"
 #include "..\common\macros.h"
 #include "..\common\UpdateLiftEncoderTask.h"
+#include "..\sensor\drivers\hitechnic-irseeker-v2.h"
+#include "..\sensor\GetIR.h"
 #include "DriverControllerTask.h"
 #include "GunnerControllerTask.h"
 #include "..\common\UpdateDisplayTask.h"

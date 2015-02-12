@@ -142,5 +142,5 @@ task main() {
 		break;
 	}
 	knockKickstand();
-	StopAndWait();
+	stopAndWait();
 }

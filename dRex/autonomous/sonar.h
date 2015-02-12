@@ -4,7 +4,7 @@ void goToRange(int range, int power) {
 	while(SensorValue[ultrasonic] > range) {
 		motor[left_drive] = power;
 		motor[right_drive] = power;
-		wait1Msec(10);
+		wait1Msec(20);
 	}
 	stop();
 }

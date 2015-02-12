@@ -1,5 +1,30 @@
 bool is_reversed = false;
 
+#define CENTER_PLACE_DIST 49
+void CenterAimAndDistance( void ) {
+	int numTries = 0;
+
+	if (PointToIR() == false)return;
+
+	// Move a little forward or backward to get to the target
+	if (SensorValue[ultrasonic] < CENTER_PLACE_DIST){
+		while( SensorValue[ultrasonic] < CENTER_PLACE_DIST ) {
+			motor[left_drive] = 25;
+			motor[right_drive] = 25;
+			if (numTries++ > 60) break;
+			wait1Msec(50);
+		}
+		} else {
+		while( SensorValue[ultrasonic] > CENTER_PLACE_DIST ) {
+			motor[left_drive] = -25;
+			motor[right_drive] = -25;
+			if (numTries++ > 60) break;
+			wait1Msec(50);
+		}
+	}
+}
+
+
 task DriverControllerTask {
 	int y1, y2;
 	int pwrLeft, pwrRight;
@@ -23,7 +48,7 @@ task DriverControllerTask {
 			if(is_reversed) {
 				motor[right_drive] = -pwrLeft;
 			} else motor[left_drive] = pwrLeft;
-		} else {
+			} else {
 			if(is_reversed) {
 				motor[right_drive] = 0;
 			} else motor[left_drive] = 0;
@@ -39,7 +64,7 @@ task DriverControllerTask {
 			if(is_reversed) {
 				motor[left_drive] = -pwrRight;
 			} else motor[right_drive] = pwrRight;
-		} else {
+			} else {
 			if(is_reversed) {
 				motor[left_drive] = 0;
 			} else motor[right_drive] = 0;
@@ -74,74 +99,82 @@ task DriverControllerTask {
 
 		if(joy1Btn(02)) is_reversed = true;
 
+		// Blue Button-- Aim at center goal and set distance.
+		if(joy1Btn(01)) CenterAimAndDistance();
+
+		// Red button-- just aim, no set distance.
+		if(joy1Btn(03))PointToIR();
+
+
+
 		switch(joystick.joy1_TopHat) {
 		case 0: // TOP
 			// Pivot nudge forward.
 			if(!is_reversed) {
 				motor[left_drive] = 25;
 				motor[right_drive] = 25;
-			} else {
+				} else {
 				motor[left_drive] = -25;
 				motor[right_drive] = -25;
 			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
-		break;
+			break;
 		case 1: // TOP RIGHT
 
-		break;
+			break;
 		case 2: // RIGHT
 			// Pivot nudge to right.
 			if(!is_reversed) {
 				motor[left_drive] = 25;
 				motor[right_drive] = -25;
-			} else {
+				} else {
 				motor[left_drive] = -25;
 				motor[right_drive] = 25;
 			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
-		break;
+			break;
 		case 3: // BOTTOM RIGHT
 
-		break;
+			break;
 		case 4: // BOTTOM
 			// Pivot nudge backward.
 			if(!is_reversed) {
 				motor[left_drive] = -25;
 				motor[right_drive] = -25;
-			} else {
+				} else {
 				motor[left_drive] = 25;
 				motor[right_drive] = 25;
 			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
-		break;
+			break;
 		case 5: // BOTTOM LEFT
 
-		break;
+			break;
 		case 6: // LEFT
 			// Pivot nudge to left.
 			if(!is_reversed) {
 				motor[left_drive] = -25;
 				motor[right_drive] = 25;
-			} else {
+				} else {
 				motor[left_drive] = 25;
 				motor[right_drive] = -25;
 			}
 			wait1Msec(200);
 			motor[left_drive] = 0;
 			motor[right_drive] = 0;
-		break;
+			break;
 		case 7: // TOP LEFT
 
-		break;
+			break;
 		default:
 
-		break;
+			break;
 		}
 		wait1Msec(50);
 	}
