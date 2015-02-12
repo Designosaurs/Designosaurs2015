@@ -44,14 +44,8 @@ task UpdateDriveBearingsTask() {
 			prev_left_encoder = left_encoder;
 			prev_right_encoder = right_encoder;
 
-
-
 		}
-		else {
-			PlaySound(soundException);
-	}
 
-
-		wait1Msec(10);
+		wait1Msec(20);
 	}
 }

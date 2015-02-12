@@ -39,11 +39,10 @@ void debugStep() {
 }
 
 
-// Note that this does not stop at the end!
 void moveLift( float to_height ){
 	if (lift_inches < to_height ) {
 		while( lift_inches < to_height ) {
-			motor[ lift ] = 30;
+			motor[ lift ] = 25;
 			if (stopMacro()) break;
 			wait1Msec( 20 );
 		}
@@ -57,6 +56,7 @@ void moveLift( float to_height ){
 	motor[lift] = 0;
 }
 
+///////////////////////////////////////////////////////////////////////////////////
 void untuck() {
 	waitForHarvester();
 	servoChangeRate[ elbow ] = 2;
@@ -98,7 +98,7 @@ void untuck() {
 	debugStep();
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////
 void tuck() {
 	waitForHarvester();
 	//harvesterTo(-20);
@@ -172,6 +172,7 @@ void liftToFloor() {
 	LiftPos = 0;
 }
 
+/////////////////////////////////////////////////////////////////////////
 void liftToHighGoal() {
 	if (LiftPos == 0) untuck();
 	moveLift( 16.3);
@@ -205,7 +206,7 @@ void liftToCenterGoal() {
 
 }
 
-	moveLift( 25 );// 2/10/205 was 26.55
+	moveLift( 26.5);
 	debugStep();
 
 	servoChangeRate[ elbow ] = 5;
@@ -215,7 +216,8 @@ void liftToCenterGoal() {
 	//wait1Msec( 300 );
 	//debugStep();
 
-	servo[elbow] = 110;
+	//  Smaller elbow number means more toward the goal
+	servo[elbow] = 105;
 	servo[wrist] = 204;
 	updateServoPos( );
 	debugStep();

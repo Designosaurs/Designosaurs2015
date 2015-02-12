@@ -23,6 +23,7 @@ void placeBall() {
 	servo[placer] = 87;
 }
 
+// Biggrt numnber => rotate to harvester side.
 const int ELBOW_TUCK_POS = 230;
 void initElbow() {
 	servo[elbow] = ELBOW_TUCK_POS;

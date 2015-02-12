@@ -56,7 +56,7 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 int getGoalState() {
 	int range = getClosestRange();
 	writeDebugStreamLine("%d", range);
-	if(range < 60) {
+	if(range < 65) {
 		// |
 		return 1;
 		} else if(range < 100) {
@@ -70,20 +70,20 @@ int getGoalState() {
 
 void knockKickstand() {
 	wait1Msec(500);
-	pivotDegrees(50, 40);
+	pivotDegrees(70, 50);
 	goForwardDistance(1.5, 60);
-	pivotDegrees(-60, 40);
-	goForwardDistance(1.5, 100);
+	pivotDegrees(-90, 50);
+	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
 }
 
 void placeInCenter() {
-	goToRange(46, 40);
+	goToRange(49, 40);
 	angle_before_ir = total_angle;
-	// stopAndWait();
 	if (PointToIR() == false) stopAndWait();
 	liftToCenterGoal();
 	wait1Msec(1000);
+	//stopAndWait();
 	liftPlace();
 	wait1Msec(500);
 	// stopAndWait();
@@ -119,24 +119,27 @@ task main() {
 	case 1:
 		placeInCenter();
 		break;
-	case 2:
+	case 2: //---
 		PlaySound(soundFastUpwardTones);
-		pivotDegrees(-60, 40);
-		goForwardDistance(4, 40);
-		pivotToTotalAngle(0, 40);
-		goForwardDistance(0.5, 40);
-		pivotToTotalAngle(95, 40);
+		pivotDegrees(-60, 50);
+		goForwardDistance(4, 50);
+		pivotToTotalAngle(0, 50);
+		goForwardDistance(0.1, 40);
+		pivotToTotalAngle(95, 50);
 		if (PointToIR() == false) stopAndWait();
 		placeInCenter();
 		break;
 	case 3:
 		PlaySound(soundException);
-		pivotDegrees(-70, 40);
-		goForwardDistance(2.3, 40);
-		pivotToTotalAngle(45, 40);
+		pivotDegrees(-80, 50);
+		goForwardDistance(1.9, 50);
+		pivotToTotalAngle(45, 50);
+		//stopAndWait();
 		if (PointToIR() == false) stopAndWait();
+		//StopAndWait();
 		placeInCenter();
 		break;
 	}
 	knockKickstand();
+	StopAndWait();
 }
