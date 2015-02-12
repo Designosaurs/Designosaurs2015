@@ -2,7 +2,7 @@ long harv_encoder = 0;
 long harv_mod_cnts;
 int harv_deg;
 int prev_harv_deg = 0;
-int harvstate = 0;
+//int harvstate = 0;
 bool harv_flag = true;
 
 void updateHarvDeg() {
@@ -47,7 +47,7 @@ task HarvesterTask{
 
 				motor[harvester] = -harv_error;
 			}
-			wait1Msec( 10 );
+			wait1Msec( 20 );
 		}
 	}
 }

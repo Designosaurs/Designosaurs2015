@@ -6,6 +6,8 @@
 * If it veers left on a straight command, this value should be slightly less than 1.00.
 */
 
+#define READS_DRIVE_ENCODERS
+
 task UpdateDriveBearingsTask() {
 	while(true) {
 		float delta = 0;

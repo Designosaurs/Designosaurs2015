@@ -1,6 +1,7 @@
 // Show each of the sensor readings.
 // IR Seeker outputs
 
+#define HAS_IR
 int acS1, acS2, acS3, acS4, acS5 = 0;
 int Center6 = 0;  // Aim with respect to the center of direction 6.  Positive means to the right.
 

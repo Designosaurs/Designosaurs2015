@@ -6,17 +6,16 @@ task UpdateDisplayTask() {
 		nxtDisplayTextLine(2, "Elbow: %d", servo[elbow]);
 		nxtDisplayTextLine(3, "Wrist: %d", servo[ wrist ]);
 		nxtDisplayTextLine(4, "Range: %d", SensorValue[ultrasonic]);
+
+
+#ifdef READS_DRIVE_ENCODERS
 		nxtDisplayTextLine(5, "Total Ft: %3.1f", total_distance_feet );
-
 		nxtDisplayTextLine(6, "Angle: %3.1f", total_angle );
+#endif
 
-		if (abs(total_angle) > 20)
-				nxtDisplayTextLine(7, "Angle: %3.1f", total_angle );
-
-
-
-		nxtDisplayTextLine(8, "IR: %d DIR: %d ", PeakIR, dirAC);
-
+#ifdef HAS_IR
+		nxtDisplayTextLine(7, "IR: %d DIR: %d ", PeakIR, dirAC);
+#endif
 
 		//		nxtDisplayTextLine(4, "Angle: %3.2f deg", total_angle);
 		//nxtDisplayTextLine(5, "Trip: %3.1f ft", trip_distance_feet);
