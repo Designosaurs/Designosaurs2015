@@ -71,8 +71,8 @@ int getGoalState() {
 void knockKickstand() {
 	wait1Msec(500);
 	pivotDegrees(70, 50);
-	goForwardDistance(1.5, 60);
-	pivotDegrees(-90, 50);
+	goForwardDistance(1.6, 60);
+	pivotDegrees(-75, 50);
 	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
 }
@@ -88,7 +88,7 @@ void placeInCenter() {
 	wait1Msec(500);
 	// stopAndWait();
 	liftToFloor();
-	pivotToTotalAngle(angle_before_ir, 40);
+	//pivotToTotalAngle(angle_before_ir, 40);
 	//stopAndWait();
 }
 
@@ -114,6 +114,7 @@ task main() {
 	StartTask(UpdateDisplayTask);
 
 	goForwardDistance(2, 30);
+	stop();
 	//stopAndWait();
 	switch(getGoalState()) {
 	case 1:
