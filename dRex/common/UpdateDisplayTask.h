@@ -16,10 +16,6 @@ task UpdateDisplayTask() {
 #ifdef HAS_IR
 		nxtDisplayTextLine(7, "IR: %d DIR: %d ", PeakIR, dirAC);
 #endif
-
-		//		nxtDisplayTextLine(4, "Angle: %3.2f deg", total_angle);
-		//nxtDisplayTextLine(5, "Trip: %3.1f ft", trip_distance_feet);
-		//nxtDisplayTextLine(6, "Range: %d", SensorValue[ultrasonic]);
-		wait1Msec( 100 );
+		wait1Msec( 200 );
 	}
 }
