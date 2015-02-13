@@ -104,9 +104,8 @@ task main() {
 	wristPos = (float) 100;
 	servo[elbow] = 240;
 	elbowPos = 240;
+	waitForStart();
 
-	wait1Msec( 1000 );
-	//waitForStart();
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);
 	//StartTask(HarvesterTask);  If you start this total_angle goes wrong.
@@ -133,8 +132,10 @@ task main() {
 		break;
 	case 3:  /// / Angled goal
 		PlaySound(soundException);
-		pivotDegrees(-85, 50);
-		goForwardDistance(1.8, 50);
+		pivotDegrees(-80, 50);
+		goForwardDistance(1.6, 50);
+
+
 		pivotToTotalAngle(45, 50);
 		//stopAndWait();
 		if (PointToIR() == false) stopAndWait();
