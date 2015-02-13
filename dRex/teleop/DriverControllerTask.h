@@ -7,21 +7,23 @@ void CenterAimAndDistance( void ) {
 	if (PointToIR() == false)return;
 
 	// Move a little forward or backward to get to the target
-	if (SensorValue[ultrasonic] < CENTER_PLACE_DIST){
-		while( SensorValue[ultrasonic] < CENTER_PLACE_DIST ) {
+	if (SensorValue[ultrasonic] > CENTER_PLACE_DIST){
+		while( SensorValue[ultrasonic] > CENTER_PLACE_DIST ) {
 			motor[left_drive] = 25;
 			motor[right_drive] = 25;
 			if (numTries++ > 60) break;
 			wait1Msec(50);
 		}
 		} else {
-		while( SensorValue[ultrasonic] > CENTER_PLACE_DIST ) {
+		while( SensorValue[ultrasonic] < CENTER_PLACE_DIST ) {
 			motor[left_drive] = -25;
 			motor[right_drive] = -25;
 			if (numTries++ > 60) break;
 			wait1Msec(50);
 		}
 	}
+		motor[left_drive] = 0;
+		motor[right_drive] = 0;
 }
 
 

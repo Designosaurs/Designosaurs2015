@@ -226,5 +226,5 @@ void liftToCenterGoal() {
 
 void liftPlace() {
 	servoChangeRate[ wrist ] = 5;
-	servo[wrist] = 96;
+	servo[wrist] = 125;
 }

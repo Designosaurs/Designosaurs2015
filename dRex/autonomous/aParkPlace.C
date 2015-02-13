@@ -71,14 +71,14 @@ int getGoalState() {
 void knockKickstand() {
 	wait1Msec(500);
 	pivotDegrees(70, 50);
-	goForwardDistance(1.6, 60);
+	goForwardDistance(1.7, 60);
 	pivotDegrees(-75, 50);
 	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
 }
 
 void placeInCenter() {
-	goToRange(49, 40);
+	goToRange(49, 30);
 	angle_before_ir = total_angle;
 	if (PointToIR() == false) stopAndWait();
 	liftToCenterGoal();
@@ -86,7 +86,7 @@ void placeInCenter() {
 	//stopAndWait();
 	liftPlace();
 	wait1Msec(500);
-	// stopAndWait();
+	//stopAndWait();
 	liftToFloor();
 	//pivotToTotalAngle(angle_before_ir, 40);
 	//stopAndWait();
@@ -125,20 +125,22 @@ task main() {
 		pivotDegrees(-60, 50);
 		goForwardDistance(4, 50);
 		pivotToTotalAngle(0, 50);
-		goForwardDistance(0.1, 40);
+		goForwardDistance(0.2, 40);
 		pivotToTotalAngle(95, 50);
 		if (PointToIR() == false) stopAndWait();
+		//stopAndWait();
 		placeInCenter();
 		break;
 	case 3:  /// / Angled goal
 		PlaySound(soundException);
 		pivotDegrees(-85, 50);
-		goForwardDistance(2.2, 50);
+		goForwardDistance(1.8, 50);
 		pivotToTotalAngle(45, 50);
 		//stopAndWait();
 		if (PointToIR() == false) stopAndWait();
-		//StopAndWait();
+		//stopAndWait();
 		placeInCenter();
+		//stopAndWait();
 		break;
 	}
 	knockKickstand();
