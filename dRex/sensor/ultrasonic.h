@@ -1,7 +1,7 @@
 int getClosestRange(){
     int i;
     int range = 255;
-    for (i = 0; i<3; i++) {
+    for (i = 0; i<5; i++) {
         if((SensorValue[ultrasonic]) < range) {
             range = SensorValue[ultrasonic];
         }

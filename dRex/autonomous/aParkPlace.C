@@ -83,7 +83,7 @@ void placeInCenter() {
 	if (PointToIR() == false) stopAndWait();
 	TossToCenterGoal();
 	//liftToCenterGoal();
-	wait1Msec(500);
+	//wait1Msec(500);
 	//stopAndWait();
 	//liftPlace();
 	//wait1Msec(500);
