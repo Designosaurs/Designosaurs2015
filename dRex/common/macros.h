@@ -228,3 +228,28 @@ void liftPlace() {
 	servoChangeRate[ wrist ] = 5;
 	servo[wrist] = 125;
 }
+
+
+/////////////////////////////////////////////////////////////////////////
+void TossToCenterGoal() {
+	if (LiftPos == 0) untuck();
+	else {
+		servo[elbow] = 120;
+	servo[wrist] = 204;
+	updateServoPos( );
+	}
+
+	moveLift( 26.5);
+	debugStep();
+
+	servoChangeRate[ elbow ] = 10;
+	servoChangeRate[ wrist ] = 10;
+
+	//  Smaller elbow number means more toward the goal
+	servo[elbow] = 110;		// 105 would be slightly toward the goal.  This is intended to be about vertical.
+	servo[wrist] = 140;   // Placing is 125 (down) This is intended to be about cup horizontal.
+	updateServoPos( );
+	debugStep();
+	LiftPos = 2;
+	wait1Msec( 1000 );
+}

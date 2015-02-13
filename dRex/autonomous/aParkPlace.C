@@ -81,11 +81,12 @@ void placeInCenter() {
 	goToRange(49, 30);
 	angle_before_ir = total_angle;
 	if (PointToIR() == false) stopAndWait();
-	liftToCenterGoal();
-	wait1Msec(1000);
-	//stopAndWait();
-	liftPlace();
+	TossToCenterGoal();
+	//liftToCenterGoal();
 	wait1Msec(500);
+	//stopAndWait();
+	//liftPlace();
+	//wait1Msec(500);
 	//stopAndWait();
 	liftToFloor();
 	//pivotToTotalAngle(angle_before_ir, 40);
