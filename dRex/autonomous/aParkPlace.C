@@ -59,9 +59,16 @@ int getGoalState() {
 	if(range < 65) {
 		// |
 		return 1;
-		} else if(range < 100) {
-		// -
-		return 2;
+		} else if(range < 100) {  // Look for flat goal
+			// Be sure that it is not clutter from the angled goal.
+			pivotDegrees( 10, 50);
+			range = getClosestRange();
+			if (range > 120 ) {
+				pivotDegrees( 15, 50);
+				return 3;
+			}
+			pivotDegrees( -15, 50);
+			return 2;
 		} else {
 		// /
 		return 3;
@@ -123,7 +130,7 @@ task main() {
 	case 2: //---  Flat side facing us
 		PlaySound(soundFastUpwardTones);
 		pivotDegrees(-60, 50);
-		goForwardDistance(4, 50);
+		goForwardDistance(4, 65);
 		pivotToTotalAngle(0, 50);
 		goForwardDistance(0.2, 40);
 		pivotToTotalAngle(95, 50);
