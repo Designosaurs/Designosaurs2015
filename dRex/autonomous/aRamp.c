@@ -103,7 +103,7 @@ task main() {
     initWrist();
     initDriveConfig();
 
-    waitForStart();
+    // waitForStart();
     eraseDisplay();
     StartTask(UpdateLiftEncoderTask);
     StartTask(UpdateDisplayTask);

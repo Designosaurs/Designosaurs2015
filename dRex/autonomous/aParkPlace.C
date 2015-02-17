@@ -8,7 +8,7 @@
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  mtr_S1_C1_1,     right_drive,   tmotorTetrix, PIDControl, reversed)
 #pragma config(Motor,  mtr_S1_C1_2,     left_drive,    tmotorTetrix, PIDControl)
-#pragma config(Motor,  mtr_S1_C3_1,     lift,          tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C3_1,     lift,          tmotorTetrix, PIDControl, reversed)
 #pragma config(Motor,  mtr_S1_C3_2,     harvester,     tmotorTetrix, PIDControl)
 #pragma config(Servo,  srvo_S1_C2_1,    placer,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    goal_grab,            tServoStandard)
@@ -43,7 +43,7 @@ Judge Demo Program: 2014-2015 (Cascade Effect)
 #include "..\common\UpdateLiftEncoderTask.h"
 #include "..\common\UpdateDisplayTask.h"
 #include "..\common\UpdateDriveBearings.h"
-#include "..\common\HarvesterTask.h"
+//#include "..\common\HarvesterTask.h"
 #include "drive.h"
 #include "sonar.h"
 
@@ -107,18 +107,26 @@ task main() {
 	initDriveConfig();
 
 	// 	Initial position for cup is tilted a little up, so we do not lose
-	// The small balls.
-	servo[wrist] = 100;
+	// The small balls. Smaller number = pointed more up
+	servo[wrist] = 90;
 	wristPos = (float) 100;
 	servo[elbow] = 240;
 	elbowPos = 240;
-	waitForStart();
+	//waitForStart();
+	wait1Msec( 2000 );
 
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);
 	//StartTask(HarvesterTask);  If you start this total_angle goes wrong.
 	StartTask(UpdateDriveBearingsTask);
 	StartTask(UpdateDisplayTask);
+
+	// Test toss code
+	//TossToCenterGoal();
+	//wait1Msec(10000);
+	//tuck();
+	//stopAndWait();
+
 
 	goForwardDistance(2, 30);
 	stop();

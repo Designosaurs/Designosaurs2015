@@ -40,15 +40,23 @@ void debugStep() {
 
 
 void moveLift( float to_height ){
+	int LiftPower = 30;
+
+
 	if (lift_inches < to_height ) {
+		// Move up to reach height.
 		while( lift_inches < to_height ) {
-			motor[ lift ] = 25;
+			// Slow down when we get close-- but only if the lift is already
+			// a ways up.
+			if (( lift_inches > (to_height - 1)) && (lift_inches > 13)) LiftPower = 10;
+			motor[ lift ] = LiftPower;
 			if (stopMacro()) break;
 			wait1Msec( 20 );
 		}
 		} else {
+		// Starting from above-- move down to reach height.
 		while( lift_inches > to_height ) {
-			motor[ lift ] = -10;
+			motor[ lift ] = -30;
 			if (stopMacro()) break;
 			wait1Msec( 20 );
 		}
@@ -175,7 +183,7 @@ void liftToFloor() {
 /////////////////////////////////////////////////////////////////////////
 void liftToHighGoal() {
 	if (LiftPos == 0) untuck();
-	moveLift( 16.3);
+	moveLift( 19.1);
 	debugStep();
 
 	servoChangeRate[ elbow ] = 5;
@@ -206,7 +214,7 @@ void liftToCenterGoal() {
 
 }
 
-	moveLift( 26.5);
+	moveLift( 29.4);
 	debugStep();
 
 	servoChangeRate[ elbow ] = 5;
@@ -239,7 +247,7 @@ void TossToCenterGoal() {
 	updateServoPos( );
 	}
 
-	moveLift( 26.5);
+	moveLift( 29.4);
 	debugStep();
 
 	servoChangeRate[ elbow ] = 10;
@@ -247,9 +255,12 @@ void TossToCenterGoal() {
 
 	//  Smaller elbow number means more toward the goal
 	servo[elbow] = 110;		// 105 would be slightly toward the goal.  This is intended to be about vertical.
-	servo[wrist] = 140;   // Placing is 125 (down) This is intended to be about cup horizontal.
+	servo[wrist] = 150;   // Placing is 125 (down) This is intended to be about cup horizontal.
 	updateServoPos( );
 	debugStep();
 	LiftPos = 2;
-	wait1Msec( 1000 );
+	wait1Msec( 800 );
+	servo[elbow] = 170;		// 105 would be slightly toward the goal.  This is intended to be about vertical.
+	wait1Msec( 800 );
+
 }

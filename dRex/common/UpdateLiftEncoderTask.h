@@ -19,7 +19,7 @@ task UpdateLiftEncoderTask() {
 		prev_lift_encoder = lift_encoder;
 
 		if(lift_enc_speed > 1000) bad_reading = true;
-		if(lift_enc_speed < 5) liftStopped = true;
+		if(lift_enc_speed < 4) liftStopped = true;
 		else liftStopped = false;
 
 		if(!bad_reading) {
