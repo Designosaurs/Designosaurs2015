@@ -74,3 +74,28 @@ bool PointToIR( void ) {
 		wait10Msec( 10 );
 	}
 }
+
+// Before calling this, point to the IR beacon.
+// This will drive slowly, maintaining pointing at the IR beacon,
+// until it is within the passed range.
+// Return false if fail.
+bool FollowIRtoRange( int range ) {
+	int numTrys = 0;
+
+	while(SensorValue[ultrasonic] > range) {
+		GetIR();
+		if ((PeakIR < 50)|| (numTrys > 500)) {
+			motor[right_drive] = 0;
+			motor[left_drive] = 0;
+			return false;
+		}
+		motor[left_drive] = 30 - Center6;
+		motor[right_drive] = 30 + Center6;
+		wait1Msec(20);
+		numTrys++;
+	}
+
+	motor[right_drive] = 0;
+	motor[left_drive] = 0;
+	return true;
+}

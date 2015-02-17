@@ -88,7 +88,8 @@ void placeInCenter() {
 	// Point toward the IR beacon, even though we are a ways from it.
 	if (PointToIR() == false) stopAndWait();
 	// Now get the ideal distance for placing:
-	goToRange(49, 30);
+	if (FollowIRtoRange( 49 ) == false) stopAndWait();
+	//goToRange(49, 30);
 	// Record the angle before the last IR adjustment, as it is likely lined up well with
 	// the center goal structure as a whole, if not the center goal:
 	angle_before_ir = total_angle;
