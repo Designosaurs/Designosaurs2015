@@ -84,6 +84,7 @@ void knockKickstand() {
 	goForwardDistance(.5, 50);
 }
 
+
 void placeInCenter() {
 	// Point toward the IR beacon, even though we are a ways from it.
 	if (PointToIR() == false) stopAndWait();
@@ -95,12 +96,12 @@ void placeInCenter() {
 	angle_before_ir = total_angle;
 	if (PointToIR() == false) stopAndWait();
 	// Compensate here if the cup is not exactly over the IR beacon:
-	pivotDegrees( 2, 40);
+	//pivotDegrees( 40, 2);
 	TossToCenterGoal();
 	//stopAndWait();
 	liftToFloor();
-	pivotToTotalAngle(angle_before_ir, 40);
-	//stopAndWait();
+	//pivotToTotalAngle(angle_before_ir, 40);
+	stopAndWait();
 }
 
 task main() {
@@ -115,6 +116,9 @@ task main() {
 	wristPos = (float) 100;
 	servo[elbow] = 240;
 	elbowPos = 240;
+
+
+
 	//waitForStart();
 	wait1Msec( 2000 );   // Leave in only during testing.
 

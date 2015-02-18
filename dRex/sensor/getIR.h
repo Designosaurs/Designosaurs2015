@@ -89,8 +89,8 @@ bool FollowIRtoRange( int range ) {
 			motor[left_drive] = 0;
 			return false;
 		}
-		motor[left_drive] = 30 - Center6;
-		motor[right_drive] = 30 + Center6;
+		motor[left_drive] = 30 + Center6;
+		motor[right_drive] = 30 - Center6;
 		wait1Msec(20);
 		numTrys++;
 	}
