@@ -248,7 +248,7 @@ void TossToCenterGoal() {
 	updateServoPos( );
 	}
 
-	moveLift( 28);  // Was 29.4
+	moveLift( 28.5);  // Was 29.4
 	debugStep();
 
 	servoChangeRate[ elbow ] = 10;

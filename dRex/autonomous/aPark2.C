@@ -79,7 +79,7 @@ void knockKickstand() {
 	wait1Msec(500);
 	pivotDegrees(70, 50);
 	goForwardDistance(1.3, 60);
-	pivotDegrees(-80, 50);
+	pivotDegrees(-75, 50);
 	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
 }
