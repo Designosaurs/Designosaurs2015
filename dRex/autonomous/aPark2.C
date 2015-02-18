@@ -78,7 +78,7 @@ int getGoalState() {
 void knockKickstand() {
 	wait1Msec(500);
 	pivotDegrees(70, 50);
-	goForwardDistance(1.3, 60);
+	goForwardDistance(1.5, 60);
 	pivotDegrees(-75, 50);
 	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
@@ -116,8 +116,8 @@ task main() {
 	// The small balls. Smaller number = pointed more up
 	servo[wrist] = 80;
 	wristPos = (float) 80;
-	servo[elbow] = 240;
-	elbowPos = 240;
+	servo[elbow] = 217;
+	elbowPos = 217;
 
 
 

@@ -86,7 +86,7 @@ void untuck() {
 
 	// Raise a bit.  Elbow slightly back to compensate
 	servo[elbow] = 217;
-	servo[wrist] = 90;
+	servo[wrist] = 80;
 	moveLift( 5.4);
 	motor[lift] = 0;
 	debugStep();
@@ -94,14 +94,14 @@ void untuck() {
 
 	// up, servo back to keep from hitting harvester
 	servo[elbow] = 247;
-	servo[wrist] = 90;
+	servo[wrist] = 80;
 	moveLift( 8.8 );
 	motor[lift] = 0;
 	debugStep();
 
 	// Clear
 	servo[elbow] = 255;
-	servo[wrist] = 84;
+	servo[wrist] = 70;
 	moveLift( 11.5 );
 	motor[lift] = 0;
 	debugStep();
@@ -124,7 +124,7 @@ void tuck() {
 
 
 	// Into the harvester
-	servo[elbow] = 250;
+	servo[elbow] = 240;
 	servo[wrist] = 120;
 	moveLift( 5.55 );
 	motor[lift] = 0;
@@ -132,7 +132,7 @@ void tuck() {
 	//PlaySound(soundFastUpwardTones);
 
 	// into the pocket, elbow slightly forward
-	servo[elbow] = 220;
+	servo[elbow] = 215;
 	servo[wrist] = 120;
 	moveLift( 3.3 );
 	motor[lift] = 0;
