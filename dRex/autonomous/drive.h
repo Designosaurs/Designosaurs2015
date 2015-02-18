@@ -160,7 +160,7 @@ void BackwardsArcToAngle(float power, float inside_ratio, float desired_angle) {
         while(total_angle > desired_angle + inertia_allowance) {
             motor[left_drive] =  -power;
             motor[right_drive] = -power * inside_ratio;
-            wait1Msec(10);
+            wait1Msec(20);
         }
     }
 }

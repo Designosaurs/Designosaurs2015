@@ -27,7 +27,7 @@ _____             _
 |_____/ \___||___/_|\__, |_| |_|\___/|___/\__,_|\__,_|_|  |___/
 __/ |
 |___/                            Team #6369
-Assumes IR beacon points straight ahead.  (prior to now it did not!)
+Judge Demo Program: 2014-2015 (Cascade Effect)
 */
 
 #include "JoystickDriver.c"
@@ -78,31 +78,27 @@ int getGoalState() {
 void knockKickstand() {
 	wait1Msec(500);
 	pivotDegrees(70, 50);
-	goForwardDistance(1.3, 60);
-	pivotDegrees(-80, 50);
+	goForwardDistance(1.7, 60);
+	pivotDegrees(-75, 50);
 	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
 }
 
-
 void placeInCenter() {
-	// Point toward the IR beacon, even though we are a ways from it.
-	if (PointToIR() == false) stopAndWait();
-	// Now get the ideal distance for placing:
-	if (FollowIRtoRange( 49 ) == false) stopAndWait();
-	//goToRange(49, 30);
-	// Record the angle before the last IR adjustment, as it is likely lined up well with
-	// the center goal structure as a whole, if not the center goal:
+	goToRange(49, 30);
 	angle_before_ir = total_angle;
 	if (PointToIR() == false) stopAndWait();
-	// Compensate here if the cup is not exactly over the IR beacon:
-	pivotDegrees( -4, 30);
-	stop();
+	pivotDegrees( -4, 50);
 	TossToCenterGoal();
+	//liftToCenterGoal();
+	//wait1Msec(500);
+	//stopAndWait();
+	//liftPlace();
+	//wait1Msec(500);
 	//stopAndWait();
 	liftToFloor();
-	pivotToTotalAngle(angle_before_ir, 40);
-	stop();
+	pivotDegrees( 4, 50 );
+	//pivotToTotalAngle(angle_before_ir, 40);
 	//stopAndWait();
 }
 
@@ -114,15 +110,12 @@ task main() {
 
 	// 	Initial position for cup is tilted a little up, so we do not lose
 	// The small balls. Smaller number = pointed more up
-	servo[wrist] = 80;
-	wristPos = (float) 80;
+	servo[wrist] = 90;
+	wristPos = (float) 100;
 	servo[elbow] = 240;
 	elbowPos = 240;
-
-
-
 	//waitForStart();
-	wait1Msec( 2000 );   // Leave in only during testing.
+	wait1Msec( 2000 );
 
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);
@@ -136,6 +129,7 @@ task main() {
 	//tuck();
 	//stopAndWait();
 
+
 	goForwardDistance(2, 30);
 	stop();
 	//stopAndWait();
@@ -147,20 +141,25 @@ task main() {
 		PlaySound(soundFastUpwardTones);
 		pivotDegrees(-60, 50);
 		goForwardDistance(4, 65);
-		//pivotToTotalAngle(0, 50);
-		//goForwardDistance(0.2, 40);
+		pivotToTotalAngle(0, 50);
+		goForwardDistance(0.2, 40);
 		pivotToTotalAngle(95, 50);
-		stop();
+		if (PointToIR() == false) stopAndWait();
 		//stopAndWait();
 		placeInCenter();
 		break;
 	case 3:  /// / Angled goal
 		PlaySound(soundException);
-		// These moves should get you facing the center goal, but aways from it:
-		pivotDegrees(-85, 50);
-		goForwardDistance(2.8, 50);
+		pivotDegrees(-80, 50);
+		goForwardDistance(1.6, 50);
+
+
 		pivotToTotalAngle(45, 50);
+		//stopAndWait();
+		if (PointToIR() == false) stopAndWait();
+		//stopAndWait();
 		placeInCenter();
+		//stopAndWait();
 		break;
 	}
 	knockKickstand();

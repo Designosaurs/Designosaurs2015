@@ -71,21 +71,22 @@ void untuck() {
 	servoChangeRate[ wrist ] = 2;
 
 	// Cup centered between harvester
+	servo[wrist] = 90;  // cup level
+	wait1Msec( 100 );
 	servo[elbow] = 217;
-	servo[wrist] = 120;  // cup level
 	wait1Msec( 100 );
 	debugStep();
 
 	// Tilt cup slightly up.
-	servo[elbow] = 217;
-	servo[wrist] = 107;
-	wait1Msec( 100 );
-	debugStep();
+	//servo[elbow] = 217;
+	//servo[wrist] = 90;
+	//wait1Msec( 100 );
+	//debugStep();
 
 
 	// Raise a bit.  Elbow slightly back to compensate
-	servo[elbow] = 235;
-	servo[wrist] = 107;
+	servo[elbow] = 217;
+	servo[wrist] = 90;
 	moveLift( 5.4);
 	motor[lift] = 0;
 	debugStep();
@@ -93,7 +94,7 @@ void untuck() {
 
 	// up, servo back to keep from hitting harvester
 	servo[elbow] = 247;
-	servo[wrist] = 100;
+	servo[wrist] = 90;
 	moveLift( 8.8 );
 	motor[lift] = 0;
 	debugStep();
@@ -247,7 +248,7 @@ void TossToCenterGoal() {
 	updateServoPos( );
 	}
 
-	moveLift( 29.4);
+	moveLift( 28);  // Was 29.4
 	debugStep();
 
 	servoChangeRate[ elbow ] = 10;
