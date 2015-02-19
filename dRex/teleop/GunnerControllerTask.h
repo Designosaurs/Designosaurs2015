@@ -26,7 +26,7 @@ task GunnerControllerTask {
 			servoChangeRate[ elbow ] = 5;
 			elbowPos -= y2 * 0.05;   // Set speed here.
 			elbowPos = clamp255(elbowPos);
-			//servo[elbow] = (int) elbowPos;
+			servo[elbow] = (int) elbowPos;
 		}
 
 		// Right joystick X controls wrist.

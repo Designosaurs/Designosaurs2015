@@ -22,6 +22,15 @@ task UpdateLiftEncoderTask() {
 		if(lift_enc_speed < 4) liftStopped = true;
 		else liftStopped = false;
 
+		// If lift_encoder is less than zero, we know it should be a new zero.
+		if ( lift_encoder < -4) {
+			nMotorEncoder[lift] = 0;
+			lift_encoder = 0;
+			prev_lift_encoder = 0;
+			liftStopped = false;
+		}
+
+
 		if(!bad_reading) {
 			lift_inches = (float) lift_encoder / LIFT_COUNTS_PER_INCH;
 		}

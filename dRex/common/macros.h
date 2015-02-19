@@ -71,22 +71,17 @@ void untuck() {
 	servoChangeRate[ wrist ] = 2;
 
 	// Cup centered between harvester
-	servo[wrist] = 90;  // cup level
+	servo[wrist] = 100;  // tilted slighlyt up.
 	wait1Msec( 100 );
-	servo[elbow] = 217;
+	servo[elbow] = 225;
 	wait1Msec( 100 );
+	updateServoPos( );
 	debugStep();
-
-	// Tilt cup slightly up.
-	//servo[elbow] = 217;
-	//servo[wrist] = 90;
-	//wait1Msec( 100 );
-	//debugStep();
 
 
 	// Raise a bit.  Elbow slightly back to compensate
-	servo[elbow] = 217;
-	servo[wrist] = 80;
+	servo[elbow] = 230;
+	updateServoPos( );
 	moveLift( 5.4);
 	motor[lift] = 0;
 	debugStep();
@@ -111,12 +106,13 @@ void untuck() {
 void tuck() {
 	waitForHarvester();
 	//harvesterTo(-20);
-	servoChangeRate[ elbow ] = 1;
-	servoChangeRate[ wrist ] = 1;
+	servoChangeRate[ elbow ] = 3;
+	servoChangeRate[ wrist ] = 3;
 
 	// This is to just inside the tines of the harvester
 		servo[elbow] = 245;
 	servo[wrist] = 120;
+	updateServoPos( );
 	moveLift( 9.55 );
 	motor[lift] = 0;
 	debugStep();
@@ -124,23 +120,26 @@ void tuck() {
 
 
 	// Into the harvester
-	servo[elbow] = 240;
-	servo[wrist] = 120;
+	servo[elbow] = 245;
+	servo[wrist] = 120;  // cup level
+	updateServoPos( );
 	moveLift( 5.55 );
 	motor[lift] = 0;
 	debugStep();
 	//PlaySound(soundFastUpwardTones);
 
 	// into the pocket, elbow slightly forward
-	servo[elbow] = 215;
-	servo[wrist] = 120;
+	servo[elbow] = 225;
+	servo[wrist] = 120;  // cup level
+	updateServoPos( );
 	moveLift( 3.3 );
 	motor[lift] = 0;
 	debugStep();
 
 	// Cup centered between harvester, lcok it down.
-	servo[elbow] = 217;
+	servo[elbow] = 225;
 	servo[wrist] = 120;  // cup level
+	updateServoPos( );
 	wait1Msec( 100 );
 	debugStep();
 	moveLift( 0.5 );  // move to close to home.
@@ -149,21 +148,15 @@ void tuck() {
 	while( 	!liftStopped ) {  // Now, keep going until stopped
 		PlaySound(soundBlip );
 		wait1Msec( 10 );
-
 	}
 	motor[lift] = 0;	// now motor off.
 	nMotorEncoder[lift] = 0; // This is our new zero
 	debugStep();
-
-	// Now move the cup back slightly.
-	servo[elbow] = 233;
-	servo[wrist] = 120;
-	updateServoPos( );
 	wait1Msec( 200 );
 	debugStep();
 
 	// Now level the up-- uses back of cup to lock in place
-	servo[wrist] = 120;
+	//servo[wrist] = 120;
 	updateServoPos( );
 	debugStep();
 }
