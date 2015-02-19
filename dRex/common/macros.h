@@ -73,16 +73,16 @@ void untuck() {
 	// Cup centered between harvester
 	servo[wrist] = 100;  // tilted slighlyt up.
 	wait1Msec( 100 );
-	servo[elbow] = 225;
+	servo[elbow] = 225;  // Centered
 	wait1Msec( 100 );
 	updateServoPos( );
 	debugStep();
-
 
 	// Raise a bit.  Elbow slightly back to compensate
 	servo[elbow] = 230;
 	updateServoPos( );
 	moveLift( 5.4);
+	if (stopMacro()) return;
 	motor[lift] = 0;
 	debugStep();
 
@@ -91,14 +91,14 @@ void untuck() {
 	servo[elbow] = 247;
 	servo[wrist] = 80;
 	moveLift( 8.8 );
-	motor[lift] = 0;
+	if (stopMacro()) return;
 	debugStep();
 
 	// Clear
 	servo[elbow] = 255;
 	servo[wrist] = 70;
 	moveLift( 11.5 );
-	motor[lift] = 0;
+	if (stopMacro()) return;
 	debugStep();
 }
 
@@ -114,7 +114,7 @@ void tuck() {
 	servo[wrist] = 120;
 	updateServoPos( );
 	moveLift( 9.55 );
-	motor[lift] = 0;
+	if (stopMacro()) return;
 	debugStep();
 	//PlaySound(soundDownwardTones);
 
@@ -124,7 +124,7 @@ void tuck() {
 	servo[wrist] = 120;  // cup level
 	updateServoPos( );
 	moveLift( 5.55 );
-	motor[lift] = 0;
+	if (stopMacro()) return;
 	debugStep();
 	//PlaySound(soundFastUpwardTones);
 
@@ -133,7 +133,7 @@ void tuck() {
 	servo[wrist] = 120;  // cup level
 	updateServoPos( );
 	moveLift( 3.3 );
-	motor[lift] = 0;
+	if (stopMacro()) return;
 	debugStep();
 
 	// Cup centered between harvester, lcok it down.

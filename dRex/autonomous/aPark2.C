@@ -121,8 +121,8 @@ task main() {
 
 
 
-	//waitForStart();
-	wait1Msec( 2000 );   // Leave in only during testing.
+	waitForStart();
+	//wait1Msec( 2000 );   // Leave in only during testing.
 
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);
