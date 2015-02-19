@@ -7,7 +7,6 @@ int drivePower = 100;
 // 0=Floor, 1 = HiGoal, 2 = CenterGoal
 int LiftPos = 0;
 int pwrLift;
-const int GUNNER_DEADBAND = 30;
 bool run_harvester = false;
 bool harv_back_jog = false;
 int dirAC = 0;

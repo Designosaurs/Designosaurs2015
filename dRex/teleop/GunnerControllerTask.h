@@ -1,3 +1,5 @@
+const int GUNNER_DEADBAND = 30;
+
 task GunnerControllerTask {
 	int y1,y2, x1, x2;
 
@@ -24,7 +26,7 @@ task GunnerControllerTask {
 			servoChangeRate[ elbow ] = 5;
 			elbowPos -= y2 * 0.05;   // Set speed here.
 			elbowPos = clamp255(elbowPos);
-			servo[elbow] = (int) elbowPos;
+			//servo[elbow] = (int) elbowPos;
 		}
 
 		// Right joystick X controls wrist.
@@ -37,7 +39,7 @@ task GunnerControllerTask {
 			servoChangeRate[ wrist ] = 5;
 			wristPos -= x2 * 0.1; // Set speed here.
 			wristPos = clamp255(wristPos);
-			servo[wrist] = (int) wristPos;
+			//servo[wrist] = (int) wristPos;
 		}
 
 		// Left joystick X allows slow control of harvester.
@@ -62,13 +64,13 @@ task GunnerControllerTask {
 			liftToFloor();
 		}
 
-        if(joy2Btn(07)) {
-            motor[ksm] = -40;
-        } else if(joy2Btn(05)) {
-            motor[ksm] = 40;
-        } else {
-        	motor[ksm] = 0;
-      }
+		if(joy2Btn(07)) {
+			motor[ksm] = -40;
+			} else if(joy2Btn(05)) {
+			motor[ksm] = 40;
+			} else {
+			motor[ksm] = 0;
+		}
 
 		// Left (blue) button
 		if(joy2Btn(01)) {
