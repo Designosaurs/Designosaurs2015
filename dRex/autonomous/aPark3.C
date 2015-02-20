@@ -110,7 +110,7 @@ void pivotFromCenterGoal(){
 
 	while( true ){
 		// Look for the slight increase in range.  Stop if we get it:
-		if ( SensorValue[ultrasonic] > start_range + 2 ) {
+		if ( SensorValue[ultrasonic] > start_range + 1 ) {
 			stop();
 			return;
 		}
@@ -127,20 +127,20 @@ void knockKickstand() {
 	// Point to the beacon
 	if (PointToIR() == false) stopAndWait();
 	// Get a little closer
-	if (FollowIRtoRange( 30 ) == false) stopAndWait();
-	waitForButton();
+	if (FollowIRtoRange( 40 ) == false) stopAndWait();
+	//waitForButton();
 	// Pivot a variable amount that compensates for approach angle.
 	pivotFromCenterGoal();
-	waitForButton();
+	//waitForButton();
 	// Now pivot a fixed amount, to clear us of the center goal.
 	pivotDegrees(70, 50);
-	waitForButton();
+	//waitForButton();
 	// Get to right of the goal
 	goForwardDistance(1.5, 60);
-	waitForButton();
+	//waitForButton();
 	// Turn toward the kickstand:
-	pivotDegrees(-75, 50);
-	waitForButton();
+	pivotDegrees(-100, 50);
+	//waitForButton();
 	// Go knock down the kickstand.
 	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
@@ -163,7 +163,7 @@ void placeInCenter() {
 	TossToCenterGoal();
 	//stopAndWait();
 	liftToFloor();
-	stopAndWait();
+	//stopAndWait();
 }
 
 //////////////////////////////////////////////////  MAIN ////////////////////////////////////////////////////////////
@@ -181,8 +181,7 @@ task main() {
 	elbowPos = 217;
 
 	//waitForStart();
-	//wait1Msec( 2000 );   // Leave in only during testing.
-	knockKickstand();
+	wait1Msec( 2000 );   // Leave in only during testing.
 
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);
@@ -197,6 +196,7 @@ task main() {
 	//stopAndWait();
 
 	goForwardDistance(2, 30);
+	//waitForButton();
 	stop();
 	//stopAndWait();
 	switch(getGoalState()) {
@@ -218,8 +218,10 @@ task main() {
 		PlaySound(soundException);
 		// These moves should get you facing the center goal, but aways from it:
 		pivotDegrees(-85, 50);
-		goForwardDistance(2.8, 50);
+		goForwardDistance(2.6, 50);
 		pivotToTotalAngle(45, 50);
+		//waitForButton();
+
 		placeInCenter();
 		break;
 	}

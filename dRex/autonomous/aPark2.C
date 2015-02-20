@@ -64,10 +64,10 @@ int getGoalState() {
 			pivotDegrees( 10, 50);
 			range = getClosestRange();
 			if (range > 120 ) {
-				pivotDegrees( 15, 50);
+				pivotDegrees( 15, 60);
 				return 3;
 			}
-			pivotDegrees( -15, 50);
+			pivotDegrees( -15, 60);
 			return 2;
 		} else {
 		// /
@@ -76,12 +76,11 @@ int getGoalState() {
 }
 
 void knockKickstand() {
-	wait1Msec(500);
-	pivotDegrees(70, 50);
+	pivotDegrees(70, 60);
 	goForwardDistance(1.5, 60);
-	pivotDegrees(-75, 50);
+	pivotDegrees(-75, 60);
 	goForwardDistance(2, 100);
-	goForwardDistance(.5, 50);
+	goForwardDistance(.5, 65);
 }
 
 
@@ -89,7 +88,7 @@ void placeInCenter() {
 	// Point toward the IR beacon, even though we are a ways from it.
 	if (PointToIR() == false) stopAndWait();
 	// Now get the ideal distance for placing:
-	if (FollowIRtoRange( 49 ) == false) stopAndWait();
+	if (FollowIRtoRange( 47 ) == false) stopAndWait();
 	//goToRange(49, 30);
 	// Record the angle before the last IR adjustment, as it is likely lined up well with
 	// the center goal structure as a whole, if not the center goal:
@@ -119,10 +118,7 @@ task main() {
 	servo[elbow] = 217;
 	elbowPos = 217;
 
-
-
 	waitForStart();
-	//wait1Msec( 2000 );   // Leave in only during testing.
 
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);
@@ -136,7 +132,7 @@ task main() {
 	//tuck();
 	//stopAndWait();
 
-	goForwardDistance(2, 30);
+	goForwardDistance(2, 40);
 	stop();
 	//stopAndWait();
 	switch(getGoalState()) {
@@ -145,11 +141,11 @@ task main() {
 		break;
 	case 2: //---  Flat side facing us
 		PlaySound(soundFastUpwardTones);
-		pivotDegrees(-60, 50);
+		pivotDegrees(-60, 60);
 		goForwardDistance(4, 65);
 		//pivotToTotalAngle(0, 50);
 		//goForwardDistance(0.2, 40);
-		pivotToTotalAngle(95, 50);
+		pivotToTotalAngle(95, 60);
 		stop();
 		//stopAndWait();
 		placeInCenter();
@@ -157,9 +153,9 @@ task main() {
 	case 3:  /// / Angled goal
 		PlaySound(soundException);
 		// These moves should get you facing the center goal, but aways from it:
-		pivotDegrees(-85, 50);
-		goForwardDistance(2.8, 50);
-		pivotToTotalAngle(45, 50);
+		pivotDegrees(-85, 60);
+		goForwardDistance(2.6, 70);
+		pivotToTotalAngle(45, 80);
 		placeInCenter();
 		break;
 	}
