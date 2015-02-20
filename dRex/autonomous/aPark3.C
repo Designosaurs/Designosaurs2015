@@ -60,26 +60,88 @@ int getGoalState() {
 		// |
 		return 1;
 		} else if(range < 100) {  // Look for flat goal
-			// Be sure that it is not clutter from the angled goal.
-			pivotDegrees( 10, 50);
-			range = getClosestRange();
-			if (range > 120 ) {
-				pivotDegrees( 15, 50);
-				return 3;
-			}
-			pivotDegrees( -15, 50);
-			return 2;
+		// Be sure that it is not clutter from the angled goal.
+		pivotDegrees( 10, 50);
+		range = getClosestRange();
+		if (range > 120 ) {
+			pivotDegrees( 15, 50);
+			return 3;
+		}
+		pivotDegrees( -15, 50);
+		return 2;
 		} else {
 		// /
 		return 3;
 	}
 }
 
+void waitForButton() {
+	motor[left_drive] = 0;
+	motor[right_drive] = 0;
+	while(true) {
+		if(nNxtButtonPressed == 1)return;
+		wait1Msec(100);
+	}
+}
+
+
+// Use the ultrasonic sensor to pivot away slightly from the center goal.
+// Nominally, this should pivot about 10 degrees, but a little more or less
+// depending on the robot orientation.
+// It looks for a slight increase in the ultrasonic range.
+// If the robot is coming in from the left twoard the IR beacon, this increase should
+// come sooner, resulting in less of a pivot.  (Or, more of a pivot if in from the right.)
+// It is so it is more predictably set up for a kickstand kick.
+void pivotFromCenterGoal(){
+	int start_range = 255;
+	float angle_before_cg_pivot;
+
+	start_range =  SensorValue[ultrasonic];
+	// If we don't have a good inital reading, pivot a fixed amount.
+	// Do not stop, because it could be a sensor error, and we might as well try.
+	if ( start_range > 50 ) {
+		PlaySound(soundException);
+		pivotDegrees( 10, 30 );
+		stop();
+		return;
+	}
+
+	angle_before_cg_pivot =  total_angle;
+
+	while( true ){
+		// Look for the slight increase in range.  Stop if we get it:
+		if ( SensorValue[ultrasonic] > start_range + 2 ) {
+			stop();
+			return;
+		}
+		// If we get too far without seeing an increase, something is wrong.
+		// Stop, rather than risk breaking things.
+		if (total_angle > angle_before_cg_pivot + 30) stopAndWait();
+		motor[right_drive] = -10;
+		motor[left_drive] = 10;
+		wait1Msec( 50 );
+	}
+}
+
 void knockKickstand() {
-	wait1Msec(500);
+	// Point to the beacon
+	if (PointToIR() == false) stopAndWait();
+	// Get a little closer
+	if (FollowIRtoRange( 30 ) == false) stopAndWait();
+	waitForButton();
+	// Pivot a variable amount that compensates for approach angle.
+	pivotFromCenterGoal();
+	waitForButton();
+	// Now pivot a fixed amount, to clear us of the center goal.
 	pivotDegrees(70, 50);
+	waitForButton();
+	// Get to right of the goal
 	goForwardDistance(1.5, 60);
+	waitForButton();
+	// Turn toward the kickstand:
 	pivotDegrees(-75, 50);
+	waitForButton();
+	// Go knock down the kickstand.
 	goForwardDistance(2, 100);
 	goForwardDistance(.5, 50);
 }
@@ -101,11 +163,10 @@ void placeInCenter() {
 	TossToCenterGoal();
 	//stopAndWait();
 	liftToFloor();
-	pivotToTotalAngle(angle_before_ir, 40);
-	stop();
-	//stopAndWait();
+	stopAndWait();
 }
 
+//////////////////////////////////////////////////  MAIN ////////////////////////////////////////////////////////////
 task main() {
 	initDisplay();
 	goalGrabberUp();
@@ -119,10 +180,9 @@ task main() {
 	servo[elbow] = 217;
 	elbowPos = 217;
 
-
-
-	waitForStart();
+	//waitForStart();
 	//wait1Msec( 2000 );   // Leave in only during testing.
+	knockKickstand();
 
 	eraseDisplay();
 	StartTask(UpdateLiftEncoderTask);
